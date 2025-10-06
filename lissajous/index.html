@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tom McCarthy</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Newsreader:wght@300;400;500&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Newsreader', 'Georgia', 'Times New Roman', serif;
+            background-color: #f5f5f5;
+            color: #1a1a1a;
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        .container {
+            display: flex;
+            justify-content: flex-start;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        .content {
+            width: 860px;
+            flex-shrink: 0;
+            margin-left: 40px;
+            margin-right: 40px;
+            padding: 120px 60px 80px 120px;
+            z-index: 10;
+        }
+
+        .canvas-container {
+            position: fixed;
+            right: 0;
+            top: 0;
+            width: calc(100vw - 860px);
+            max-width: 800px;
+            height: 100vh;
+            z-index: 1;
+            background-color: #f5f5f5;
+        }
+
+        canvas {
+            width: 100%;
+            height: 100%;
+            background-color: transparent;
+        }
+
+        header {
+            margin-bottom: 80px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 300;
+            letter-spacing: -0.5px;
+            margin-bottom: 8px;
+            color: #000000;
+        }
+
+        .accent-line {
+            width: 60px;
+            height: 2px;
+            background: linear-gradient(to right, #a5b4c4, #7a8fa3);
+            margin-top: 12px;
+        }
+
+        section {
+            margin-bottom: 70px;
+        }
+
+        h2 {
+            font-size: 1.1rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            color: #4a4a4a;
+        }
+
+        p {
+            font-size: 1.05rem;
+            color: #2a2a2a;
+            max-width: 520px;
+            font-weight: 300;
+        }
+
+        p.about {
+            max-width: 680px;
+        }
+
+        a {
+            color: #1a1a1a;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        a:hover {
+            color: #4a5568;
+        }
+
+        .email-link {
+            color: #4a5568;
+            border-bottom: 1px solid rgba(74, 85, 104, 0.3);
+        }
+
+        .email-link:hover {
+            border-bottom-color: #4a5568;
+        }
+
+        .list-item {
+            margin-bottom: 12px;
+            font-size: 1.05rem;
+            color: #2a2a2a;
+            font-weight: 300;
+            position: relative;
+            padding-left: 15px;
+        }
+
+        .list-item:before {
+            content: "—";
+            position: absolute;
+            left: 0;
+            color: #999;
+        }
+
+        .list-item a {
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.2s ease;
+        }
+
+        .list-item a:hover {
+            border-bottom-color: #4a5568;
+        }
+
+        @media (max-width: 1100px) {
+            .canvas-container {
+                display: none;
+            }
+        }
+
+        @media (max-width: 940px) {
+            .content {
+                /* Symmetric margins that shrink: from 40px down to 20px */
+                margin-left: max(20px, calc((100vw - 860px) / 2));
+                margin-right: max(20px, calc((100vw - 860px) / 2));
+            }
+        }
+
+        @media (max-width: 900px) {
+            .content {
+                /* Now start shrinking the content width */
+                width: calc(100vw - 40px); /* Total viewport minus 20px margins on each side */
+                min-width: 320px; /* Minimum content width */
+                margin-left: 20px;
+                margin-right: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="content">
+            <header>
+                <h1>Tom McCarthy</h1>
+            </header>
+
+            <section>
+                <h2>About Me</h2>
+                <p class="about">Hi, I'm Tom McCarthy. I studied theoretical physics at Trinity College Dublin and founded Patch, which finds & supports talented youth. I work at Nebular on company formation and research.</p>
+            </section>
+
+            <section>
+                <h2>Contact Me</h2>
+                <p>If you'd like to get in touch, feel free to email me at <a href="mailto:tommccarthyprojects@gmail.com" class="email-link">tommccarthyprojects@gmail.com</a>. I'd love to hear from you!</p>
+            </section>
+
+            <section>
+                <h2>Posts</h2>
+                <div class="list-item"><a href="#">An Incomplete List of Essays and Books on Company Culture</a></div>
+                <div class="list-item"><a href="#">Bismarck (Steinberg) review</a></div>
+                <div class="list-item"><a href="#">Gifts and Toys for STEM Kids</a></div>
+                <div class="list-item"><a href="#">Internet Friends</a></div>
+                <div class="list-item"><a href="#">You Know Too Many Words</a></div>
+            </section>
+
+            <section>
+                <h2>Gizmos</h2>
+                <div class="list-item"><a href="#">Conway's Game of Life</a></div>
+            </section>
+        </div>
+
+        <div class="canvas-container">
+            <canvas id="lissajousCanvas"></canvas>
+        </div>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('lissajousCanvas');
+        const ctx = canvas.getContext('2d');
+
+        let width, height;
+        let curves = [];
+        let time = 0;
+
+        function resizeCanvas() {
+            const dpr = window.devicePixelRatio || 1;
+            const rect = canvas.getBoundingClientRect();
+            
+            canvas.width = rect.width * dpr;
+            canvas.height = rect.height * dpr;
+            
+            width = canvas.width;
+            height = canvas.height;
+            
+            ctx.scale(dpr, dpr);
+        }
+
+        class LissajousCurve {
+            constructor(a, b, delta, color, alpha, scale, offsetX, offsetY, scaleMultiplier) {
+                this.a = a;
+                this.b = b;
+                this.delta = delta;
+                this.color = color;
+                this.alpha = alpha;
+                this.scale = scale;
+                this.offsetX = offsetX;
+                this.offsetY = offsetY;
+                this.scaleMultiplier = scaleMultiplier;
+                this.phase = Math.random() * Math.PI * 2;
+                this.points = [];
+                this.maxPoints = 400;
+            }
+
+            update(t) {
+                // Add subtle time-varying modulation to prevent static patterns
+                const modA = 1 + Math.sin(t * 0.05) * 0.08;
+                const modB = 1 + Math.cos(t * 0.07) * 0.08;
+                
+                const x = Math.sin(this.a * t * modA + this.delta + this.phase) * this.scale + this.offsetX;
+                const y = Math.sin(this.b * t * modB + this.phase) * this.scale + this.offsetY;
+                
+                this.points.push({ x, y });
+                if (this.points.length > this.maxPoints) {
+                    this.points.shift();
+                }
+            }
+
+            draw() {
+                if (this.points.length < 2) return;
+
+                ctx.strokeStyle = this.color;
+                ctx.lineWidth = 0.9;
+                
+                // Draw each segment with less aggressive fade - using square root for gentler gradient
+                for (let i = 1; i < this.points.length; i++) {
+                    const fadeProgress = Math.sqrt(i / this.points.length); // Square root for gentler fade
+                    ctx.globalAlpha = fadeProgress * this.alpha;
+                    
+                    ctx.beginPath();
+                    ctx.moveTo(this.points[i - 1].x, this.points[i - 1].y);
+                    ctx.lineTo(this.points[i].x, this.points[i].y);
+                    ctx.stroke();
+                }
+                
+                ctx.globalAlpha = 1;
+            }
+        }
+
+        function initCurves() {
+            curves = [];
+            const centerX = width / (window.devicePixelRatio || 1) / 2;
+            const centerY = height / (window.devicePixelRatio || 1) / 2;
+            const baseScale = Math.min(width, height) / (window.devicePixelRatio || 1) / 4 * 0.8;
+
+            // Higher order and more irregular Lissajous figures using prime ratios and complex phases
+            // Matching paragraph text color exactly (rgb 42,42,42) with higher opacity for crisp appearance
+            curves.push(new LissajousCurve(11, 13, Math.PI / 7, 'rgba(42, 42, 42, 1.0)', 0.65, baseScale * 0.75, centerX, centerY, 0.75));
+            curves.push(new LissajousCurve(7, 11, Math.PI / 5, 'rgba(42, 42, 42, 1.0)', 0.6, baseScale * 0.85, centerX, centerY, 0.85));
+            curves.push(new LissajousCurve(13, 8, Math.PI / 11, 'rgba(42, 42, 42, 1.0)', 0.55, baseScale * 0.9, centerX, centerY, 0.9));
+            curves.push(new LissajousCurve(9, 17, Math.PI / 13, 'rgba(42, 42, 42, 1.0)', 0.5, baseScale * 0.8, centerX, centerY, 0.8));
+            curves.push(new LissajousCurve(15, 19, Math.PI / 9, 'rgba(42, 42, 42, 1.0)', 0.45, baseScale * 0.7, centerX, centerY, 0.7));
+        }
+
+        function updateCurvesOnResize() {
+            const newCenterX = width / (window.devicePixelRatio || 1) / 2;
+            const newCenterY = height / (window.devicePixelRatio || 1) / 2;
+            const newBaseScale = Math.min(width, height) / (window.devicePixelRatio || 1) / 4 * 0.8;
+
+            curves.forEach(curve => {
+                // Store old values for transformation
+                const oldOffsetX = curve.offsetX;
+                const oldOffsetY = curve.offsetY;
+                const oldScale = curve.scale;
+                
+                // Calculate new scale for this curve
+                const newScale = newBaseScale * curve.scaleMultiplier;
+                const scaleRatio = newScale / oldScale;
+                
+                // Transform all existing points to new coordinate system
+                curve.points.forEach(point => {
+                    // Translate to origin (relative to old center)
+                    const relX = point.x - oldOffsetX;
+                    const relY = point.y - oldOffsetY;
+                    
+                    // Scale
+                    const scaledX = relX * scaleRatio;
+                    const scaledY = relY * scaleRatio;
+                    
+                    // Translate to new center
+                    point.x = scaledX + newCenterX;
+                    point.y = scaledY + newCenterY;
+                });
+                
+                // Update curve properties
+                curve.offsetX = newCenterX;
+                curve.offsetY = newCenterY;
+                curve.scale = newScale;
+            });
+        }
+
+        function animate() {
+            // Clear canvas completely - no background fill needed
+            ctx.clearRect(0, 0, width, height);
+            
+            time += 0.004;
+
+            curves.forEach(curve => {
+                curve.update(time);
+                curve.draw();
+            });
+
+            requestAnimationFrame(animate);
+        }
+
+        resizeCanvas();
+        initCurves();
+        animate();
+
+        window.addEventListener('resize', () => {
+            resizeCanvas();
+            if (curves.length > 0) {
+                updateCurvesOnResize();
+            } else {
+                initCurves();
+            }
+        });
+    </script>
+</body>
+</html>
