@@ -4,99 +4,543 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tom McCarthy</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Newsreader:wght@300;400;500&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
+            font-family: 'Newsreader', 'Georgia', 'Times New Roman', serif;
+            background-color: #f5f5f5;
+            color: #1a1a1a;
+            line-height: 1.7;
+            overflow-x: hidden;
+            font-weight: 500;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
+
+        body.dark-mode {
+            background-color: #1a1a1a;
+            color: #ffffff;
+        }
+
+        .mode-toggle {
+            padding: 8px;
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .mode-toggle svg {
+            width: 32px;
+            height: 32px;
+            stroke: #000000;
+            fill: none;
+            transition: stroke 0.3s ease;
+        }
+
+        .mode-toggle:hover svg {
+            stroke: #4a5568;
+        }
+
+        body.dark-mode .mode-toggle svg {
+            stroke: #ffffff;
+        }
+
+        body.dark-mode .mode-toggle:hover svg {
+            stroke: #e8e8e8;
+        }
+
         .container {
-            width: 80%;
-            margin: auto;
-            overflow: hidden;
+            display: flex;
+            justify-content: flex-start;
+            min-height: 100vh;
+            position: relative;
         }
+
+        .content {
+            width: 860px;
+            flex-shrink: 0;
+            margin-left: 40px;
+            margin-right: 40px;
+            padding: 120px 60px 80px 120px;
+            z-index: 10;
+        }
+
+        .canvas-container {
+            position: fixed;
+            right: 0;
+            top: 0;
+            width: calc(100vw - 860px);
+            max-width: 800px;
+            height: 100vh;
+            z-index: 1;
+            background-color: #f5f5f5;
+            transition: background-color 0.3s ease;
+        }
+
+        body.dark-mode .canvas-container {
+            background-color: #1a1a1a;
+        }
+
+        canvas {
+            width: 100%;
+            height: 100%;
+            background-color: transparent;
+        }
+
         header {
-            background: #35424a;
+            margin-bottom: 80px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 40px;
+            max-width: 520px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 500;
+            letter-spacing: -0.5px;
+            margin-bottom: 8px;
+            color: #000000;
+            transition: color 0.3s ease;
+        }
+
+        body.dark-mode h1 {
             color: #ffffff;
-            padding-top: 30px;
-            min-height: 70px;
-            border-bottom: #e8491d 3px solid;
         }
-        header a {
+
+        .accent-line {
+            width: 60px;
+            height: 2px;
+            background: linear-gradient(to right, #a5b4c4, #7a8fa3);
+            margin-top: 12px;
+        }
+
+        section {
+            margin-bottom: 70px;
+        }
+
+        h2 {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+            font-size: 1.1rem;
+            font-weight: 500;
+            letter-spacing: 0;
+            margin-bottom: 20px;
+            color: #4a4a4a;
+            transition: color 0.3s ease;
+        }
+
+        body.dark-mode h2 {
             color: #ffffff;
-            text-decoration: none;
-            text-transform: uppercase;
-            font-size: 16px;
         }
-        header ul {
-            padding: 0;
-            list-style: none;
+
+        p {
+            font-size: 1.05rem;
+            color: #2a2a2a;
+            max-width: 520px;
+            font-weight: 400;
+            transition: color 0.3s ease;
         }
-        header li {
-            float: left;
-            display: inline;
-            padding: 0 20px 0 20px;
-        }
-        header #branding {
-            float: left;
-        }
-        header #branding h1 {
-            margin: 0;
-        }
-        header nav {
-            float: right;
-            margin-top: 10px;
-        }
-        .main-content {
-            padding: 20px;
-            background: #ffffff;
-            margin-top: 20px;
-        }
-        footer {
-            background: #35424a;
+
+        body.dark-mode p {
             color: #ffffff;
-            text-align: center;
-            padding: 30px 0;
-            margin-top: 20px;
+        }
+
+        a {
+            color: #1a1a1a;
+            text-decoration: underline;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: #4a5568;
+        }
+
+        body.dark-mode a {
+            color: #7dd3c0;
+        }
+
+        body.dark-mode a:hover {
+            color: #9ee4d4;
+        }
+
+        .email-link {
+            color: #4a5568;
+        }
+
+        .email-link:hover {
+            color: #4a5568;
+        }
+
+        body.dark-mode .email-link {
+            color: #7dd3c0;
+        }
+
+        body.dark-mode .email-link:hover {
+            color: #9ee4d4;
+        }
+
+        .list-item {
+            margin-bottom: 12px;
+            font-size: 1.05rem;
+            color: #2a2a2a;
+            font-weight: 400;
+            position: relative;
+            padding-left: 15px;
+            transition: color 0.3s ease;
+        }
+
+        body.dark-mode .list-item {
+            color: #ffffff;
+        }
+
+        .list-item:before {
+            content: "—";
+            position: absolute;
+            left: 0;
+            color: #999;
+        }
+
+        .list-item a {
+            transition: color 0.2s ease;
+        }
+
+        .list-item a:hover {
+            color: #4a5568;
+        }
+
+        .embeddable-buttondown-form {
+            max-width: 520px;
+        }
+
+        .embeddable-buttondown-form label {
+            display: block;
+            font-size: 1.05rem;
+            color: #2a2a2a;
+            font-weight: 400;
+            margin-bottom: 12px;
+            transition: color 0.3s ease;
+        }
+
+        body.dark-mode .embeddable-buttondown-form label {
+            color: #ffffff;
+        }
+
+        .embeddable-buttondown-form input[type="email"] {
+            width: 280px;
+            padding: 10px 12px;
+            font-family: 'Newsreader', 'Georgia', 'Times New Roman', serif;
+            font-size: 1rem;
+            border: 1px solid #d0d0d0;
+            border-radius: 4px;
+            background-color: #ffffff;
+            color: #1a1a1a;
+            margin-right: 8px;
+            transition: all 0.3s ease;
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        .embeddable-buttondown-form input[type="email"]:focus {
+            outline: none;
+            border-color: #4a5568;
+        }
+
+        body.dark-mode .embeddable-buttondown-form input[type="email"] {
+            background-color: #2a2a2a;
+            color: #ffffff;
+            border-color: #404040;
+        }
+
+        body.dark-mode .embeddable-buttondown-form input[type="email"]:focus {
+            border-color: #7dd3c0;
+        }
+
+        .embeddable-buttondown-form input[type="submit"] {
+            padding: 10px 24px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+            font-size: 0.95rem;
+            font-weight: 500;
+            background-color: #1a1a1a;
+            color: #ffffff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        .embeddable-buttondown-form input[type="submit"]:hover {
+            background-color: #4a5568;
+        }
+
+        body.dark-mode .embeddable-buttondown-form input[type="submit"] {
+            background-color: #f5f5f5;
+            color: #1a1a1a;
+        }
+
+        body.dark-mode .embeddable-buttondown-form input[type="submit"]:hover {
+            background-color: #e8e8e8;
+        }
+
+        @media (max-width: 1100px) {
+            .canvas-container {
+                display: none;
+            }
+        }
+
+        @media (max-width: 940px) {
+            .content {
+                /* Symmetric margins that shrink: from 40px down to 20px */
+                margin-left: max(20px, calc((100vw - 860px) / 2));
+                margin-right: max(20px, calc((100vw - 860px) / 2));
+            }
+        }
+
+        @media (max-width: 900px) {
+            .content {
+                /* Now start shrinking the content width */
+                width: calc(100vw - 40px); /* Total viewport minus 20px margins on each side */
+                min-width: 320px; /* Minimum content width */
+                margin-left: 20px;
+                margin-right: 20px;
+                /* Reduce padding on narrow screens */
+                padding-left: max(20px, min(120px, calc((100vw - 400px) * 0.16)));
+                padding-right: max(16px, min(60px, calc((100vw - 400px) * 0.08)));
+            }
         }
     </style>
 </head>
 <body>
-    <header>
-        <div class="container">
-            <div id="branding">
-                <h1>Tom McCarthy</h1>
-            </div>
-        </div>
-    </header>
-
     <div class="container">
-        <div class="main-content">
-            <section id="about">
+        <div class="content">
+            <header>
+                <h1>Tom McCarthy</h1>
+                <button class="mode-toggle" onclick="toggleDarkMode()" aria-label="Toggle dark mode">
+                    <svg viewBox="0 0 100 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M 0 20 Q 12.5 5, 25 20 T 50 20 T 75 20 T 100 20" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+            </header>
+
+            <section>
                 <h2>About Me</h2>
-                <p>Hi, I'm Tom McCarthy. I studied theoretical physics at Trinity College Dublin and founded <a href="https://joinpatch.org" target="_blank">Patch</a>, which finds & supports talented youth. I work at <a href="https://nebular.vc/">Nebular</a> on company formation and research. </p>
+                <p>Hi, I'm Tom McCarthy. I studied theoretical physics at Trinity College Dublin and founded <a href="https://joinpatch.org">Patch</a>, which finds & supports talented youth. I work at <a href="https://nebular.vc/">Nebular</a> on company formation and research.</p>
             </section>
-            <section id="contact">
+
+            <section>
                 <h2>Contact Me</h2>
-                <p>If you'd like to get in touch, feel free to email me at <a href="mailto:tommccarthyprojects@gmail.com">tommccarthyprojects@gmail.com</a>. I'd love to hear from you!</p>
+                <p>If you'd like to get in touch, feel free to email me at <a href="mailto:tommccarthyprojects@gmail.com" class="email-link">tommccarthyprojects@gmail.com</a>. I'd love to hear from you!</p>
             </section>
-            <section id="Projects">
-		<h2>Posts</h2>
-		<p><a href="https://www.fergusmccullough.com/p/an-incomplete-list-of-essays-and">An Incomplete List of Essays and Books on Company Culture</a></p>
-		<p><a href="https://tedthought.substack.com/p/a-few-thoughts-on-bismarck-by-john">Bismarck (Steinberg) review</a></p>
-		<p><a href="https://tedthought.substack.com/p/gifts-and-toys-for-stem-kids">Gifts and Toys for STEM Kids</a></p>
-		<p><a href="https://tedthought.substack.com/p/internet-and-irl-friends">Internet Friends</a></p>
-		<p><a href="https://tedthought.substack.com/p/you-know-too-many-words">You Know Too Many Words</a></p>
+
+            <section>
+                <h2>Posts</h2>
+                <div class="list-item"><a href="https://www.fergusmccullough.com/p/an-incomplete-list-of-essays-and">An Incomplete List of Essays and Books on Company Culture</a></div>
+                <div class="list-item"><a href="https://tedthought.substack.com/p/a-few-thoughts-on-bismarck-by-john">Bismarck (Steinberg) review</a></div>
+                <div class="list-item"><a href="https://tedthought.substack.com/p/gifts-and-toys-for-stem-kids">Gifts and Toys for STEM Kids</a></div>
+                <div class="list-item"><a href="https://tedthought.substack.com/p/internet-and-irl-friends">Internet Friends</a></div>
+                <div class="list-item"><a href="https://tedthought.substack.com/p/you-know-too-many-words">You Know Too Many Words</a></div>
+            </section>
+
+            <section>
                 <h2>Gizmos</h2>
-		<p><a href="lissajous/index.html">Test site</a></p>
-                <p><a href="https://lifegame-6599f9149a65.herokuapp.com/">Conway's Game of Life</a></p>
+                <div class="list-item"><a href="https://lifegame-6599f9149a65.herokuapp.com/">Conway's Game of Life</a></div>
             </section>
+
+            <section>
+                <form action="https://buttondown.com/api/emails/embed-subscribe/tommccarthyprojects" method="post" target="popupwindow" onsubmit="window.open('https://buttondown.com/tommccarthyprojects', 'popupwindow')" class="embeddable-buttondown-form">
+                    <label for="bd-email">Subscribe for hand-delivered notifications:</label>
+                    <input type="email" name="email" id="bd-email" />
+                    <input type="submit" value="Subscribe" />
+                </form>
+            </section>
+        </div>
+
+        <div class="canvas-container">
+            <canvas id="lissajousCanvas"></canvas>
         </div>
     </div>
 
-    <footer>
-        <p>Tom McCarthy + GPT4o</p>
-    </footer>
+    <script>
+        const canvas = document.getElementById('lissajousCanvas');
+        const ctx = canvas.getContext('2d');
+
+        let width, height;
+        let curves = [];
+        let time = 0;
+
+        function resizeCanvas() {
+            const dpr = window.devicePixelRatio || 1;
+            const rect = canvas.getBoundingClientRect();
+            
+            canvas.width = rect.width * dpr;
+            canvas.height = rect.height * dpr;
+            
+            width = canvas.width;
+            height = canvas.height;
+            
+            ctx.scale(dpr, dpr);
+        }
+
+        class LissajousCurve {
+            constructor(a, b, delta, color, alpha, scale, offsetX, offsetY, scaleMultiplier) {
+                this.a = a;
+                this.b = b;
+                this.delta = delta;
+                this.color = color;
+                this.alpha = alpha;
+                this.scale = scale;
+                this.offsetX = offsetX;
+                this.offsetY = offsetY;
+                this.scaleMultiplier = scaleMultiplier;
+                this.phase = Math.random() * Math.PI * 2;
+                this.points = [];
+                this.maxPoints = 400;
+            }
+
+            update(t) {
+                // Add subtle time-varying modulation to prevent static patterns
+                const modA = 1 + Math.sin(t * 0.05) * 0.08;
+                const modB = 1 + Math.cos(t * 0.07) * 0.08;
+                
+                const x = Math.sin(this.a * t * modA + this.delta + this.phase) * this.scale + this.offsetX;
+                const y = Math.sin(this.b * t * modB + this.phase) * this.scale + this.offsetY;
+                
+                this.points.push({ x, y });
+                if (this.points.length > this.maxPoints) {
+                    this.points.shift();
+                }
+            }
+
+            draw() {
+                if (this.points.length < 2) return;
+
+                ctx.strokeStyle = this.color;
+                ctx.lineWidth = 0.9;
+                
+                // Draw each segment with less aggressive fade - using square root for gentler gradient
+                for (let i = 1; i < this.points.length; i++) {
+                    const fadeProgress = Math.sqrt(i / this.points.length); // Square root for gentler fade
+                    ctx.globalAlpha = fadeProgress * this.alpha;
+                    
+                    ctx.beginPath();
+                    ctx.moveTo(this.points[i - 1].x, this.points[i - 1].y);
+                    ctx.lineTo(this.points[i].x, this.points[i].y);
+                    ctx.stroke();
+                }
+                
+                ctx.globalAlpha = 1;
+            }
+        }
+
+        function initCurves() {
+            curves = [];
+            const centerX = width / (window.devicePixelRatio || 1) / 2;
+            const centerY = height / (window.devicePixelRatio || 1) / 2;
+            const baseScale = Math.min(width, height) / (window.devicePixelRatio || 1) / 4 * 0.8;
+
+            // Check if dark mode is active
+            const isDarkMode = document.body.classList.contains('dark-mode');
+            const color = isDarkMode ? 'rgba(125, 211, 192, 1.0)' : 'rgba(42, 42, 42, 1.0)';
+
+            // Higher order and more irregular Lissajous figures using prime ratios and complex phases
+            curves.push(new LissajousCurve(11, 13, Math.PI / 7, color, 0.65, baseScale * 0.75, centerX, centerY, 0.75));
+            curves.push(new LissajousCurve(7, 11, Math.PI / 5, color, 0.6, baseScale * 0.85, centerX, centerY, 0.85));
+            curves.push(new LissajousCurve(13, 8, Math.PI / 11, color, 0.55, baseScale * 0.9, centerX, centerY, 0.9));
+            curves.push(new LissajousCurve(9, 17, Math.PI / 13, color, 0.5, baseScale * 0.8, centerX, centerY, 0.8));
+            curves.push(new LissajousCurve(15, 19, Math.PI / 9, color, 0.45, baseScale * 0.7, centerX, centerY, 0.7));
+        }
+
+        function updateCurvesOnResize() {
+            const newCenterX = width / (window.devicePixelRatio || 1) / 2;
+            const newCenterY = height / (window.devicePixelRatio || 1) / 2;
+            const newBaseScale = Math.min(width, height) / (window.devicePixelRatio || 1) / 4 * 0.8;
+
+            curves.forEach(curve => {
+                // Store old values for transformation
+                const oldOffsetX = curve.offsetX;
+                const oldOffsetY = curve.offsetY;
+                const oldScale = curve.scale;
+                
+                // Calculate new scale for this curve
+                const newScale = newBaseScale * curve.scaleMultiplier;
+                const scaleRatio = newScale / oldScale;
+                
+                // Transform all existing points to new coordinate system
+                curve.points.forEach(point => {
+                    // Translate to origin (relative to old center)
+                    const relX = point.x - oldOffsetX;
+                    const relY = point.y - oldOffsetY;
+                    
+                    // Scale
+                    const scaledX = relX * scaleRatio;
+                    const scaledY = relY * scaleRatio;
+                    
+                    // Translate to new center
+                    point.x = scaledX + newCenterX;
+                    point.y = scaledY + newCenterY;
+                });
+                
+                // Update curve properties
+                curve.offsetX = newCenterX;
+                curve.offsetY = newCenterY;
+                curve.scale = newScale;
+            });
+        }
+
+        function animate() {
+            // Clear canvas completely - no background fill needed
+            ctx.clearRect(0, 0, width, height);
+            
+            time += 0.004;
+
+            curves.forEach(curve => {
+                curve.update(time);
+                curve.draw();
+            });
+
+            requestAnimationFrame(animate);
+        }
+
+        resizeCanvas();
+        initCurves();
+        animate();
+
+        window.addEventListener('resize', () => {
+            resizeCanvas();
+            if (curves.length > 0) {
+                updateCurvesOnResize();
+            } else {
+                initCurves();
+            }
+        });
+
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+            // Reinitialize curves with new colors
+            initCurves();
+            // Save preference
+            localStorage.setItem('darkMode', document.body.classList.contains('dark-mode'));
+        }
+
+        // Load saved preference
+        if (localStorage.getItem('darkMode') === 'true') {
+            document.body.classList.add('dark-mode');
+            initCurves();
+        }
+    </script>
 </body>
 </html>
