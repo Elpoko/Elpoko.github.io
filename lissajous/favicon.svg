@@ -1,0 +1,18 @@
+<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Lissajous curve with a=3, b=2, delta=π/2 -->
+  <path d="M 16 6
+           C 24 8, 26 10, 26 16
+           C 26 22, 24 24, 16 26
+           C 8 24, 6 22, 6 16
+           C 6 10, 8 8, 16 6
+           M 16 10
+           C 20 11, 22 13, 22 16
+           C 22 19, 20 21, 16 22
+           C 12 21, 10 19, 10 16
+           C 10 13, 12 11, 16 10" 
+        stroke="#1a1a1a" 
+        stroke-width="1.2" 
+        stroke-linecap="round" 
+        stroke-linejoin="round"
+        fill="none"/>
+</svg>
