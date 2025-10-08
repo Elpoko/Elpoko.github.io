@@ -80,8 +80,45 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            gap: 40px;
+            gap: 12px;
             max-width: 680px;
+        }
+
+        .header-links {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1rem;
+            margin-left: auto;
+        }
+
+        .header-link {
+            color: #000000;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-weight: 400;
+        }
+
+        .header-link:hover {
+            color: #4a5568;
+        }
+
+        body.dark-mode .header-link {
+            color: #ffffff;
+        }
+
+        body.dark-mode .header-link:hover {
+            color: #e8e8e8;
+        }
+
+        .header-separator {
+            color: #4a5568;
+            font-weight: 300;
+            transition: color 0.3s ease;
+        }
+
+        body.dark-mode .header-separator {
+            color: #e8e8e8;
         }
 
         h1 {
@@ -448,21 +485,11 @@
             background-color: #404040;
         }
 
-        @media (max-width: 940px) {
-            .content {
-                margin-left: max(20px, calc((100vw - 860px) / 2));
-                margin-right: max(20px, calc((100vw - 860px) / 2));
-            }
-        }
-
         @media (max-width: 900px) {
             .content {
                 width: calc(100vw - 40px);
-                min-width: 320px;
                 margin-left: 20px;
                 margin-right: 20px;
-                padding-left: max(20px, min(120px, calc((100vw - 400px) * 0.16)));
-                padding-right: max(16px, min(60px, calc((100vw - 400px) * 0.08)));
             }
         }
 
@@ -483,6 +510,15 @@
                 max-width: 240px;
                 font-size: 0.9rem;
             }
+
+            .header-links {
+                font-size: 0.85rem;
+            }
+
+            .content {
+                padding-left: 20px;
+                padding-right: 20px;
+            }
         }
     </style>
 </head>
@@ -491,6 +527,12 @@
         <div class="content">
             <header>
                 <a href="https://tommccarthy.net" class="site-title">Tom McCarthy</a>
+                <div class="header-links">
+                    <a href="https://x.com/carthymctom" class="header-link" target="_blank">X</a>
+                    <span class="header-separator">·</span>
+                    <a href="mailto:tommccarthyprojects@gmail.com" class="header-link">tommccarthyprojects@gmail.com</a>
+                    <span class="header-separator">·</span>
+                </div>
                 <button class="mode-toggle" onclick="toggleDarkMode()" aria-label="Toggle dark mode">
                     <svg viewBox="0 0 100 40" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M 0 20 Q 12.5 5, 25 20 T 50 20 T 75 20 T 100 20" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
