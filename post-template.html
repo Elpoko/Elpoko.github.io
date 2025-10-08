@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post Title - Tom McCarthy</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Newsreader:wght@300;400;500&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Newsreader', 'Georgia', 'Times New Roman', serif;
+            background-color: #f5f5f5;
+            color: #1a1a1a;
+            line-height: 1.7;
+            overflow-x: hidden;
+            font-weight: 500;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        body.dark-mode {
+            background-color: #1a1a1a;
+            color: #ffffff;
+        }
+
+        .mode-toggle {
+            padding: 8px;
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .mode-toggle svg {
+            width: 32px;
+            height: 32px;
+            stroke: #000000;
+            fill: none;
+            transition: stroke 0.3s ease;
+        }
+
+        .mode-toggle:hover svg {
+            stroke: #4a5568;
+        }
+
+        body.dark-mode .mode-toggle svg {
+            stroke: #ffffff;
+        }
+
+        body.dark-mode .mode-toggle:hover svg {
+            stroke: #e8e8e8;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        .content {
+            width: 860px;
+            flex-shrink: 0;
+            margin-left: 40px;
+            margin-right: 40px;
+            padding: 120px 60px 80px 120px;
+        }
+
+        header {
+            margin-bottom: 80px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 40px;
+            max-width: 680px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 500;
+            letter-spacing: -0.5px;
+            margin-bottom: 8px;
+            color: #000000;
+            transition: color 0.3s ease;
+        }
+
+        body.dark-mode h1 {
+            color: #ffffff;
+        }
+
+        .site-title {
+            font-size: 2.5rem;
+            font-weight: 500;
+            letter-spacing: -0.5px;
+            color: #000000;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .site-title:hover {
+            color: #4a5568;
+        }
+
+        body.dark-mode .site-title {
+            color: #ffffff;
+        }
+
+        body.dark-mode .site-title:hover {
+            color: #e8e8e8;
+        }
+
+        article {
+            max-width: 680px;
+        }
+
+        .post-title {
+            font-size: 2.5rem;
+            font-weight: 500;
+            letter-spacing: -0.5px;
+            margin-bottom: 24px;
+            color: #000000;
+            transition: color 0.3s ease;
+            line-height: 1.2;
+        }
+
+        body.dark-mode .post-title {
+            color: #ffffff;
+        }
+
+        .post-subheading {
+            font-size: 1.05rem;
+            font-style: italic;
+            color: #2a2a2a;
+            font-weight: 400;
+            margin-bottom: 40px;
+            transition: color 0.3s ease;
+        }
+
+        body.dark-mode .post-subheading {
+            color: #ffffff;
+        }
+
+        .post-body {
+            font-size: 1.05rem;
+            color: #2a2a2a;
+            font-weight: 400;
+            transition: color 0.3s ease;
+        }
+
+        body.dark-mode .post-body {
+            color: #ffffff;
+        }
+
+        .post-body p {
+            font-size: 1.05rem;
+            color: #2a2a2a;
+            font-weight: 400;
+            margin-bottom: 24px;
+            transition: color 0.3s ease;
+        }
+
+        body.dark-mode .post-body p {
+            color: #ffffff;
+        }
+
+        h2 {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+            font-size: 1.1rem;
+            font-weight: 500;
+            letter-spacing: 0;
+            margin-top: 48px;
+            margin-bottom: 20px;
+            color: #4a4a4a;
+            transition: color 0.3s ease;
+        }
+
+        body.dark-mode h2 {
+            color: #ffffff;
+        }
+
+        h3 {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+            font-size: 1.05rem;
+            font-weight: 500;
+            letter-spacing: 0;
+            margin-top: 36px;
+            margin-bottom: 16px;
+            color: #4a4a4a;
+            transition: color 0.3s ease;
+        }
+
+        body.dark-mode h3 {
+            color: #ffffff;
+        }
+
+        a {
+            color: #1a1a1a;
+            text-decoration: underline;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: #4a5568;
+        }
+
+        body.dark-mode a {
+            color: #7dd3c0;
+        }
+
+        body.dark-mode a:hover {
+            color: #9ee4d4;
+        }
+
+        /* Footnote styles */
+        .footnote-ref {
+            position: relative;
+            cursor: help;
+            text-decoration: none;
+            color: #4a5568;
+            font-size: 0.85em;
+            vertical-align: super;
+            line-height: 0;
+            transition: color 0.3s ease;
+        }
+
+        .footnote-ref:hover {
+            color: #1a1a1a;
+        }
+
+        body.dark-mode .footnote-ref {
+            color: #7dd3c0;
+        }
+
+        body.dark-mode .footnote-ref:hover {
+            color: #9ee4d4;
+        }
+
+        /* Tooltip styles */
+        .footnote-tooltip {
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #ffffff;
+            color: #1a1a1a;
+            padding: 12px 16px;
+            border-radius: 6px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            font-size: 0.95rem;
+            line-height: 1.5;
+            max-width: 320px;
+            width: max-content;
+            z-index: 1000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.2s ease;
+            margin-bottom: 8px;
+            font-weight: 400;
+        }
+
+        body.dark-mode .footnote-tooltip {
+            background-color: #2a2a2a;
+            color: #ffffff;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+        }
+
+        .footnote-ref:hover .footnote-tooltip {
+            opacity: 1;
+        }
+
+        .footnote-tooltip::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 6px solid transparent;
+            border-top-color: #ffffff;
+        }
+
+        body.dark-mode .footnote-tooltip::after {
+            border-top-color: #2a2a2a;
+        }
+
+        /* Acknowledgements section */
+        .acknowledgements {
+            margin-top: 24px;
+            margin-bottom: 16px;
+            font-style: italic;
+            font-size: 1.05rem;
+            font-weight: 400;
+            color: #4a4a4a;
+            transition: color 0.3s ease;
+            width: 100%;
+        }
+
+        body.dark-mode .acknowledgements {
+            color: #e8e8e8;
+        }
+
+        /* Footnotes section */
+        .footnotes-divider {
+            width: 100%;
+            height: 1px;
+            background-color: #d0d0d0;
+            margin: 48px 0 24px 0;
+            transition: background-color 0.3s ease;
+        }
+
+        body.dark-mode .footnotes-divider {
+            background-color: #404040;
+        }
+
+        .footnotes {
+            font-size: 0.95rem;
+            color: #4a4a4a;
+            transition: color 0.3s ease;
+            margin-bottom: 0;
+        }
+
+        body.dark-mode .footnotes {
+            color: #e8e8e8;
+        }
+
+        .footnotes ol {
+            padding-left: 24px;
+            list-style-position: outside;
+        }
+
+        .footnotes li {
+            margin-bottom: 12px;
+            font-weight: 400;
+            padding-left: 8px;
+        }
+
+        .footnotes li p {
+            font-size: 0.95rem;
+            color: #4a4a4a;
+            margin-bottom: 0;
+        }
+
+        body.dark-mode .footnotes li p {
+            color: #e8e8e8;
+        }
+
+        /* Email subscription form */
+        .embeddable-buttondown-form {
+            max-width: 680px;
+            margin: 32px 0;
+            padding-left: 24px;
+            border-left: 3px solid #a5b4c4;
+            transition: border-color 0.3s ease;
+        }
+
+        body.dark-mode .embeddable-buttondown-form {
+            border-left-color: #7dd3c0;
+        }
+
+        .embeddable-buttondown-form label {
+            display: block;
+            font-size: 1.05rem;
+            color: #2a2a2a;
+            font-weight: 400;
+            margin-bottom: 12px;
+            transition: color 0.3s ease;
+        }
+
+        body.dark-mode .embeddable-buttondown-form label {
+            color: #ffffff;
+        }
+
+        .embeddable-buttondown-form input[type="email"] {
+            width: 280px;
+            padding: 10px 12px;
+            font-family: 'Newsreader', 'Georgia', 'Times New Roman', serif;
+            font-size: 1rem;
+            border: 1px solid #d0d0d0;
+            border-radius: 4px;
+            background-color: #ffffff;
+            color: #1a1a1a;
+            margin-right: 8px;
+            transition: all 0.3s ease;
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        .embeddable-buttondown-form input[type="email"]:focus {
+            outline: none;
+            border-color: #4a5568;
+        }
+
+        body.dark-mode .embeddable-buttondown-form input[type="email"] {
+            background-color: #2a2a2a;
+            color: #ffffff;
+            border-color: #404040;
+        }
+
+        body.dark-mode .embeddable-buttondown-form input[type="email"]:focus {
+            border-color: #7dd3c0;
+        }
+
+        .embeddable-buttondown-form input[type="submit"] {
+            padding: 10px 24px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+            font-size: 0.95rem;
+            font-weight: 500;
+            background-color: #1a1a1a;
+            color: #ffffff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        .embeddable-buttondown-form input[type="submit"]:hover {
+            background-color: #4a5568;
+        }
+
+        body.dark-mode .embeddable-buttondown-form input[type="submit"] {
+            background-color: #f5f5f5;
+            color: #1a1a1a;
+        }
+
+        body.dark-mode .embeddable-buttondown-form input[type="submit"]:hover {
+            background-color: #e8e8e8;
+        }
+
+        .bottom-form-divider {
+            width: 100%;
+            height: 1px;
+            background-color: #d0d0d0;
+            margin: 32px 0 24px 0;
+            transition: background-color 0.3s ease;
+        }
+
+        body.dark-mode .bottom-form-divider {
+            background-color: #404040;
+        }
+
+        @media (max-width: 940px) {
+            .content {
+                margin-left: max(20px, calc((100vw - 860px) / 2));
+                margin-right: max(20px, calc((100vw - 860px) / 2));
+            }
+        }
+
+        @media (max-width: 900px) {
+            .content {
+                width: calc(100vw - 40px);
+                min-width: 320px;
+                margin-left: 20px;
+                margin-right: 20px;
+                padding-left: max(20px, min(120px, calc((100vw - 400px) * 0.16)));
+                padding-right: max(16px, min(60px, calc((100vw - 400px) * 0.08)));
+            }
+        }
+
+        @media (max-width: 600px) {
+            .post-title {
+                font-size: 2rem;
+            }
+
+            .site-title {
+                font-size: 2rem;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .footnote-tooltip {
+                max-width: 240px;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="content">
+            <header>
+                <a href="https://tommccarthy.net" class="site-title">Tom McCarthy</a>
+                <button class="mode-toggle" onclick="toggleDarkMode()" aria-label="Toggle dark mode">
+                    <svg viewBox="0 0 100 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M 0 20 Q 12.5 5, 25 20 T 50 20 T 75 20 T 100 20" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+            </header>
+
+            <article>
+                <h1 class="post-title">Your Essay Title Goes Here</h1>
+                
+                <p class="post-subheading">This is the subheading or lede paragraph. It provides context and draws the reader in. It's italicized and slightly understated.</p>
+
+                <div class="post-body">
+                    <p>This is the opening paragraph of your essay. It establishes the main theme and sets the tone for what's to come. You can include footnotes<a href="#fn1" id="fnref1" class="footnote-ref">1<span class="footnote-tooltip">This is an example footnote that appears in a tooltip when you hover over it.</span></a> throughout your text.</p>
+
+                    <p>Continue with your main body text here. Each paragraph should flow naturally into the next. You can add as many paragraphs as needed to develop your argument or tell your story.</p>
+
+                    <!-- Email subscription form -->
+                    <form action="https://buttondown.com/api/emails/embed-subscribe/tommccarthyprojects" method="post" target="popupwindow" onsubmit="window.open('https://buttondown.com/tommccarthyprojects', 'popupwindow')" class="embeddable-buttondown-form">
+                        <label for="bd-email-top">Subscribe for hand-delivered notifications:</label>
+                        <input type="email" name="email" id="bd-email-top" />
+                        <input type="submit" value="Subscribe" />
+                    </form>
+
+                    <h2>Section Heading</h2>
+
+                    <p>This is where you develop a major section of your essay. Use h2 tags for main section headings. They provide clear visual hierarchy and help readers navigate your piece.</p>
+
+                    <p>You can include links to <a href="#">external resources</a> and reference multiple footnotes<a href="#fn2" id="fnref2" class="footnote-ref">2<span class="footnote-tooltip">Another example footnote. These can be as long or short as needed, though shorter is often better for tooltips.</span></a> in the same paragraph.</p>
+
+                    <h3>Subsection Heading</h3>
+
+                    <p>Use h3 tags for subsections within your main sections. They're slightly smaller than h2 but still provide clear structure.</p>
+
+                    <p>Continue your narrative here with more paragraphs, examples, or analysis as needed.</p>
+
+                    <h2>Another Major Section</h2>
+
+                    <p>Keep developing your ideas. The styling will remain consistent throughout the piece, maintaining readability and visual coherence.</p>
+
+                    <p>Your final paragraphs can wrap up your argument or leave the reader with something to think about<a href="#fn3" id="fnref3" class="footnote-ref">3<span class="footnote-tooltip">Final thoughts often deserve their own footnote for additional context or references.</span></a>.</p>
+                </div>
+
+                <!-- Optional acknowledgements section -->
+                <div class="acknowledgements">
+                    Thanks to [Name] for reading drafts of this, to [Name] for the conversation that sparked this idea, and to [Name] for their feedback and encouragement.
+                </div>
+
+                <!-- Footnotes section -->
+                <div class="footnotes-divider"></div>
+                
+                <div class="footnotes">
+                    <ol>
+                        <li id="fn1">
+                            <p>This is an example footnote that appears in a tooltip when you hover over it. <a href="#fnref1">↩</a></p>
+                        </li>
+                        <li id="fn2">
+                            <p>Another example footnote. These can be as long or short as needed, though shorter is often better for tooltips. <a href="#fnref2">↩</a></p>
+                        </li>
+                        <li id="fn3">
+                            <p>Final thoughts often deserve their own footnote for additional context or references. <a href="#fnref3">↩</a></p>
+                        </li>
+                    </ol>
+                </div>
+
+                <!-- Divider before bottom subscription form -->
+                <div class="bottom-form-divider"></div>
+
+                <!-- Email subscription form at bottom -->
+                <form action="https://buttondown.com/api/emails/embed-subscribe/tommccarthyprojects" method="post" target="popupwindow" onsubmit="window.open('https://buttondown.com/tommccarthyprojects', 'popupwindow')" class="embeddable-buttondown-form">
+                    <label for="bd-email-bottom">Subscribe for hand-delivered notifications:</label>
+                    <input type="email" name="email" id="bd-email-bottom" />
+                    <input type="submit" value="Subscribe" />
+                </form>
+            </article>
+        </div>
+    </div>
+
+    <script>
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+            localStorage.setItem('darkMode', document.body.classList.contains('dark-mode'));
+        }
+
+        // Load saved preference
+        if (localStorage.getItem('darkMode') === 'true') {
+            document.body.classList.add('dark-mode');
+        }
+
+        // Smooth scroll to footnotes
+        document.querySelectorAll('a[href^="#fn"]').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

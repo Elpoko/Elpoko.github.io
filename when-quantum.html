@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>When Will Quantum Computing Work? - Tom McCarthy</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Newsreader:wght@300;400;500&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Newsreader', 'Georgia', 'Times New Roman', serif;
+            background-color: #f5f5f5;
+            color: #1a1a1a;
+            line-height: 1.7;
+            overflow-x: hidden;
+            font-weight: 500;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        body.dark-mode {
+            background-color: #1a1a1a;
+            color: #ffffff;
+        }
+
+        .mode-toggle {
+            padding: 8px;
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .mode-toggle svg {
+            width: 32px;
+            height: 32px;
+            stroke: #000000;
+            fill: none;
+            transition: stroke 0.3s ease;
+        }
+
+        .mode-toggle:hover svg {
+            stroke: #4a5568;
+        }
+
+        body.dark-mode .mode-toggle svg {
+            stroke: #ffffff;
+        }
+
+        body.dark-mode .mode-toggle:hover svg {
+            stroke: #e8e8e8;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        .content {
+            width: 860px;
+            flex-shrink: 0;
+            margin-left: 40px;
+            margin-right: 40px;
+            padding: 120px 60px 80px 120px;
+        }
+
+        header {
+            margin-bottom: 80px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 40px;
+            max-width: 680px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 500;
+            letter-spacing: -0.5px;
+            margin-bottom: 8px;
+            color: #000000;
+            transition: color 0.3s ease;
+        }
+
+        body.dark-mode h1 {
+            color: #ffffff;
+        }
+
+        .site-title {
+            font-size: 2.5rem;
+            font-weight: 500;
+            letter-spacing: -0.5px;
+            color: #000000;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .site-title:hover {
+            color: #4a5568;
+        }
+
+        body.dark-mode .site-title {
+            color: #ffffff;
+        }
+
+        body.dark-mode .site-title:hover {
+            color: #e8e8e8;
+        }
+
+        article {
+            max-width: 680px;
+        }
+
+        .post-title {
+            font-size: 2.5rem;
+            font-weight: 500;
+            letter-spacing: -0.5px;
+            margin-bottom: 24px;
+            color: #000000;
+            transition: color 0.3s ease;
+            line-height: 1.2;
+        }
+
+        body.dark-mode .post-title {
+            color: #ffffff;
+        }
+
+        .post-subheading {
+            font-size: 1.05rem;
+            font-style: italic;
+            color: #2a2a2a;
+            font-weight: 400;
+            margin-bottom: 40px;
+            transition: color 0.3s ease;
+        }
+
+        body.dark-mode .post-subheading {
+            color: #ffffff;
+        }
+
+        .post-body {
+            font-size: 1.05rem;
+            color: #2a2a2a;
+            font-weight: 400;
+            transition: color 0.3s ease;
+        }
+
+        body.dark-mode .post-body {
+            color: #ffffff;
+        }
+
+        .post-body p {
+            font-size: 1.05rem;
+            color: #2a2a2a;
+            font-weight: 400;
+            margin-bottom: 24px;
+            transition: color 0.3s ease;
+        }
+
+        body.dark-mode .post-body p {
+            color: #ffffff;
+        }
+
+        h2 {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+            font-size: 1.1rem;
+            font-weight: 500;
+            letter-spacing: 0;
+            margin-top: 48px;
+            margin-bottom: 20px;
+            color: #4a4a4a;
+            transition: color 0.3s ease;
+        }
+
+        body.dark-mode h2 {
+            color: #ffffff;
+        }
+
+        h3 {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+            font-size: 1.05rem;
+            font-weight: 500;
+            letter-spacing: 0;
+            margin-top: 36px;
+            margin-bottom: 16px;
+            color: #4a4a4a;
+            transition: color 0.3s ease;
+        }
+
+        body.dark-mode h3 {
+            color: #ffffff;
+        }
+
+        a {
+            color: #1a1a1a;
+            text-decoration: underline;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: #4a5568;
+        }
+
+        body.dark-mode a {
+            color: #7dd3c0;
+        }
+
+        body.dark-mode a:hover {
+            color: #9ee4d4;
+        }
+
+        /* Footnote styles */
+        .footnote-ref {
+            position: relative;
+            cursor: help;
+            text-decoration: none;
+            color: #4a5568;
+            font-size: 0.85em;
+            vertical-align: super;
+            line-height: 0;
+            transition: color 0.3s ease;
+        }
+
+        .footnote-ref:hover {
+            color: #1a1a1a;
+        }
+
+        body.dark-mode .footnote-ref {
+            color: #7dd3c0;
+        }
+
+        body.dark-mode .footnote-ref:hover {
+            color: #9ee4d4;
+        }
+
+        /* Tooltip styles */
+        .footnote-tooltip {
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #ffffff;
+            color: #1a1a1a;
+            padding: 12px 16px;
+            border-radius: 6px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            font-size: 0.95rem;
+            line-height: 1.5;
+            max-width: 320px;
+            width: max-content;
+            z-index: 1000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.2s ease;
+            margin-bottom: 8px;
+            font-weight: 400;
+        }
+
+        body.dark-mode .footnote-tooltip {
+            background-color: #2a2a2a;
+            color: #ffffff;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+        }
+
+        .footnote-ref:hover .footnote-tooltip {
+            opacity: 1;
+        }
+
+        .footnote-tooltip::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 6px solid transparent;
+            border-top-color: #ffffff;
+        }
+
+        body.dark-mode .footnote-tooltip::after {
+            border-top-color: #2a2a2a;
+        }
+
+        /* Acknowledgements section */
+        .acknowledgements {
+            margin-top: 24px;
+            margin-bottom: 16px;
+            font-style: italic;
+            font-size: 1.05rem;
+            font-weight: 400;
+            color: #4a4a4a;
+            transition: color 0.3s ease;
+            width: 100%;
+        }
+
+        body.dark-mode .acknowledgements {
+            color: #e8e8e8;
+        }
+
+        /* Footnotes section */
+        .footnotes-divider {
+            width: 100%;
+            height: 1px;
+            background-color: #d0d0d0;
+            margin: 48px 0 24px 0;
+            transition: background-color 0.3s ease;
+        }
+
+        body.dark-mode .footnotes-divider {
+            background-color: #404040;
+        }
+
+        .footnotes {
+            font-size: 0.95rem;
+            color: #4a4a4a;
+            transition: color 0.3s ease;
+            margin-bottom: 0;
+        }
+
+        body.dark-mode .footnotes {
+            color: #e8e8e8;
+        }
+
+        .footnotes ol {
+            padding-left: 24px;
+            list-style-position: outside;
+        }
+
+        .footnotes li {
+            margin-bottom: 12px;
+            font-weight: 400;
+            padding-left: 8px;
+        }
+
+        .footnotes li p {
+            font-size: 0.95rem;
+            color: #4a4a4a;
+            margin-bottom: 0;
+        }
+
+        body.dark-mode .footnotes li p {
+            color: #e8e8e8;
+        }
+
+        /* Email subscription form */
+        .embeddable-buttondown-form {
+            max-width: 680px;
+            margin: 32px 0;
+            padding-left: 24px;
+            border-left: 3px solid #a5b4c4;
+            transition: border-color 0.3s ease;
+        }
+
+        body.dark-mode .embeddable-buttondown-form {
+            border-left-color: #7dd3c0;
+        }
+
+        .embeddable-buttondown-form label {
+            display: block;
+            font-size: 1.05rem;
+            color: #2a2a2a;
+            font-weight: 400;
+            margin-bottom: 12px;
+            transition: color 0.3s ease;
+        }
+
+        body.dark-mode .embeddable-buttondown-form label {
+            color: #ffffff;
+        }
+
+        .embeddable-buttondown-form input[type="email"] {
+            width: 280px;
+            padding: 10px 12px;
+            font-family: 'Newsreader', 'Georgia', 'Times New Roman', serif;
+            font-size: 1rem;
+            border: 1px solid #d0d0d0;
+            border-radius: 4px;
+            background-color: #ffffff;
+            color: #1a1a1a;
+            margin-right: 8px;
+            transition: all 0.3s ease;
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        .embeddable-buttondown-form input[type="email"]:focus {
+            outline: none;
+            border-color: #4a5568;
+        }
+
+        body.dark-mode .embeddable-buttondown-form input[type="email"] {
+            background-color: #2a2a2a;
+            color: #ffffff;
+            border-color: #404040;
+        }
+
+        body.dark-mode .embeddable-buttondown-form input[type="email"]:focus {
+            border-color: #7dd3c0;
+        }
+
+        .embeddable-buttondown-form input[type="submit"] {
+            padding: 10px 24px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+            font-size: 0.95rem;
+            font-weight: 500;
+            background-color: #1a1a1a;
+            color: #ffffff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        .embeddable-buttondown-form input[type="submit"]:hover {
+            background-color: #4a5568;
+        }
+
+        body.dark-mode .embeddable-buttondown-form input[type="submit"] {
+            background-color: #f5f5f5;
+            color: #1a1a1a;
+        }
+
+        body.dark-mode .embeddable-buttondown-form input[type="submit"]:hover {
+            background-color: #e8e8e8;
+        }
+
+        .bottom-form-divider {
+            width: 100%;
+            height: 1px;
+            background-color: #d0d0d0;
+            margin: 32px 0 24px 0;
+            transition: background-color 0.3s ease;
+        }
+
+        body.dark-mode .bottom-form-divider {
+            background-color: #404040;
+        }
+
+        @media (max-width: 940px) {
+            .content {
+                margin-left: max(20px, calc((100vw - 860px) / 2));
+                margin-right: max(20px, calc((100vw - 860px) / 2));
+            }
+        }
+
+        @media (max-width: 900px) {
+            .content {
+                width: calc(100vw - 40px);
+                min-width: 320px;
+                margin-left: 20px;
+                margin-right: 20px;
+                padding-left: max(20px, min(120px, calc((100vw - 400px) * 0.16)));
+                padding-right: max(16px, min(60px, calc((100vw - 400px) * 0.08)));
+            }
+        }
+
+        @media (max-width: 600px) {
+            .post-title {
+                font-size: 2rem;
+            }
+
+            .site-title {
+                font-size: 2rem;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .footnote-tooltip {
+                max-width: 240px;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="content">
+            <header>
+                <a href="https://tommccarthy.net" class="site-title">Tom McCarthy</a>
+                <button class="mode-toggle" onclick="toggleDarkMode()" aria-label="Toggle dark mode">
+                    <svg viewBox="0 0 100 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M 0 20 Q 12.5 5, 25 20 T 50 20 T 75 20 T 100 20" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+            </header>
+
+            <article>
+                <h1 class="post-title">When Will Quantum Computing Work?</h1>
+                
+                <p class="post-subheading">Quantum computers will create good businesses in the next 5 - 15 years, but not before then. Many R&D breakthroughs are required to build useful machines. I doubt the first great quantum computing company has been founded yet.</p>
+
+                <div class="post-body">
+                    <p>Through the 2000s, quantum computing was a curiosity. By 2018, it was a Silicon Valley phenomenon; IonQ was founded in 2015, Founders Fund led a $50M Series B for PsiQuantum in 2017, and Google <a href="https://www.wired.com/2014/09/martinis/">acquired John Martinis' research group</a> in 2014. The technology offered huge, nascent promise: A new computing platform with applications across chemistry, pharmaceuticals and finance. It could be the successor to GPUs, or even more fundamentally: transistors. These were the days of 'quantum supremacy'<a href="#fn1" id="fnref1" class="footnote-ref">1</a>.</p>
+
+                    <p>An investor's job is to find the Next Big Thing. The potential promise of quantum computing was that they could become as big as GPUs - starting with computational chemistry and eventually leading to a quantum processor in every phone (qPhones?), or something like that.</p>
+
+                    <p>7 years later, that hasn't happened. Qubit counts stalled and no real applications manifested for small QCs. Many startups had been touting "NISQ" (noisy intermediate-scale quantum computing) algorithms, but they don't work any better than conventional computers. Today's machines have hundreds of qubits. Real QC applications need much bigger machines, at least 100,000 qubits. (100 kq).</p>
+
+                    <p>Over the course of 2018-2024, researchers quietly chipped away at creating more <a href="https://scottaaronson.blog/?p=8329">reliable qubits</a>. This culminated in <a href="https://blog.google/technology/research/google-willow-quantum-chip/">Google Willow</a> last December, which demonstrated scalable quantum error correction on a 105 q chip for the first time, an important building block for building large-scale quantum computers. Unfortunately, people mistook this<a href="#fn2" id="fnref2" class="footnote-ref">2</a> to mean that QC had entered its 'scaling' and 'engineering problems' era (rather than science), which kicked off a new funding spree into mostly 5-10 year old companies. Error correction was not the only problem facing QCs - nor was it by any means solved - and more obstacles remain, including control and calibration, reliably manufacturing qubits, connecting separate quantum processors and decoding QC outputs in real time.</p>
+
+                    <p>Huge investments are flowing into QC companies today. IonQ has a $19B market cap, Rigetti has a $10B cap, and PsiQuantum recently raised $1B.<a href="#fn3" id="fnref3" class="footnote-ref">3</a> This is a lot of money for an industry generating no real revenue, and without an apparent path to revenue over the next 5 years. Qubit counts have not been doubling each year, but even if they did, we'd have 32 kq machines in 2030.<a href="#fn4" id="fnref4" class="footnote-ref">4</a> There are few - if any - commercial applications for machines of that size. Will these companies keep raising larger rounds until they achieve 100 kq? Or have they got some secret sauce we don't know about that investors are betting on? If there has been a true breakthrough, we should see much faster growth in qubit count, as well as larger and larger quantum processors, running increasingly massive programs. Note that the QC ecosystem is reasonably public and both private companies and university labs are competitive players. Advances tend to get published rather than stowed away.<a href="#fn5" id="fnref5" class="footnote-ref">5</a></p>
+
+                    <p>Should an investor (me) be conservative about a new technology? Historically, conservatism in venture capital has been very bad business. That said, I believe QCs are multiple breakthroughs away from 'scaling' or 'engineering' territory. Connecting multiple 1000 q processors together may be as difficult as developing the processors in the first place! And since 2015, qubit counts have improved by 10-100x, but commercial impact is still at least another 100x improvement away. In fact, this might be cause for optimism: A team with fresh ideas can still win this race,</p>
+
+                    <p>The challenges ahead determine whether and which companies survive. Before it's clear whether or not their technology works, companies fundraise and recruit based on their perceived chances of success. If success seems near at hand or inevitable, fundraising is no problem. If things drag on a bit too long, it gets hard to fundraise and retain talent. A company only gets so many swings<a href="#fn6" id="fnref6" class="footnote-ref">6</a> at an audacious goal before people (investors in particular) lose enthusiasm, and teams are rarely able to pivot to a new and unexpected approach or technology. New teams, with new ideas, are usually best set up to win - this is particularly the case in deeptech: A new, better, different technology or design is expensive to pivot to and might require different expertise.</p>
+
+                    <!-- Email subscription form -->
+                    <form action="https://buttondown.com/api/emails/embed-subscribe/tommccarthyprojects" method="post" target="popupwindow" onsubmit="window.open('https://buttondown.com/tommccarthyprojects', 'popupwindow')" class="embeddable-buttondown-form">
+                        <label for="bd-email-top">Subscribe for hand-delivered notifications:</label>
+                        <input type="email" name="email" id="bd-email-top" />
+                        <input type="submit" value="Subscribe" />
+                    </form>
+
+                    <h2>Special Purpose Quantum Computers</h2>
+
+                    <p>If you measure individual operations, QCs are actually much slower than classical computers. Physical qubit operations - 'gates' - just take much longer than NAND gates on silicon chips. Add in the overhead for quantum error correction and computations on QCs are between a billion and a trillion times more expensive than on classical computers.<a href="#fn7" id="fnref7" class="footnote-ref">7</a></p>
+
+                    <p>But QCs can use entanglement and superpositions, and classical computers cannot. So QCs can run <em>quantum</em> algorithms, making them better at factoring integers, simulating quantum mechanical systems, and a few specific math problems. Using a QC for everyday tasks, however, is incredibly inefficient and makes little sense.</p>
+
+                    <p>No doubt there are more problems that QCs will be good for, but there are few good candidates today. Fast quantum algorithms - those with exponential speedups - are hard to find, and researchers today are very limited in how they discover new algorithms. Current QCs are so small and error-prone that researchers can't really experiment with them, and they're effectively working with pen and paper. How long would it have taken to develop the transformer without machines to play with?<a href="#fn8" id="fnref8" class="footnote-ref">8</a></p>
+
+                    <p>As mentioned above, today's quantum computers have 100 - 1,000 physical qubits. Doing something commercially valuable will require 100,000 - 1 million physical qubits, and roughly 1M physical qubits will be needed to break RSA-2048. Qubit reliability and error-rate also matter, but the most important metric, by far, is how many physical qubits can work together, with a minimum error rate, in a single processor, i.e. computational qubit count.</p>
+
+                    <p>I think the next few generations of QCs are more akin to ASICs<a href="#fn9" id="fnref9" class="footnote-ref">9</a> than GPUs. They're going to be very expensive, hard to program, slow, and only useful for a small set of problems - as opposed to generally useful and faster computers.</p>
+
+                    <p>Google is aiming for their first 1M qubit machine to cost less than $1B, or $1,000 per qubit. This, and other QCs will have severe input-output (IO) limitations that will make them impractical to integrate with fast, real-time GPUs or CPUs. Compared to GHz clock cycles on classical processors, qubits will probably be 1000x slower in the best case. For the next 10-15 years, I believe QC's best application will be decryption. Other plausible applications are chemistry, optimization and machine learning, but ironically the biggest impact of early QCs might be the creation of post-quantum cryptography to defend against them!<a href="#fn10" id="fnref10" class="footnote-ref">10</a></p>
+
+                    <p>In general, what makes a good application for QCs? The first requirement is a quantum algorithm that's much faster than any classical alternatives, meaning it needs far fewer operations to solve the same problem. It should be exponentially faster, but <a href="https://journals.aps.org/prxquantum/abstract/10.1103/PRXQuantum.2.010103">at least a quartic speedup</a> (n⁴) will do. The problem should not be particularly time sensitive, or rely on frequent updates or I/O because QCs are slow and difficult to integrate with. Also, the problem-solution needs to be as valuable as the cost of using the QC. A $1B machine, amortized over 4 years, might cost around $5M per week, which is a good approximation for how long a useful program will take. The expected value of the results needs to be millions of dollars, at least.</p>
+
+                    <h2>Decryption is the Killer App</h2>
+
+                    <p>Before 1994, QCs seemed relevant only to physicists and theoretical computer scientists. In 1994, things changed: Peter Shor released <a href="https://arxiv.org/pdf/quant-ph/9508027">a paper</a> showing how QCs could factor large numbers and solve discrete log problems. QCs suddenly got a lot more serious.</p>
+
+                    <p>As a commercial usecase, decryption on QCs has no existing competition. It is a true zero to one advance. No amount of money today can recover your Bitcoin private key or decrypt a dossier, but a QC will eventually be able to do this. A 1 Mq machine will be able to break <a href="https://arxiv.org/pdf/2505.15917">RSA-2048</a> and <a href="https://en.wikipedia.org/wiki/Elliptic_Curve_Digital_Signature_Algorithm">ECDSA</a>, and maybe as little as 100 Kq will be needed, but that would be very surprising. There are space-time tradeoffs in most quantum algorithms that allow you to trade qubits for time / operations, but they might allow you to use 10% fewer qubits in exchange for the algorithm taking twice as long. Eventually that becomes wildly impractical - think 1 year runtimes. The real bottlenecks are the number of logical qubits required, and the error correction overhead, or how many physical qubits are required for each logical qubit.<a href="#fn11" id="fnref11" class="footnote-ref">11</a></p>
+
+                    <p>Shor's algorithm and the potential applications of it are well suited to slow QCs. Plenty of decryption tasks are not time sensitive: A Bitcoin wallet can be recovered now or next week; the information in an encrypted dossier is probably valuable a month from now. It doesn't matter if Shor's algorithm takes a week to run! As time goes on, QCs might be able to run Shor's algorithm in minutes, but intelligence agencies already seem to be running "harvest now, decrypt later" operations that will provide plenty of fodder for decrypting. Another useful property of decryption is that you can estimate its value before choosing to run the task: The value of a Bitcoin wallet, or some intel that a source provided.</p>
+
+                    <p>At face value, this is an exclusively destructive capability and will require time and money to protect against, in a Y2K-like rush. I think there will still be customers for this, including intelligence agencies. Of course, they might already have backdoors into all these systems and so this provides them nothing new - or it just gives them an excuse to start using those backdoors without revealing their existence. The US budgeted $71B for the national intelligence program in 2023, and <a href="https://rewardsforjustice.net/rewards/isis-somalia-financial-disruption/">Rewards for Justice</a> offers up to $10M for information on terrorist activities, so presumably they'd spend similar on select decryption tasks.</p>
+
+                    <p>Other potential customers include Bitcoiners who have lost their keys - or thieves attempting a quantum heist. <a href="https://www.projecteleven.com/bitcoin-risq-list">$700B</a> of Bitcoin is vulnerable to a 1M qubit QC, meaning that it will be possible to recover <a href="https://www.blocqinc.com/">lost private keys</a>, or forge them for a malicious attacker. Hopefully, Bitcoin will upgrade to post-quantum cryptography before this machine comes online, but the world's largest cryptocurrency is famously difficult to change, and the anti-censorship, anti-confiscation network may leave unprotected BTC vulnerable to Shor's algorithm instead of forcing owners to upgrade.</p>
+
+                    <p>This won't help for decrypting real-time communications - in a live conflict, for example - or for preventing a hacker getting away with stolen BTC, but there are plenty of other, slower-moving applications for these machines. Which creates both a prospective source of revenue for QC companies, and a PR problem. QC proponents have a strong incentive to promote alternative use cases.</p>
+
+                    <h2>Other Possible Applications - Chemistry, Optimization, ML</h2>
+
+                    <p>When pressed to make a business case for QCs, founders and investors usually propose computational chemistry, optimization algorithms, or quantum machine learning. QC proponents today would prefer to promote a much more well-meaning application than decryption.</p>
+
+                    <p>Unlike decryption, there are existing solutions for computational chemistry, optimization and machine learning. At 1 million qubits, it's not clear that a QC will offer meaningful commercial benefits over spending the same money on TSMC silicon - even though these QCs will be able to outperform conventional computers on some metrics. Larger QCs will be more useful, as their advantage over conventional computers will grow, but those are another few years away, beyond the first million-qubit machine.</p>
+
+                    <p>Algorithms with very specific advantages are helpful only in very specific situations. It's important that the advantage provided by the quantum algorithm makes sense in the grand scheme of things. Optimizing a portfolio won't work if the optimization finishes after the trading window closes, and identifying a battery material with better energy storage properties doesn't help if said material is highly explosive or difficult to manufacture. Algorithms that are valuable will need to be robust to whatever the specifics are of their particular application.</p>
+
+                    <h3>Chemistry</h3>
+
+                    <p>Industrial catalysts, batteries, solar panels and drug design are all huge businesses. To varying degrees, computational chemistry is useful for all of them. Conventional simulation techniques exist, but they all have blind spots and lose accuracy as the molecules get larger. In theory, a QC can achieve more precise simulations, simulate arbitrarily large molecules, and predict properties like binding energy, emission spectra and stability <em>in quantum silico</em>. If a QC could do this quickly for any molecule, it would enable search and optimization over whole families of molecules.</p>
+
+                    <p>In reality, a 1 million qubit QC will be too small to tackle arbitrarily large molecules, and too slow to simulate many molecules. With both these limitations, the QC is useful for a very limited type of problem in chemistry, the following: A small set of molecules for which we know it'd be valuable to have more accurate simulations. There are not many such opportunities, because it's relatively cheap to synthesize molecules and test them out when their structures are known - particularly when compared to a $1M simulation run on a QC. Why not just synthesize and test the compounds instead of waiting for a very fancy simulation? True, larger molecules may be hard to synthesize, but those same molecules are probably too big to be simulated on a 1 Mq machine!</p>
+
+                    <p>QCs will be able to tell us things like the ground state energy of molecules, potential reaction pathways and other useful properties, but this all takes qubits. The core problem is that we usually don't know which molecules are valuable in advance, and chemically accurate simulations on a QC take minutes or hours. It becomes infeasible to search over hundreds, thousands, or millions of molecules on such a machine, meaning you can't efficiently search over large design spaces of drugs, catalysts, etc.</p>
+
+                    <p>If you're trying to simulate proteins to find a better drug candidate, you might need to search through hundreds, thousands, millions of candidates. A machine that takes days to evaluate a single molecule will not make a meaningful dent in your candidate list, even if it does a better job of simulating that molecule than any classical computer - some problems have an in-built requirement for volume, not just one-off calculations.</p>
+
+                    <p>I have not yet seen a convincing case for a specific molecule and property that we can't simulate today in sufficient detail, and that would justify a $1-10M QC run. <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC9499570/pdf/pnas.202203533.pdf">P450</a> is one candidate that is frequently suggested. Simulating P450, however, appears to require 5x more qubits than decryption, requiring about 4.6M qubits. FeMo cofactors are another candidate. These are smaller molecules, which would be simulatable on a 1M qubit machine, and it may be useful to have more accurate results.</p>
+
+                    <p>If you can think of a great application in chemistry for a 1 million qubit QC, I'd love to hear from you. One idea I can think of is a race to patent a molecule. Suppose the performance or value of the molecule is easily and reliably derived from its basic chemical or physical properties, and a chemically accurate simulation from a QC would allow a company to synthesize - and patent - the right molecule before competitors.</p>
+
+                    <h3>Optimization</h3>
+
+                    <p>Optimization is another application of QCs that is often advertised; Supply chain optimization for Walmart, routing planes between airports for Ryanair, portfolio allocation for a pension fund, designing a telecoms network, that sort of thing.</p>
+
+                    <p>These are valuable problems to solve. UPS spent at least $250M developing <a href="https://www.informs.org/Impact/O.R.-Analytics-Success-Stories/UPS">ORION</a>, a routing engine for their drivers. They report that it saves them about $300M a year. I assume it's valuable for finance too, where a 1% improvement on a large portfolio might justify a few weeks of QC time. I don't think a 1 million qubit QC can help here though.</p>
+
+                    <p>The key limitation is the size of the problem(s) that the QC can handle. Runtime, integration with real-time data, and performance vs classical optimization techniques also matter, but the main constraint is how many variables a 1 million qubit QC can handle. 1 million physical qubits gives you about 1,000 logical qubits, which means you can handle, at most, a 1,000-variable optimization problem. That's pretty small for conventional techniques, and many classical solvers will be able to provide near-optimal solutions quickly, using much cheaper GPUs or CPUs than a QC. Convex optimization programs are very efficient and able to handle millions of variables.</p>
+
+                    <p>It's true that we don't have many optimizers that can provide a provable maximally efficient result, but QCs cannot guarantee this either. The 1 million qubit QC will be superior for some pathological problems, i.e. ones with very weird constraints, but these are more likely to be research problems than business applications. (They have names like "Ising models" and "spin glasses"). As with chemistry applications, I'd be glad to hear from anybody with a compelling use case here.</p>
+
+                    <h3>Quantum Machine Learning</h3>
+
+                    <p>And finally, "quantum machine learning". Pitching this as a near-term business is a grift.</p>
+
+                    <h2>How Can I Tell if QCs Are Progressing?</h2>
+
+                    <p>Qubits, qubits, qubits. Look out for signs of exponential growth in qubit count. Except in the recent case of neutral atom systems, we have not seen exponential growth in qubit counts over the past 10 years. They have slowly progressed from 5 q in 2016 through 53 q in 2019 through to 441 q in 2025.<a href="#fn12" id="fnref12" class="footnote-ref">12</a> Also, look out for how many qubits in a processor can be used for computation - no point having a 1,000 q machine if only 200 of those qubits can be used in an algorithm.</p>
+
+                    <p>We have machines today with 100 - 1,000 physical qubits. If - a big if - qubit counts double every year, we're 10 - 13 years away from a one million qubit machine. I am optimistic that the growth rate can improve. Many QC companies have spent the past five years focused on producing a small number of reliable qubits rather than scaling count. They have also focused on demonstrating some basic results, which are essential for scaling, including showing that <a href="https://blog.google/technology/research/google-willow-quantum-chip/">quantum error correction works</a>. These efforts have largely come to fruition, and the companies are now focused on scaling. Many people claim that scaling is just an "engineering challenge", but I am skeptical. Why should future work be any easier? There are still many breakthroughs required, including reliably manufacturing high-quality qubits, designing classical algorithms that can decode quantum computing outputs in real-time, and connecting quantum processors together with high-fidelity interconnects - and just building systems with more qubits!</p>
+
+                    <p>It took Google 10 years of work to achieve a <a href="https://blog.google/technology/research/google-willow-quantum-chip/">105-qubit chip</a> with a low error rate. PsiQuantum is still trying to perfect its individual, modular chips, after which it intends to network many of them together into a single massive machine. Mikhail Lukin's team at Harvard, working on neutral atoms, recently went from <a href="https://arxiv.org/pdf/2012.12281">256 qubits</a> to <a href="https://arxiv.org/pdf/2506.20660">3,000 qubits</a> in the space of a year, which is exciting, and something to keep an eye on. If they get to even 10k qubits in the next year or two, that is a much faster growth rate than the status quo, and should dramatically change timelines.</p>
+
+                    <p>So what does this all mean? Bob Noyce's successor might yet emerge.</p>
+                </div>
+
+                <!-- Acknowledgements section -->
+                <div class="acknowledgements">
+                    Thanks to Michael Akilian, Gavin Leech, Gytis Daujotas, Sam Enright and Molly Mielke McCarthy for conversations and draft reads, and thanks to the many researchers that spoke to me about quantum computing over the past year.
+                </div>
+
+                <!-- Footnotes section -->
+                <div class="footnotes-divider"></div>
+                
+                <div class="footnotes">
+                    <ol>
+                        <li id="fn1">
+                            <p>A misused term, responsible for a hundred million useless articles. Preskill coined this ~2010. What it meant to the public diverged massively from the technical understanding. It was important to practically demonstrate that QCs are faster than CCs for some problems, but technically, it's a very narrow strength and usually has no clear application. Everybody else took it to mean that QCs were a bajillion times faster than conventional computers. <a href="#fnref1">↩</a></p>
+                        </li>
+                        <li id="fn2">
+                            <p>Most people can and should wait for a <a href="https://scottaaronson.blog/">Scott Aaronson</a> blogpost that tells them how to think about any news in QC. <a href="#fnref2">↩</a></p>
+                        </li>
+                        <li id="fn3">
+                            <p>D-Wave is not relevant, despite high qubit counts. Their machines are annealers, rather than gate based, and have less computational power than the QCs that IonQ, Rigetti, PsiQuantum, etc. are working on. <a href="#fnref3">↩</a></p>
+                        </li>
+                        <li id="fn4">
+                            <p>If qubits double each year, 1,000 qubits today grows to 32 kq in 5 years' time.<a href="#fnref4">↩</a></p>
+                        </li>
+                        <li id="fn5">
+                            <p>PsiQuantum is an exception, being unusually secretive about the progress they have made. <a href="#fnref5">↩</a></p>
+                        </li>
+                        <li id="fn6">
+                            <p>Tesla started producing Roadsters after just 5 years, and SpaceX's first successful launch took place 6 years after founding. <a href="#fnref6">↩</a></p>
+                        </li>
+                        <li id="fn7">
+                            <p>There are two sources of overhead here: First, quantum error correction requires an approximately 1000x qubit overhead. Second, most of the qubit modalities are much slower than silicon transistors. This might improve with time, but keep in mind that silicon transistors have benefitted from some of the largest CapEx and R&D investment in history, over 70 years. Qubits are fewer than 20 years old and a much smaller market. An AND gate might be required billions of times in an algorithm. On a silicon chip, AND gates take 10 picoseconds, or 10⁻¹¹ s, and less than 10 transistors. Call it 10⁻¹⁰ transistor seconds. On a QC, an AND gate is <a href="https://simons.berkeley.edu/sites/default/files/docs/15439/craiggidney-feb2020-estimatingthecostoffault-tolerantclassicallyintractablesampling.pdf?utm_source=chatgpt.com">10 billion times more expensive</a>. Quantum algorithms are fast because they do less operations, not because their operations are faster. <a href="#fnref7">↩</a></p>
+                        </li>
+                        <li id="fn8">
+                            <p><a href="https://ewintang.com/">Ewin Tang</a> (<a href="https://en.wikipedia.org/wiki/Ewin_Tang">wikipedia</a>) released a set of papers in 2019 and 2020 that took a bunch of quantum algorithms and developed classical algorithms that were equivalent, or faster. RIP. <a href="#fnref8">↩</a></p>
+                        </li>
+                        <li id="fn9">
+                            <p>ASICs are most famous for their use in Bitcoin mining. They have large fixed costs to using them, as a custom chip must be designed, tested and produced. Once the chip design is complete, the application can't be changed without destroying the performance boost. It has to make sense to spend the same time, money and effort on the ASIC instead of GPUs or CPUs. <a href="#fnref9">↩</a></p>
+                        </li>
+                        <li id="fn10">
+                            <p>There are cooler, more futuristic applications for QCs too, like simulating <a href="https://arxiv.org/pdf/1811.10085">quantum field theories</a>, generating <a href="https://scottaaronson.blog/?p=8746">provably random numbers</a> and other <a href="https://algassert.com/post/2300">mundane applications</a>. <a href="#fnref10">↩</a></p>
+                        </li>
+                        <li id="fn11">
+                            <p>A logical qubit is made up of many physical qubits connected together in an error correction scheme. Adding more physical qubits gives you higher quality and more reliable logical qubits. To run Shor's algorithm and other useful algorithms, it looks like we'll need logical qubits made up of about 1,000 physical qubits. Strictly speaking, a logical qubit can be as small as 5 qubits. In practise, with the surface code, they are 400 - 1,600 qubits. QLDPC codes offer tantalizingly smaller logical qubits. <a href="#fnref11">↩</a></p>
+                        </li>
+                        <li id="fn12">
+                            <p>IBM Yorktown Q 5 in 2016, Google Sycamore in 2019, D. Bluvstein et al in 2025. There's also some fraud, including to do with Majorana qubits, which are Microsoft's chosen modality.<a href="#fnref12">↩</a></p>
+                        </li>
+                    </ol>
+                </div>
+
+                <!-- Divider before bottom subscription form -->
+                <div class="bottom-form-divider"></div>
+
+                <!-- Email subscription form at bottom -->
+                <form action="https://buttondown.com/api/emails/embed-subscribe/tommccarthyprojects" method="post" target="popupwindow" onsubmit="window.open('https://buttondown.com/tommccarthyprojects', 'popupwindow')" class="embeddable-buttondown-form">
+                    <label for="bd-email-bottom">Subscribe for hand-delivered notifications:</label>
+                    <input type="email" name="email" id="bd-email-bottom" />
+                    <input type="submit" value="Subscribe" />
+                </form>
+            </article>
+        </div>
+    </div>
+
+    <script>
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+            localStorage.setItem('darkMode', document.body.classList.contains('dark-mode'));
+        }
+
+        // Load saved preference
+        if (localStorage.getItem('darkMode') === 'true') {
+            document.body.classList.add('dark-mode');
+        }
+
+        // Dynamically populate footnote tooltips from footer content
+        function populateFootnoteTooltips() {
+            // Get all footnote references in the main text
+            const footnoteRefs = document.querySelectorAll('.footnote-ref');
+            
+            footnoteRefs.forEach(ref => {
+                // Get the footnote number from the href
+                const footnoteId = ref.getAttribute('href').substring(1); // Remove the # from #fn1
+                
+                // Find the corresponding footnote in the footer
+                const footnoteItem = document.getElementById(footnoteId);
+                
+                if (footnoteItem) {
+                    // Get the text content from the footnote (excluding the back arrow link)
+                    const footnoteText = footnoteItem.querySelector('p').cloneNode(true);
+                    // Remove the back arrow link
+                    const backLink = footnoteText.querySelector('a[href^="#fnref"]');
+                    if (backLink) {
+                        backLink.remove();
+                    }
+                    
+                    // Create or update the tooltip span
+                    let tooltip = ref.querySelector('.footnote-tooltip');
+                    if (!tooltip) {
+                        tooltip = document.createElement('span');
+                        tooltip.className = 'footnote-tooltip';
+                        ref.appendChild(tooltip);
+                    }
+                    
+                    // Set the tooltip content (innerHTML to preserve links)
+                    tooltip.innerHTML = footnoteText.innerHTML.trim();
+                }
+            });
+        }
+
+        // Call the function when the page loads
+        document.addEventListener('DOMContentLoaded', populateFootnoteTooltips);
+
+        // Smooth scroll to footnotes
+        document.querySelectorAll('a[href^="#fn"]').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
