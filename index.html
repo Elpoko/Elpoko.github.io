@@ -39,6 +39,7 @@
             align-items: center;
             justify-content: center;
             flex-shrink: 0;
+            margin-left: -8px;
         }
 
         .mode-toggle svg {
@@ -104,8 +105,68 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            gap: 40px;
+            gap: 12px;
             max-width: 520px;
+        }
+
+        .site-title {
+            font-size: 2.5rem;
+            font-weight: 500;
+            letter-spacing: -0.5px;
+            color: #000000;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .site-title:hover {
+            color: #4a5568;
+        }
+
+        body.dark-mode .site-title {
+            color: #ffffff;
+        }
+
+        body.dark-mode .site-title:hover {
+            color: #e8e8e8;
+        }
+
+        .header-links {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1rem;
+            margin-left: auto;
+            flex-shrink: 0;
+        }
+
+        .header-link {
+            color: #000000;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-weight: 400;
+            white-space: nowrap;
+        }
+
+        .header-link:hover {
+            color: #4a5568;
+        }
+
+        body.dark-mode .header-link {
+            color: #ffffff;
+        }
+
+        body.dark-mode .header-link:hover {
+            color: #e8e8e8;
+        }
+
+        .header-separator {
+            color: #4a5568;
+            font-weight: 300;
+            transition: color 0.3s ease;
+        }
+
+        body.dark-mode .header-separator {
+            color: #e8e8e8;
         }
 
         h1 {
@@ -317,9 +378,35 @@
                 min-width: 320px; /* Minimum content width */
                 margin-left: 20px;
                 margin-right: 20px;
-                /* Reduce padding on narrow screens */
-                padding-left: max(20px, min(120px, calc((100vw - 400px) * 0.16)));
-                padding-right: max(16px, min(60px, calc((100vw - 400px) * 0.08)));
+                /* Reduce padding proportionally to viewport width */
+                padding-left: max(20px, min(120px, 13.3vw));
+                padding-right: max(16px, min(60px, 6.7vw));
+            }
+        }
+
+        @media (max-width: 600px) {
+            .content {
+                /* Tighter padding on mobile devices */
+                padding-left: max(12px, 13.3vw);
+                padding-right: max(8px, 6.7vw);
+            }
+
+            .site-title {
+                font-size: 2rem;
+            }
+
+            .header-links {
+                font-size: 0.85rem;
+            }
+
+            .embeddable-buttondown-form input[type="email"] {
+                width: 100%;
+                margin-right: 0;
+                margin-bottom: 12px;
+            }
+
+            .embeddable-buttondown-form input[type="submit"] {
+                width: 100%;
             }
         }
     </style>
@@ -328,12 +415,16 @@
     <div class="container">
         <div class="content">
             <header>
-                <h1>Tom McCarthy</h1>
-                <button class="mode-toggle" onclick="toggleDarkMode()" aria-label="Toggle dark mode">
-                    <svg viewBox="0 0 100 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M 0 20 Q 12.5 5, 25 20 T 50 20 T 75 20 T 100 20" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                </button>
+                <a href="https://tommccarthy.net" class="site-title">Tom McCarthy</a>
+                <div class="header-links">
+                    <a href="https://x.com/carthymctom" class="header-link" target="_blank">X</a>
+                    <span class="header-separator">·</span>
+                    <button class="mode-toggle" onclick="toggleDarkMode()" aria-label="Toggle dark mode">
+                        <svg viewBox="0 0 100 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M 0 20 Q 12.5 5, 25 20 T 50 20 T 75 20 T 100 20" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                </div>
             </header>
 
             <section>
