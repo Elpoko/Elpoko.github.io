@@ -3,7 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Post Title - Tom McCarthy</title>
+    <title>Essay Title - Your Name</title>
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://yoursite.com/essay.html">
+    <meta property="og:title" content="Essay Title">
+    <meta property="og:description" content="A compelling description of your essay that will appear in social media previews.">
+    <meta property="og:image" content="https://yoursite.com/og-image.png">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://yoursite.com/essay.html">
+    <meta property="twitter:title" content="Essay Title">
+    <meta property="twitter:description" content="A compelling description of your essay that will appear in social media previews.">
+    <meta property="twitter:image" content="https://yoursite.com/og-image.png">
+    
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Newsreader:wght@300;400;500&display=swap');
@@ -30,7 +45,7 @@
         }
 
         .mode-toggle {
-            padding: 8px;
+            padding: 0px;
             background-color: transparent;
             border: none;
             cursor: pointer;
@@ -68,20 +83,67 @@
         }
 
         .content {
-            width: 860px;
-            flex-shrink: 0;
-            margin-left: 40px;
-            margin-right: 40px;
-            padding: 120px 60px 80px 120px;
+            width: 100%;
+            max-width: 860px;
+            min-width: 375px;
+            padding: 120px 80px 80px 80px;
         }
 
         header {
             margin-bottom: 80px;
+            margin-left: auto;
+            margin-right: auto;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #d0d0d0;
             display: flex;
-            justify-content: space-between;
             align-items: center;
-            gap: 40px;
+            gap: 6px;
             max-width: 680px;
+        }
+
+        body.dark-mode header {
+            border-bottom-color: #404040;
+        }
+
+        .site-title {
+            flex: 0 0 auto;
+        }
+
+        .header-links {
+            margin-left: auto;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 1rem;
+        }
+
+        .header-link {
+            color: #000000;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-weight: 400;
+        }
+
+        .header-link:hover {
+            color: #4a5568;
+        }
+
+        body.dark-mode .header-link {
+            color: #ffffff;
+        }
+
+        body.dark-mode .header-link:hover {
+            color: #e8e8e8;
+        }
+
+        .header-separator {
+            color: #4a5568;
+            font-weight: 300;
+            transition: color 0.3s ease;
+        }
+
+        body.dark-mode .header-separator {
+            color: #e8e8e8;
         }
 
         h1 {
@@ -101,6 +163,7 @@
             font-size: 2.5rem;
             font-weight: 500;
             letter-spacing: -0.5px;
+            line-height: 1;
             color: #000000;
             text-decoration: none;
             transition: color 0.3s ease;
@@ -120,6 +183,7 @@
 
         article {
             max-width: 680px;
+            margin: 0 auto;
         }
 
         .post-title {
@@ -352,121 +416,12 @@
             color: #e8e8e8;
         }
 
-        /* Email subscription form */
-        .embeddable-buttondown-form {
-            max-width: 680px;
-            margin: 32px 0;
-            padding-left: 24px;
-            border-left: 3px solid #a5b4c4;
-            transition: border-color 0.3s ease;
-        }
-
-        body.dark-mode .embeddable-buttondown-form {
-            border-left-color: #7dd3c0;
-        }
-
-        .embeddable-buttondown-form label {
-            display: block;
-            font-size: 1.05rem;
-            color: #2a2a2a;
-            font-weight: 400;
-            margin-bottom: 12px;
-            transition: color 0.3s ease;
-        }
-
-        body.dark-mode .embeddable-buttondown-form label {
-            color: #ffffff;
-        }
-
-        .embeddable-buttondown-form input[type="email"] {
-            width: 280px;
-            padding: 10px 12px;
-            font-family: 'Newsreader', 'Georgia', 'Times New Roman', serif;
-            font-size: 1rem;
-            border: 1px solid #d0d0d0;
-            border-radius: 4px;
-            background-color: #ffffff;
-            color: #1a1a1a;
-            margin-right: 8px;
-            transition: all 0.3s ease;
-            display: inline-block;
-            vertical-align: middle;
-        }
-
-        .embeddable-buttondown-form input[type="email"]:focus {
-            outline: none;
-            border-color: #4a5568;
-        }
-
-        body.dark-mode .embeddable-buttondown-form input[type="email"] {
-            background-color: #2a2a2a;
-            color: #ffffff;
-            border-color: #404040;
-        }
-
-        body.dark-mode .embeddable-buttondown-form input[type="email"]:focus {
-            border-color: #7dd3c0;
-        }
-
-        .embeddable-buttondown-form input[type="submit"] {
-            padding: 10px 24px;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
-            font-size: 0.95rem;
-            font-weight: 500;
-            background-color: #1a1a1a;
-            color: #ffffff;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: inline-block;
-            vertical-align: middle;
-        }
-
-        .embeddable-buttondown-form input[type="submit"]:hover {
-            background-color: #4a5568;
-        }
-
-        body.dark-mode .embeddable-buttondown-form input[type="submit"] {
-            background-color: #f5f5f5;
-            color: #1a1a1a;
-        }
-
-        body.dark-mode .embeddable-buttondown-form input[type="submit"]:hover {
-            background-color: #e8e8e8;
-        }
-
-        .bottom-form-divider {
-            width: 100%;
-            height: 1px;
-            background-color: #d0d0d0;
-            margin: 32px 0 24px 0;
-            transition: background-color 0.3s ease;
-        }
-
-        body.dark-mode .bottom-form-divider {
-            background-color: #404040;
-        }
-
-        @media (max-width: 940px) {
+        /* Phase 3: Approaching text width - switch to mobile layout with smaller text */
+        @media (max-width: 850px) {
             .content {
-                margin-left: max(20px, calc((100vw - 860px) / 2));
-                margin-right: max(20px, calc((100vw - 860px) / 2));
+                padding: 60px 20px 60px 20px;
             }
-        }
 
-        @media (max-width: 900px) {
-            .content {
-                width: calc(100vw - 40px);
-                min-width: 320px;
-                margin-left: 20px;
-                margin-right: 20px;
-                padding-left: max(20px, min(120px, calc((100vw - 400px) * 0.16)));
-                padding-right: max(16px, min(60px, calc((100vw - 400px) * 0.08)));
-            }
-        }
-
-        @media (max-width: 600px) {
             .post-title {
                 font-size: 2rem;
             }
@@ -479,9 +434,24 @@
                 font-size: 2rem;
             }
 
+            .header-links {
+                font-size: 0.9rem;
+            }
+
             .footnote-tooltip {
                 max-width: 240px;
                 font-size: 0.9rem;
+            }
+        }
+
+        /* Phase 4: Very narrow - minimal padding, minimum width enforced */
+        @media (max-width: 500px) {
+            .content {
+                padding: 60px 12px 60px 12px;
+            }
+
+            .header-links {
+                font-size: 0.85rem;
             }
         }
     </style>
@@ -490,7 +460,11 @@
     <div class="container">
         <div class="content">
             <header>
-                <a href="https://tommccarthy.net" class="site-title">Tom McCarthy</a>
+                <a href="https://yoursite.com" class="site-title">Your Name</a>
+                <div class="header-links">
+                    <a href="https://x.com/yourusername" class="header-link" target="_blank">X</a>
+                    <span class="header-separator">·</span>
+                </div>
                 <button class="mode-toggle" onclick="toggleDarkMode()" aria-label="Toggle dark mode">
                     <svg viewBox="0 0 100 40" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M 0 20 Q 12.5 5, 25 20 T 50 20 T 75 20 T 100 20" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
@@ -499,44 +473,43 @@
             </header>
 
             <article>
-                <h1 class="post-title">Your Essay Title Goes Here</h1>
+                <h1 class="post-title">The Future of Emerging Technology</h1>
                 
-                <p class="post-subheading">This is the subheading or lede paragraph. It provides context and draws the reader in. It's italicized and slightly understated.</p>
+                <p class="post-subheading">A compelling subtitle or summary that draws readers in and explains what this essay is about in one or two sentences.</p>
 
                 <div class="post-body">
-                    <p>This is the opening paragraph of your essay. It establishes the main theme and sets the tone for what's to come. You can include footnotes<a href="#fn1" id="fnref1" class="footnote-ref">1<span class="footnote-tooltip">This is an example footnote that appears in a tooltip when you hover over it.</span></a> throughout your text.</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua<a href="#fn1" id="fnref1" class="footnote-ref">1</a>. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
 
-                    <p>Continue with your main body text here. Each paragraph should flow naturally into the next. You can add as many paragraphs as needed to develop your argument or tell your story.</p>
+                    <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium<a href="#fn2" id="fnref2" class="footnote-ref">2</a>.</p>
 
-                    <!-- Email subscription form -->
-                    <form action="https://buttondown.com/api/emails/embed-subscribe/tommccarthyprojects" method="post" target="popupwindow" onsubmit="window.open('https://buttondown.com/tommccarthyprojects', 'popupwindow')" class="embeddable-buttondown-form">
-                        <label for="bd-email-top">Subscribe for hand-delivered notifications:</label>
-                        <input type="email" name="email" id="bd-email-top" />
-                        <input type="submit" value="Subscribe" />
-                    </form>
+                    <p>Totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p>
 
-                    <h2>Section Heading</h2>
+                    <h2>The First Major Section</h2>
 
-                    <p>This is where you develop a major section of your essay. Use h2 tags for main section headings. They provide clear visual hierarchy and help readers navigate your piece.</p>
+                    <p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem<a href="#fn3" id="fnref3" class="footnote-ref">3</a>. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam.</p>
 
-                    <p>You can include links to <a href="#">external resources</a> and reference multiple footnotes<a href="#fn2" id="fnref2" class="footnote-ref">2<span class="footnote-tooltip">Another example footnote. These can be as long or short as needed, though shorter is often better for tooltips.</span></a> in the same paragraph.</p>
+                    <p>Nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur.</p>
 
-                    <h3>Subsection Heading</h3>
+                    <h2>The Second Major Section</h2>
 
-                    <p>Use h3 tags for subsections within your main sections. They're slightly smaller than h2 but still provide clear structure.</p>
+                    <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga.</p>
 
-                    <p>Continue your narrative here with more paragraphs, examples, or analysis as needed.</p>
+                    <p>Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus.</p>
 
-                    <h2>Another Major Section</h2>
+                    <h3>A Subsection</h3>
 
-                    <p>Keep developing your ideas. The styling will remain consistent throughout the piece, maintaining readability and visual coherence.</p>
+                    <p>Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat<a href="#fn4" id="fnref4" class="footnote-ref">4</a>.</p>
 
-                    <p>Your final paragraphs can wrap up your argument or leave the reader with something to think about<a href="#fn3" id="fnref3" class="footnote-ref">3<span class="footnote-tooltip">Final thoughts often deserve their own footnote for additional context or references.</span></a>.</p>
+                    <h2>The Third Major Section</h2>
+
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+
+                    <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
                 </div>
 
-                <!-- Optional acknowledgements section -->
+                <!-- Acknowledgements section -->
                 <div class="acknowledgements">
-                    Thanks to [Name] for reading drafts of this, to [Name] for the conversation that sparked this idea, and to [Name] for their feedback and encouragement.
+                    Thanks to Person One, Person Two, and Person Three for thoughtful conversations and feedback on early drafts of this essay.
                 </div>
 
                 <!-- Footnotes section -->
@@ -545,26 +518,19 @@
                 <div class="footnotes">
                     <ol>
                         <li id="fn1">
-                            <p>This is an example footnote that appears in a tooltip when you hover over it. <a href="#fnref1">↩</a></p>
+                            <p>This is an explanatory footnote that provides additional context or a citation for the claim made in the main text. <a href="#fnref1">↩</a></p>
                         </li>
                         <li id="fn2">
-                            <p>Another example footnote. These can be as long or short as needed, though shorter is often better for tooltips. <a href="#fnref2">↩</a></p>
+                            <p>Another footnote with relevant supplementary information that would have interrupted the flow of the main argument. <a href="#fnref2">↩</a></p>
                         </li>
                         <li id="fn3">
-                            <p>Final thoughts often deserve their own footnote for additional context or references. <a href="#fnref3">↩</a></p>
+                            <p>A third footnote demonstrating how these can be used throughout the essay to add depth without cluttering the narrative. <a href="#fnref3">↩</a></p>
+                        </li>
+                        <li id="fn4">
+                            <p>The final footnote showing how the tooltip and footer reference system works together seamlessly. <a href="#fnref4">↩</a></p>
                         </li>
                     </ol>
                 </div>
-
-                <!-- Divider before bottom subscription form -->
-                <div class="bottom-form-divider"></div>
-
-                <!-- Email subscription form at bottom -->
-                <form action="https://buttondown.com/api/emails/embed-subscribe/tommccarthyprojects" method="post" target="popupwindow" onsubmit="window.open('https://buttondown.com/tommccarthyprojects', 'popupwindow')" class="embeddable-buttondown-form">
-                    <label for="bd-email-bottom">Subscribe for hand-delivered notifications:</label>
-                    <input type="email" name="email" id="bd-email-bottom" />
-                    <input type="submit" value="Subscribe" />
-                </form>
             </article>
         </div>
     </div>
@@ -579,6 +545,44 @@
         if (localStorage.getItem('darkMode') === 'true') {
             document.body.classList.add('dark-mode');
         }
+
+        // Dynamically populate footnote tooltips from footer content
+        function populateFootnoteTooltips() {
+            // Get all footnote references in the main text
+            const footnoteRefs = document.querySelectorAll('.footnote-ref');
+            
+            footnoteRefs.forEach(ref => {
+                // Get the footnote number from the href
+                const footnoteId = ref.getAttribute('href').substring(1); // Remove the # from #fn1
+                
+                // Find the corresponding footnote in the footer
+                const footnoteItem = document.getElementById(footnoteId);
+                
+                if (footnoteItem) {
+                    // Get the text content from the footnote (excluding the back arrow link)
+                    const footnoteText = footnoteItem.querySelector('p').cloneNode(true);
+                    // Remove the back arrow link
+                    const backLink = footnoteText.querySelector('a[href^="#fnref"]');
+                    if (backLink) {
+                        backLink.remove();
+                    }
+                    
+                    // Create or update the tooltip span
+                    let tooltip = ref.querySelector('.footnote-tooltip');
+                    if (!tooltip) {
+                        tooltip = document.createElement('span');
+                        tooltip.className = 'footnote-tooltip';
+                        ref.appendChild(tooltip);
+                    }
+                    
+                    // Set the tooltip content (innerHTML to preserve links)
+                    tooltip.innerHTML = footnoteText.innerHTML.trim();
+                }
+            });
+        }
+
+        // Call the function when the page loads
+        document.addEventListener('DOMContentLoaded', populateFootnoteTooltips);
 
         // Smooth scroll to footnotes
         document.querySelectorAll('a[href^="#fn"]').forEach(link => {
