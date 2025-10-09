@@ -45,7 +45,7 @@
         }
 
         .mode-toggle {
-            padding: 8px;
+            padding: 0px;
             background-color: transparent;
             border: none;
             cursor: pointer;
@@ -83,28 +83,38 @@
         }
 
         .content {
-            width: 860px;
-            flex-shrink: 0;
-            margin-left: 40px;
-            margin-right: 40px;
-            padding: 120px 60px 80px 120px;
+            width: 100%;
+            max-width: 860px;
+            min-width: 375px;
+            padding: 120px 80px 80px 80px;
         }
 
         header {
             margin-bottom: 80px;
+            margin-left: auto;
+            margin-right: auto;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #d0d0d0;
             display: flex;
-            justify-content: space-between;
             align-items: center;
-            gap: 12px;
+            gap: 6px;
             max-width: 680px;
         }
 
+        body.dark-mode header {
+            border-bottom-color: #404040;
+        }
+
+        .site-title {
+            flex: 0 0 auto;
+        }
+
         .header-links {
+            margin-left: auto;
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 8px;
             font-size: 1rem;
-            margin-left: auto;
         }
 
         .header-link {
@@ -153,6 +163,7 @@
             font-size: 2.5rem;
             font-weight: 500;
             letter-spacing: -0.5px;
+            line-height: 1;
             color: #000000;
             text-decoration: none;
             transition: color 0.3s ease;
@@ -172,6 +183,7 @@
 
         article {
             max-width: 680px;
+            margin: 0 auto;
         }
 
         .post-title {
@@ -500,15 +512,12 @@
             background-color: #404040;
         }
 
-        @media (max-width: 900px) {
+        /* Phase 3: Approaching text width - switch to mobile layout with smaller text */
+        @media (max-width: 850px) {
             .content {
-                width: calc(100vw - 40px);
-                margin-left: 20px;
-                margin-right: 20px;
+                padding: 60px 20px 60px 20px;
             }
-        }
 
-        @media (max-width: 600px) {
             .post-title {
                 font-size: 2rem;
             }
@@ -521,18 +530,13 @@
                 font-size: 2rem;
             }
 
-            .footnote-tooltip {
-                max-width: 240px;
+            .header-links {
                 font-size: 0.9rem;
             }
 
-            .header-links {
-                font-size: 0.85rem;
-            }
-
-            .content {
-                padding-left: 20px;
-                padding-right: 20px;
+            .footnote-tooltip {
+                max-width: 240px;
+                font-size: 0.9rem;
             }
 
             .embeddable-buttondown-form input[type="email"] {
@@ -545,6 +549,17 @@
                 width: 100%;
             }
         }
+
+        /* Phase 4: Very narrow - minimal padding, minimum width enforced */
+        @media (max-width: 500px) {
+            .content {
+                padding: 60px 12px 60px 12px;
+            }
+
+            .header-links {
+                font-size: 0.85rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -554,8 +569,6 @@
                 <a href="https://tommccarthy.net" class="site-title">Tom McCarthy</a>
                 <div class="header-links">
                     <a href="https://x.com/carthymctom" class="header-link" target="_blank">X</a>
-                    <span class="header-separator">·</span>
-                    <a href="mailto:tommccarthyprojects@gmail.com" class="header-link">tommccarthyprojects@gmail.com</a>
                     <span class="header-separator">·</span>
                 </div>
                 <button class="mode-toggle" onclick="toggleDarkMode()" aria-label="Toggle dark mode">
