@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brief History of Quantum Computing Hype - Tom McCarthy</title>
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://tommccarthy.net/qc-hype.html">
+    <meta property="og:title" content="Brief History of Quantum Computing Hype">
+    <meta property="og:description" content="October 2025. Few areas of physics research ever attract much public attention or funding. Quantum computing is one of the best-known and best funded areas in physics. How did it enter the mainstream and become so hyped?">
+    <meta property="og:image" content="https://tommccarthy.net/og-image.png">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://tommccarthy.net/qc-narratives.html">
+    <meta property="twitter:title" content="Brief History of Quantum Computing Hype">
+    <meta property="twitter:description" content="October 2025. Few areas of physics research ever attract much public attention or funding. Quantum computing is one of the best-known and best funded areas in physics. How did it enter the mainstream and become so hyped?">
+    <meta property="twitter:image" content="https://tommccarthy.net/og-image.png">
+    
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Newsreader:wght@300;400;500&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Newsreader', 'Georgia', 'Times New Roman', serif;
+            background-color: #f5f5f5;
+            color: #1a1a1a;
+            line-height: 1.7;
+            overflow-x: hidden;
+            font-weight: 500;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        body.dark-mode {
+            background-color: #1a1a1a;
+            color: #ffffff;
+        }
+
+        .mode-toggle {
+            padding: 0px;
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .mode-toggle svg {
+            width: 32px;
+            height: 32px;
+            stroke: #000000;
+            fill: none;
+            transition: stroke 0.3s ease;
+        }
+
+        .mode-toggle:hover svg {
+            stroke: #4a5568;
+        }
+
+        body.dark-mode .mode-toggle svg {
+            stroke: #ffffff;
+        }
+
+        body.dark-mode .mode-toggle:hover svg {
+            stroke: #e8e8e8;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        .content {
+            width: 100%;
+            max-width: 860px;
+            min-width: 375px;
+            padding: 120px 80px 80px 80px;
+        }
+
+        header {
+            margin-bottom: 80px;
+            margin-left: auto;
+            margin-right: auto;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #d0d0d0;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            max-width: 680px;
+        }
+
+        body.dark-mode header {
+            border-bottom-color: #404040;
+        }
+
+        .site-title {
+            flex: 0 0 auto;
+        }
+
+        .header-links {
+            margin-left: auto;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 1rem;
+        }
+
+        .header-link {
+            color: #000000;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-weight: 400;
+        }
+
+        .header-link:hover {
+            color: #4a5568;
+        }
+
+        body.dark-mode .header-link {
+            color: #ffffff;
+        }
+
+        body.dark-mode .header-link:hover {
+            color: #e8e8e8;
+        }
+
+        .header-separator {
+            color: #4a5568;
+            font-weight: 300;
+            transition: color 0.3s ease;
+        }
+
+        body.dark-mode .header-separator {
+            color: #e8e8e8;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 500;
+            letter-spacing: -0.5px;
+            margin-bottom: 8px;
+            color: #000000;
+            transition: color 0.3s ease;
+        }
+
+        body.dark-mode h1 {
+            color: #ffffff;
+        }
+
+        .site-title {
+            font-size: 2.5rem;
+            font-weight: 500;
+            letter-spacing: -0.5px;
+            line-height: 1;
+            color: #000000;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .site-title:hover {
+            color: #4a5568;
+        }
+
+        body.dark-mode .site-title {
+            color: #ffffff;
+        }
+
+        body.dark-mode .site-title:hover {
+            color: #e8e8e8;
+        }
+
+        article {
+            max-width: 680px;
+            margin: 0 auto;
+        }
+
+        .post-title {
+            font-size: 2.5rem;
+            font-weight: 500;
+            letter-spacing: -0.5px;
+            margin-bottom: 24px;
+            color: #000000;
+            transition: color 0.3s ease;
+            line-height: 1.2;
+        }
+
+        body.dark-mode .post-title {
+            color: #ffffff;
+        }
+
+        .post-subheading {
+            font-size: 1.05rem;
+            font-style: italic;
+            color: #2a2a2a;
+            font-weight: 400;
+            margin-bottom: 40px;
+            transition: color 0.3s ease;
+        }
+
+        body.dark-mode .post-subheading {
+            color: #ffffff;
+        }
+
+        .post-body {
+            font-size: 1.05rem;
+            color: #2a2a2a;
+            font-weight: 400;
+            transition: color 0.3s ease;
+        }
+
+        body.dark-mode .post-body {
+            color: #ffffff;
+        }
+
+        .post-body p {
+            font-size: 1.05rem;
+            color: #2a2a2a;
+            font-weight: 400;
+            margin-bottom: 24px;
+            transition: color 0.3s ease;
+        }
+
+        body.dark-mode .post-body p {
+            color: #ffffff;
+        }
+
+        h2 {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+            font-size: 1.1rem;
+            font-weight: 500;
+            letter-spacing: 0;
+            margin-top: 48px;
+            margin-bottom: 20px;
+            color: #4a4a4a;
+            transition: color 0.3s ease;
+        }
+
+        body.dark-mode h2 {
+            color: #ffffff;
+        }
+
+        h3 {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+            font-size: 1.05rem;
+            font-weight: 500;
+            letter-spacing: 0;
+            margin-top: 36px;
+            margin-bottom: 16px;
+            color: #4a4a4a;
+            transition: color 0.3s ease;
+        }
+
+        body.dark-mode h3 {
+            color: #ffffff;
+        }
+
+        a {
+            color: #1a1a1a;
+            text-decoration: underline;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: #4a5568;
+        }
+
+        body.dark-mode a {
+            color: #7dd3c0;
+        }
+
+        body.dark-mode a:hover {
+            color: #9ee4d4;
+        }
+
+        /* Footnote styles */
+        .footnote-ref {
+            position: relative;
+            cursor: help;
+            text-decoration: none;
+            color: #4a5568;
+            font-size: 0.85em;
+            vertical-align: super;
+            line-height: 0;
+            transition: color 0.3s ease;
+        }
+
+        .footnote-ref:hover {
+            color: #1a1a1a;
+        }
+
+        body.dark-mode .footnote-ref {
+            color: #7dd3c0;
+        }
+
+        body.dark-mode .footnote-ref:hover {
+            color: #9ee4d4;
+        }
+
+        /* Tooltip styles */
+        .footnote-tooltip {
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #ffffff;
+            color: #1a1a1a;
+            padding: 12px 16px;
+            border-radius: 6px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            font-size: 0.95rem;
+            line-height: 1.5;
+            max-width: 320px;
+            width: max-content;
+            z-index: 1000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.2s ease;
+            margin-bottom: 8px;
+            font-weight: 400;
+        }
+
+        body.dark-mode .footnote-tooltip {
+            background-color: #2a2a2a;
+            color: #ffffff;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+        }
+
+        .footnote-ref:hover .footnote-tooltip {
+            opacity: 1;
+        }
+
+        .footnote-tooltip::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 6px solid transparent;
+            border-top-color: #ffffff;
+        }
+
+        body.dark-mode .footnote-tooltip::after {
+            border-top-color: #2a2a2a;
+        }
+
+        /* Acknowledgements section */
+        .acknowledgements {
+            margin-top: 24px;
+            margin-bottom: 16px;
+            font-style: italic;
+            font-size: 1.05rem;
+            font-weight: 400;
+            color: #4a4a4a;
+            transition: color 0.3s ease;
+            width: 100%;
+        }
+
+        body.dark-mode .acknowledgements {
+            color: #e8e8e8;
+        }
+
+        /* Footnotes section */
+        .footnotes-divider {
+            width: 100%;
+            height: 1px;
+            background-color: #d0d0d0;
+            margin: 48px 0 24px 0;
+            transition: background-color 0.3s ease;
+        }
+
+        body.dark-mode .footnotes-divider {
+            background-color: #404040;
+        }
+
+        .footnotes {
+            font-size: 0.95rem;
+            color: #4a4a4a;
+            transition: color 0.3s ease;
+            margin-bottom: 0;
+        }
+
+        body.dark-mode .footnotes {
+            color: #e8e8e8;
+        }
+
+        .footnotes ol {
+            padding-left: 24px;
+            list-style-position: outside;
+        }
+
+        .footnotes li {
+            margin-bottom: 12px;
+            font-weight: 400;
+            padding-left: 8px;
+        }
+
+        .footnotes li p {
+            font-size: 0.95rem;
+            color: #4a4a4a;
+            margin-bottom: 0;
+        }
+
+        body.dark-mode .footnotes li p {
+            color: #e8e8e8;
+        }
+
+        /* Email subscription form */
+        .embeddable-buttondown-form {
+            max-width: 680px;
+            margin: 32px 0;
+            padding-left: 24px;
+            border-left: 3px solid #a5b4c4;
+            transition: border-color 0.3s ease;
+        }
+
+        body.dark-mode .embeddable-buttondown-form {
+            border-left-color: #7dd3c0;
+        }
+
+        .embeddable-buttondown-form label {
+            display: block;
+            font-size: 1.05rem;
+            color: #2a2a2a;
+            font-weight: 400;
+            margin-bottom: 12px;
+            transition: color 0.3s ease;
+        }
+
+        body.dark-mode .embeddable-buttondown-form label {
+            color: #ffffff;
+        }
+
+        .embeddable-buttondown-form input[type="email"] {
+            width: 280px;
+            padding: 10px 12px;
+            font-family: 'Newsreader', 'Georgia', 'Times New Roman', serif;
+            font-size: 1rem;
+            border: 1px solid #d0d0d0;
+            border-radius: 4px;
+            background-color: #ffffff;
+            color: #1a1a1a;
+            margin-right: 8px;
+            transition: all 0.3s ease;
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        .embeddable-buttondown-form input[type="email"]:focus {
+            outline: none;
+            border-color: #4a5568;
+        }
+
+        body.dark-mode .embeddable-buttondown-form input[type="email"] {
+            background-color: #2a2a2a;
+            color: #ffffff;
+            border-color: #404040;
+        }
+
+        body.dark-mode .embeddable-buttondown-form input[type="email"]:focus {
+            border-color: #7dd3c0;
+        }
+
+        .embeddable-buttondown-form input[type="submit"] {
+            padding: 10px 24px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+            font-size: 0.95rem;
+            font-weight: 500;
+            background-color: #1a1a1a;
+            color: #ffffff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        .embeddable-buttondown-form input[type="submit"]:hover {
+            background-color: #4a5568;
+        }
+
+        body.dark-mode .embeddable-buttondown-form input[type="submit"] {
+            background-color: #f5f5f5;
+            color: #1a1a1a;
+        }
+
+        body.dark-mode .embeddable-buttondown-form input[type="submit"]:hover {
+            background-color: #e8e8e8;
+        }
+
+        .bottom-form-divider {
+            width: 100%;
+            height: 1px;
+            background-color: #d0d0d0;
+            margin: 32px 0 24px 0;
+            transition: background-color 0.3s ease;
+        }
+
+        body.dark-mode .bottom-form-divider {
+            background-color: #404040;
+        }
+
+        /* Phase 3: Approaching text width - switch to mobile layout with smaller text */
+        @media (max-width: 850px) {
+            .content {
+                padding: 60px 20px 60px 20px;
+            }
+
+            .post-title {
+                font-size: 2rem;
+            }
+
+            .site-title {
+                font-size: 2rem;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .header-links {
+                font-size: 0.9rem;
+            }
+
+            .footnote-tooltip {
+                max-width: 240px;
+                font-size: 0.9rem;
+            }
+
+            .embeddable-buttondown-form input[type="email"] {
+                width: 100%;
+                margin-right: 0;
+                margin-bottom: 12px;
+            }
+
+            .embeddable-buttondown-form input[type="submit"] {
+                width: 100%;
+            }
+        }
+
+        /* Phase 4: Very narrow - minimal padding, minimum width enforced */
+        @media (max-width: 500px) {
+            .content {
+                padding: 60px 12px 60px 12px;
+            }
+
+            .header-links {
+                font-size: 0.85rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="content">
+            <header>
+                <a href="https://tommccarthy.net" class="site-title">Tom McCarthy</a>
+                <div class="header-links">
+                    <a href="https://x.com/carthymctom" class="header-link" target="_blank">X</a>
+                    <span class="header-separator">·</span>
+                </div>
+                <button class="mode-toggle" onclick="toggleDarkMode()" aria-label="Toggle dark mode">
+                    <svg viewBox="0 0 100 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M 0 20 Q 12.5 5, 25 20 T 50 20 T 75 20 T 100 20" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+            </header>
+
+            <article>
+                <h1 class="post-title">Brief History of Quantum Computing Hype</h1>
+                
+                <p class="post-subheading">October 2025. Few areas of physics research ever attract much public attention or funding. Quantum computing is one of the best-known and best funded areas in physics. How did it enter the mainstream and become so hyped?</p>
+
+                <div class="post-body">
+                    <p>In 1981, Feynman shared an idea: Use quantum mechanics to simulate quantum phenomena<a href="#fn1" id="fnref1" class="footnote-ref">1</a>. Instead of bits, use qubits. Over the next ~15 years, physicists and computer scientists defined these machines. In particular, Deutsch, Josza, Simon and Vazirani showed how machines based on quantum mechanics could solve some contrived problems faster than classical computers.</p>
+
+                    <p>In 1994, Shor showed that these machines were useful for something other than simulation: Cryptanalysis. This moved quantum computers from the realm of interesting-to-physicists to potentially-critically-important-for-lots-of-people.</p>
+
+                     <!-- Email subscription form -->
+                     <form action="https://buttondown.com/api/emails/embed-subscribe/tommccarthyprojects" method="post" target="popupwindow" onsubmit="window.open('https://buttondown.com/tommccarthyprojects', 'popupwindow')" class="embeddable-buttondown-form">
+                        <label for="bd-email-top">Subscribe for hand-delivered notifications:</label>
+                        <input type="email" name="email" id="bd-email-top" />
+                        <input type="submit" value="Subscribe" />
+                    </form>
+
+                    <p>A NIST conference was organized to discuss Shor’s Algorithm and DARPA and the NSA started funding research into quantum computers. It wasn’t clear how long it would take to build them. Trapped ion qubits were <a href="https://www.google.com/url?q=https://web.archive.org/web/20251024062352/https://www.fuw.edu.pl/~szczytko/NT/materialy/9_QC/Cirac_Zoller_PRL1995.pdf&sa=D&source=docs&ust=1761290681619016&usg=AOvVaw0uLxO9SHUyaUFZbEA13sTQ">proposed in 1995</a> by Cirac and Zoller, and <a href="https://www.google.com/url?q=https://tf.nist.gov/general/pdf/140.pdf&sa=D&source=docs&ust=1761290681618909&usg=AOvVaw0DQOuaQDac-cgQn8C6xSGv">realized almost immediately</a>. There were basic <a href="https://www.google.com/url?q=https://arxiv.org/pdf/quant-ph/9709001&sa=D&source=docs&ust=1761290507341682&usg=AOvVaw21k2tau-mlwpNR94OQT2-h">NMR qubits</a> too, but it seemed clear that they wouldn’t scale well. By the mid 2000s, IBM had ‘factored’ 15, DARPA was running a quantum key distribution network and Microsoft had launched <a href="https://news.microsoft.com/stories/stationq/">Station Q</a>. Governments, funding agencies and research-minded corporations were interested in QC.</p>
+
+                    <p>Then, in 2012: ‘quantum supremacy’. John Preskill <a href="https://arxiv.org/pdf/1203.5813">coined the term</a> to mean something very reasonable. IBM, D-Wave, Google and their comms teams contorted it until we all agreed never to use it again. Labs started forecasting the date by which they would achieve quantum supremacy, similarly to AI CEOs competing on how early their models will win a Nobel Prize, or automate software engineering. </p>
+
+                    <p>Google acquired a world-class quantum computing team in 2014, by buying John Martinis’ group at UC Santa Barbara. That same year, the Snowden files revealed that the NSA had a <a href="https://web.archive.org/web/20170830105526/https://www.washingtonpost.com/web/20170830105526/https://www.washingtonpost.com/world/national-security/nsa-seeks-to-build-quantum-computer-that-could-crack-most-types-of-encryption/2014/01/02/8fff297e-7195-11e3-8def-a33011492df2_story.html?utm_term=.8f521104f0cb">quantum computing project</a>. Startups materialized around this time too: Rigetti in 2013, IonQ in 2015, PsiQuantum in 2016. IBM had been working on quantum computers already, as had the national labs, but there was suddenly a commercial race, and the press releases ratcheted up in intensity. I suspect that Google entering the race in 2014 was to quantum computing as spinning out Waymo in 2016 was to self-driving cars. At least one reason for the excitement was that qubit count appeared to have hit an inflection point, going from 9 qubits in 2016, to 17 qubits in 2017 and 72 qubits in 2018. In an effort to outdo Moore’s Law, <a href="https://www.quantamagazine.org/does-nevens-law-describe-quantum-computings-rise-20190618/">“Neven’s Law”</a> appeared for quantum computing.</p>
+
+                    <p>In 2018 and 2019 Google and IBM demonstrated quantum supremacy, but in a very narrow sense. It was a huge moment. Uninhibited press releases and media coverage implied that classical computing was finished. Online debates raged over whether or not the experiments actually constituted quantum supremacy. There continued to be no practical deployment of quantum computers.</p>
+
+                    <p>Things grew quiet after that, a lot of skeptics probably felt vindicated. Researchers continued making steady, but not spectacular, progress. In late 2024, <a href="https://blog.google/technology/research/google-willow-quantum-chip/">Google Willow</a> was announced, spillover capital from the AI boom was plentiful, and a new PR cycle kicked off. That brings us up to today.</p>
+                </div>
+
+                <!-- Acknowledgements section -->
+                <div class="acknowledgements">
+                    
+                </div>
+
+                <!-- Footnotes section -->
+                <div class="footnotes-divider"></div>
+                
+                <div class="footnotes">
+                    <ol>
+                        <li id="fn1">
+                            <p>Paul Benioff came up with a computer based on quantum mechanics before this, in 1979, but did not propose applying said computer to simulation.<a href="#fnref1">↩</a></p>
+                        </li>
+                    </ol>
+                </div>
+
+                <!-- Divider before bottom subscription form -->
+                <div class="bottom-form-divider"></div>
+
+                <!-- Email subscription form at bottom -->
+                <form action="https://buttondown.com/api/emails/embed-subscribe/tommccarthyprojects" method="post" target="popupwindow" onsubmit="window.open('https://buttondown.com/tommccarthyprojects', 'popupwindow')" class="embeddable-buttondown-form">
+                    <label for="bd-email-bottom">Subscribe for hand-delivered notifications:</label>
+                    <input type="email" name="email" id="bd-email-bottom" />
+                    <input type="submit" value="Subscribe" />
+                </form>
+            </article>
+        </div>
+    </div>
+
+    <script>
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+            localStorage.setItem('darkMode', document.body.classList.contains('dark-mode'));
+        }
+
+        // Load saved preference
+        if (localStorage.getItem('darkMode') === 'true') {
+            document.body.classList.add('dark-mode');
+        }
+
+        // Dynamically populate footnote tooltips from footer content
+        function populateFootnoteTooltips() {
+            // Get all footnote references in the main text
+            const footnoteRefs = document.querySelectorAll('.footnote-ref');
+            
+            footnoteRefs.forEach(ref => {
+                // Get the footnote number from the href
+                const footnoteId = ref.getAttribute('href').substring(1); // Remove the # from #fn1
+                
+                // Find the corresponding footnote in the footer
+                const footnoteItem = document.getElementById(footnoteId);
+                
+                if (footnoteItem) {
+                    // Get the text content from the footnote (excluding the back arrow link)
+                    const footnoteText = footnoteItem.querySelector('p').cloneNode(true);
+                    // Remove the back arrow link
+                    const backLink = footnoteText.querySelector('a[href^="#fnref"]');
+                    if (backLink) {
+                        backLink.remove();
+                    }
+                    
+                    // Create or update the tooltip span
+                    let tooltip = ref.querySelector('.footnote-tooltip');
+                    if (!tooltip) {
+                        tooltip = document.createElement('span');
+                        tooltip.className = 'footnote-tooltip';
+                        ref.appendChild(tooltip);
+                    }
+                    
+                    // Set the tooltip content (innerHTML to preserve links)
+                    tooltip.innerHTML = footnoteText.innerHTML.trim();
+                }
+            });
+        }
+
+        // Call the function when the page loads
+        document.addEventListener('DOMContentLoaded', populateFootnoteTooltips);
+
+        // Smooth scroll to footnotes
+        document.querySelectorAll('a[href^="#fn"]').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
