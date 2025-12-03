@@ -1,0 +1,1109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>State of Qubit Modalities, December 2025 - Tom McCarthy</title>
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://tommccarthy.net/qcmodalities">
+    <meta property="og:title" content="State of Qubit Modalities, December 2025">
+    <meta property="og:description" content="Overview of qubit counts and fidelities as of December 2025.">
+    <meta property="og:image" content="https://tommccarthy.net/john.png">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://tommccarthy.net/qcmodalities">
+    <meta property="twitter:title" content="State of Qubit Modalities, December 2025">
+    <meta property="twitter:description" content="Overview of qubit counts and fidelities as of December 2025.">
+    <meta property="twitter:image" content="https://tommccarthy.net/john.png">
+    
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Newsreader:wght@300;400;500&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Newsreader', 'Georgia', 'Times New Roman', serif;
+            background-color: #f5f5f5;
+            color: #1a1a1a;
+            line-height: 1.7;
+            overflow-x: hidden;
+            font-weight: 500;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        body.dark-mode {
+            background-color: #1a1a1a;
+            color: #ffffff;
+        }
+
+        .mode-toggle {
+            padding: 0px;
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .mode-toggle svg {
+            width: 32px;
+            height: 32px;
+            stroke: #000000;
+            fill: none;
+            transition: stroke 0.3s ease;
+        }
+
+        .mode-toggle:hover svg {
+            stroke: #4a5568;
+        }
+
+        body.dark-mode .mode-toggle svg {
+            stroke: #ffffff;
+        }
+
+        body.dark-mode .mode-toggle:hover svg {
+            stroke: #e8e8e8;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        .content {
+            width: 100%;
+            max-width: 860px;
+            min-width: 375px;
+            padding: 120px 80px 80px 80px;
+        }
+
+        header {
+            margin-bottom: 80px;
+            margin-left: auto;
+            margin-right: auto;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #d0d0d0;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            max-width: 680px;
+        }
+
+        body.dark-mode header {
+            border-bottom-color: #404040;
+        }
+
+        .site-title {
+            flex: 0 0 auto;
+        }
+
+        .header-links {
+            margin-left: auto;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 1rem;
+        }
+
+        .header-link {
+            color: #000000;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-weight: 400;
+        }
+
+        .header-link:hover {
+            color: #4a5568;
+        }
+
+        body.dark-mode .header-link {
+            color: #ffffff;
+        }
+
+        body.dark-mode .header-link:hover {
+            color: #e8e8e8;
+        }
+
+        .header-separator {
+            color: #4a5568;
+            font-weight: 300;
+            transition: color 0.3s ease;
+        }
+
+        body.dark-mode .header-separator {
+            color: #e8e8e8;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 500;
+            letter-spacing: -0.5px;
+            margin-bottom: 8px;
+            color: #000000;
+            transition: color 0.3s ease;
+        }
+
+        body.dark-mode h1 {
+            color: #ffffff;
+        }
+
+        .site-title {
+            font-size: 2.5rem;
+            font-weight: 500;
+            letter-spacing: -0.5px;
+            line-height: 1;
+            color: #000000;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .site-title:hover {
+            color: #4a5568;
+        }
+
+        body.dark-mode .site-title {
+            color: #ffffff;
+        }
+
+        body.dark-mode .site-title:hover {
+            color: #e8e8e8;
+        }
+
+        article {
+            max-width: 680px;
+            margin: 0 auto;
+        }
+
+        .post-title {
+            font-size: 2.5rem;
+            font-weight: 500;
+            letter-spacing: -0.5px;
+            margin-bottom: 24px;
+            color: #000000;
+            transition: color 0.3s ease;
+            line-height: 1.2;
+        }
+
+        body.dark-mode .post-title {
+            color: #ffffff;
+        }
+
+        .post-subheading {
+            font-size: 1.05rem;
+            font-style: italic;
+            color: #2a2a2a;
+            font-weight: 400;
+            margin-bottom: 40px;
+            transition: color 0.3s ease;
+        }
+
+        body.dark-mode .post-subheading {
+            color: #ffffff;
+        }
+
+        .post-body {
+            font-size: 1.05rem;
+            color: #2a2a2a;
+            font-weight: 400;
+            transition: color 0.3s ease;
+        }
+
+        body.dark-mode .post-body {
+            color: #ffffff;
+        }
+
+        .post-body p {
+            font-size: 1.05rem;
+            color: #2a2a2a;
+            font-weight: 400;
+            margin-bottom: 24px;
+            transition: color 0.3s ease;
+        }
+
+        body.dark-mode .post-body p {
+            color: #ffffff;
+        }
+
+        h2 {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+            font-size: 1.1rem;
+            font-weight: 500;
+            letter-spacing: 0;
+            margin-top: 48px;
+            margin-bottom: 20px;
+            color: #4a4a4a;
+            transition: color 0.3s ease;
+        }
+
+        body.dark-mode h2 {
+            color: #ffffff;
+        }
+
+        h3 {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+            font-size: 1.05rem;
+            font-weight: 500;
+            letter-spacing: 0;
+            margin-top: 36px;
+            margin-bottom: 16px;
+            color: #4a4a4a;
+            transition: color 0.3s ease;
+        }
+
+        body.dark-mode h3 {
+            color: #ffffff;
+        }
+
+                /* Table styles */
+                table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 24px 0 32px 0;
+            font-size: 0.95rem;
+        }
+
+        thead tr {
+            border-bottom: 2px solid #d0d0d0;
+        }
+
+        body.dark-mode thead tr {
+            border-bottom-color: #505050;
+        }
+
+        th {
+            text-align: left;
+            padding: 12px 8px;
+            font-weight: 500;
+            color: #1a1a1a;
+        }
+
+        body.dark-mode th {
+            color: #ffffff;
+        }
+
+        td {
+            padding: 10px 8px;
+            color: #2a2a2a;
+            vertical-align: top;
+        }
+
+        body.dark-mode td {
+            color: #ffffff;
+        }
+
+        tbody tr {
+            border-bottom: 1px solid #e8e8e8;
+        }
+
+        body.dark-mode tbody tr {
+            border-bottom-color: #404040;
+        }
+
+        .table-note {
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: -16px;
+            margin-bottom: 24px;
+            font-style: italic;
+        }
+
+        body.dark-mode .table-note {
+            color: #a0a0a0;
+        }
+
+        /* end table styles */
+
+        a {
+            color: #1a1a1a;
+            text-decoration: underline;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: #4a5568;
+        }
+
+        body.dark-mode a {
+            color: #7dd3c0;
+        }
+
+        body.dark-mode a:hover {
+            color: #9ee4d4;
+        }
+
+        /* Footnote styles */
+        .footnote-ref {
+            position: relative;
+            cursor: help;
+            text-decoration: none;
+            color: #4a5568;
+            font-size: 0.85em;
+            vertical-align: super;
+            line-height: 0;
+            transition: color 0.3s ease;
+        }
+
+        .footnote-ref:hover {
+            color: #1a1a1a;
+        }
+
+        body.dark-mode .footnote-ref {
+            color: #7dd3c0;
+        }
+
+        body.dark-mode .footnote-ref:hover {
+            color: #9ee4d4;
+        }
+
+        /* Tooltip styles */
+        .footnote-tooltip {
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #ffffff;
+            color: #1a1a1a;
+            padding: 12px 16px;
+            border-radius: 6px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            font-size: 0.95rem;
+            line-height: 1.5;
+            max-width: 320px;
+            width: max-content;
+            z-index: 1000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.2s ease;
+            margin-bottom: 8px;
+            font-weight: 400;
+        }
+
+        body.dark-mode .footnote-tooltip {
+            background-color: #2a2a2a;
+            color: #ffffff;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+        }
+
+        .footnote-ref:hover .footnote-tooltip {
+            opacity: 1;
+        }
+
+        .footnote-tooltip::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 6px solid transparent;
+            border-top-color: #ffffff;
+        }
+
+        body.dark-mode .footnote-tooltip::after {
+            border-top-color: #2a2a2a;
+        }
+
+        /* Acknowledgements section */
+        .acknowledgements {
+            margin-top: 24px;
+            margin-bottom: 16px;
+            font-style: italic;
+            font-size: 1.05rem;
+            font-weight: 400;
+            color: #4a4a4a;
+            transition: color 0.3s ease;
+            width: 100%;
+        }
+
+        body.dark-mode .acknowledgements {
+            color: #e8e8e8;
+        }
+
+        /* bullet / hyphenated list in article section */
+        article ul {
+            list-style-type: none;
+            padding-left: 0;
+            margin-bottom: 1.5em;
+        }
+
+        article ul li {
+            margin-bottom: 0.8em;
+            line-height: 1.7;
+            padding-left: 2em;
+            text-indent: 0em;
+        }
+
+        article ul li::before {
+            content: "— ";
+            font-size: 1.1em;
+        }
+
+        /* Footnotes section */
+        .footnotes-divider {
+            width: 100%;
+            height: 1px;
+            background-color: #d0d0d0;
+            margin: 48px 0 24px 0;
+            transition: background-color 0.3s ease;
+        }
+
+        body.dark-mode .footnotes-divider {
+            background-color: #404040;
+        }
+
+        .footnotes {
+            font-size: 0.95rem;
+            color: #4a4a4a;
+            transition: color 0.3s ease;
+            margin-bottom: 0;
+        }
+
+        body.dark-mode .footnotes {
+            color: #e8e8e8;
+        }
+
+        .footnotes ol {
+            padding-left: 24px;
+            list-style-position: outside;
+        }
+
+        .footnotes li {
+            margin-bottom: 12px;
+            font-weight: 400;
+            padding-left: 8px;
+        }
+
+        .footnotes li p {
+            font-size: 0.95rem;
+            color: #4a4a4a;
+            margin-bottom: 0;
+        }
+
+        body.dark-mode .footnotes li p {
+            color: #e8e8e8;
+        }
+
+        /* Email subscription form */
+        .embeddable-buttondown-form {
+            max-width: 680px;
+            margin: 32px 0;
+            padding-left: 24px;
+            border-left: 3px solid #a5b4c4;
+            transition: border-color 0.3s ease;
+        }
+
+        body.dark-mode .embeddable-buttondown-form {
+            border-left-color: #7dd3c0;
+        }
+
+        .embeddable-buttondown-form label {
+            display: block;
+            font-size: 1.05rem;
+            color: #2a2a2a;
+            font-weight: 400;
+            margin-bottom: 12px;
+            transition: color 0.3s ease;
+        }
+
+        body.dark-mode .embeddable-buttondown-form label {
+            color: #ffffff;
+        }
+
+        .embeddable-buttondown-form input[type="email"] {
+            width: 280px;
+            padding: 10px 12px;
+            font-family: 'Newsreader', 'Georgia', 'Times New Roman', serif;
+            font-size: 1rem;
+            border: 1px solid #d0d0d0;
+            border-radius: 4px;
+            background-color: #ffffff;
+            color: #1a1a1a;
+            margin-right: 8px;
+            transition: all 0.3s ease;
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        .embeddable-buttondown-form input[type="email"]:focus {
+            outline: none;
+            border-color: #4a5568;
+        }
+
+        body.dark-mode .embeddable-buttondown-form input[type="email"] {
+            background-color: #2a2a2a;
+            color: #ffffff;
+            border-color: #404040;
+        }
+
+        body.dark-mode .embeddable-buttondown-form input[type="email"]:focus {
+            border-color: #7dd3c0;
+        }
+
+        .embeddable-buttondown-form input[type="submit"] {
+            padding: 10px 24px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+            font-size: 0.95rem;
+            font-weight: 500;
+            background-color: #1a1a1a;
+            color: #ffffff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        .embeddable-buttondown-form input[type="submit"]:hover {
+            background-color: #4a5568;
+        }
+
+        body.dark-mode .embeddable-buttondown-form input[type="submit"] {
+            background-color: #f5f5f5;
+            color: #1a1a1a;
+        }
+
+        body.dark-mode .embeddable-buttondown-form input[type="submit"]:hover {
+            background-color: #e8e8e8;
+        }
+
+        .bottom-form-divider {
+            width: 100%;
+            height: 1px;
+            background-color: #d0d0d0;
+            margin: 32px 0 24px 0;
+            transition: background-color 0.3s ease;
+        }
+
+        body.dark-mode .bottom-form-divider {
+            background-color: #404040;
+        }
+
+        /* Phase 3: Approaching text width - switch to mobile layout with smaller text */
+        @media (max-width: 850px) {
+            .content {
+                padding: 60px 20px 60px 20px;
+            }
+
+            .post-title {
+                font-size: 2rem;
+            }
+
+            .site-title {
+                font-size: 2rem;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .header-links {
+                font-size: 0.9rem;
+            }
+
+            .footnote-tooltip {
+                max-width: 240px;
+                font-size: 0.9rem;
+            }
+
+            .embeddable-buttondown-form input[type="email"] {
+                width: 100%;
+                margin-right: 0;
+                margin-bottom: 12px;
+            }
+
+            .embeddable-buttondown-form input[type="submit"] {
+                width: 100%;
+            }
+        }
+
+        /* Phase 4: Very narrow - minimal padding, minimum width enforced */
+        @media (max-width: 500px) {
+            .content {
+                padding: 60px 12px 60px 12px;
+            }
+
+            .header-links {
+                font-size: 0.85rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="content">
+            <header>
+                <a href="https://tommccarthy.net" class="site-title">Tom McCarthy</a>
+                <div class="header-links">
+                    <a href="https://x.com/carthymctom" class="header-link" target="_blank">X</a>
+                    <span class="header-separator">·</span>
+                </div>
+                <button class="mode-toggle" onclick="toggleDarkMode()" aria-label="Toggle dark mode">
+                    <svg viewBox="0 0 100 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M 0 20 Q 12.5 5, 25 20 T 50 20 T 75 20 T 100 20" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+            </header>
+
+            <article>
+                <h1 class="post-title">State of Qubit Modalities</h1>
+                
+                <p class="post-subheading">December 3rd, 2025. Neutral atoms are improving quickly. Trapped ions and superconducting have state of the art fidelities and attracted the most investment to date but are improving quite slowly. Photonics and semiconductor platforms are less proven.</p>
+
+                <div class="post-body">
+                    <p>There are at least 5 major types of qubits, all racing to achieve a large scale quantum computer. They are: trapped ions, neutral atoms, superconducting qubits, photonics, and semiconductor qubits. Two approaches in the same category can be quite different - particularly in the photonics and semiconductor categories.</p>
+
+                    <p>3 modalities have moved beyond demonstrations with 1-10 qubits. Those modalities are neutral atoms, trapped ions and superconductors. I think the biggest surprise of the past 3 years in quantum computing has been the emergence of neutral atoms as a real contender.</p>
+
+                    <p>When evaluating modalities, there are a couple of key metrics. SOTA machines today have pretty good fidelity, maybe to the point where qubit count is much more important to improve than fidelity. The number of qubits that can be simultaneously used for computation in a device is usually less than the number of qubits in a system. I call this ‘total good qubits’ below. Fidelities matter too, as does the ratio of qubit lifetime (decoherence time) to gate time; this limits how many operations you can perform on a qubit during its lifetime. I don’t include this last metric below.</p>
+
+                    <p>Notes on the below specs:</p>
+                    <ul>
+                        <li>‘Total qubits’ is physical qubits in a single machine.</li>
+                        <li>‘Total good qubits’ is the number of qubits available at the machine’s quoted fidelity. This is a bit stricter than total qubits. Suppose a machine has 10 qubits at 99% fidelity and 90 at 98% fidelity. This is either a 10-qubit 99% fidelity machine, or a 100 qubit 98% fidelity machine, but it is not a 100-qubit, 99% fidelity machine! </li>
+                        <li>Single-qubit and two-qubit gate fidelities can be compared like-for-like, but the overall fidelity of some systems depends on modality-specific issues. For example, the atoms in neutral atom machines sometimes leave the computing zone and don’t return, so two-qubit fidelity might miss that. Similarly, most of the two-qubit fidelities quoted were only achieved by a single pair of qubits in a system, rather than most connected qubits in the device.</li>
+                    </ul>
+
+                    <p>I generally don’t count machines that have been announced by companies without an accompanying paper describing the device in detail and showing how they benchmarked it. Too easy to get away with tricks!</p>
+
+                    <p><a href="https://platform.edisonscientific.com/">Edison Scientific’s</a> literature agent was very helpful in writing this piece. I’ve linked my searches below. ChatGPT was also quite helpful. The literature searches on Edison cost only 1 credit, vs 200 credits for Kosmos, their heavyweight agent.</p>
+
+                    <p>Please email me with any comments or corrections - tommccarthyprojects@gmail.com.</p>
+
+                    <h2>Summary</h2>
+
+                    <p>The figures in each cell are, generally, from different machines. The single-qubit and two-qubit gate fidelities are typically for smaller systems - sometimes just one or two qubits. </p>
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Modality</th>
+                                <th>Total Qubits</th>
+                                <th>Total Good Qubits</th>
+                                <th>1Q Gate Fidelity</th>
+                                <th>2Q Gate Fidelity</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Neutral Atoms</strong></td>
+                                <td>6,139</td>
+                                <td>256 @ 99.6% 2Q</td>
+                                <td>99.993%</td>
+                                <td>99.71%</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Superconducting</strong></td>
+                                <td>156</td>
+                                <td>105 @ 99.67% 2Q</td>
+                                <td>99.9926%</td>
+                                <td>99.94%</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Trapped Ions</strong></td>
+                                <td>98</td>
+                                <td>98 @ 99.92% 2Q</td>
+                                <td>99.999985%</td>
+                                <td>99.97%</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Photonics</strong></td>
+                                <td>20</td>
+                                <td>6–12 (variable)</td>
+                                <td>99.6%*</td>
+                                <td>99.69%*</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Semiconductors</strong></td>
+                                <td>11</td>
+                                <td>11 @ 99.64% 2Q</td>
+                                <td>99.99%</td>
+                                <td>99.9%</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p class="table-note">*Photonics fidelities are conditional on successful photon detection.</p>
+
+                    <!-- Email subscription form -->
+                    <form action="https://buttondown.com/api/emails/embed-subscribe/tommccarthyprojects" method="post" target="popupwindow" onsubmit="window.open('https://buttondown.com/tommccarthyprojects', 'popupwindow')" class="embeddable-buttondown-form">
+                        <label for="bd-email-top">Subscribe for hand-delivered notifications:</label>
+                        <input type="email" name="email" id="bd-email-top" />
+                        <input type="submit" value="Subscribe" />
+                    </form>
+
+                    <h2>Neutral Atoms</h2>
+
+                    <p>SOTA here is the work from the Lukin and Endres groups, at Harvard and Caltech, respectively. They have created arrays of thousands of coherent atoms / qubits, though haven’t yet shown full control and programmability of the largest of these areas. In June, the Lukin group shared a <a href="https://arxiv.org/pdf/2506.20660">paper demonstrating</a> a 3,000-qubit coherent machine that could run continuously, and a <a href="https://arxiv.org/pdf/2506.20660">separate paper</a> running  error-correction schemes and some computations on arrays of 448-qubits. In March 2024, the Endres group at Caltech <a href="https://arxiv.org/pdf/2403.12021">showed</a> off a 6,100 array of coherent qubits with single-qubit gates, but did not perform two-qubit gates or any sophisticated computations. More computation requires better control of atoms. Perhaps that will come soon. The Lukin group uses Rubidium-87 atoms, and the Endres group uses Cesium-133 atoms. Atom Computing claims to have a machine - <a href="https://atom-computing.com/quantum-computing-technology/">the AC1000</a> - with over 1,200 qubits and competitive fidelities, but they have not shared much about it.</p>
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Metric</th>
+                                <th>Value</th>
+                                <th>Source</th>
+                                <th>Date</th>
+                                <th>Notes</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Total qubits</td>
+                                <td>6,139 qubits</td>
+                                <td><a href="https://arxiv.org/pdf/2403.12021">Manetsch et al</a></td>
+                                <td>Mar 2024</td>
+                                <td>Cesium-133 atoms</td>
+                            </tr>
+                            <tr>
+                                <td>Total good qubits</td>
+                                <td>256 qubits @ 99.6% 2Q fidelity</td>
+                                <td><a href="https://arxiv.org/pdf/2506.20661">Bluvstein et al</a></td>
+                                <td>Jun 2025</td>
+                                <td>Rubidium-87; 99.9% local 1Q gates</td>
+                            </tr>
+                            <tr>
+                                <td>1Q fidelity</td>
+                                <td>99.993(2)%</td>
+                                <td><a href="https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.131.030602">PRL 131.030602</a></td>
+                                <td>Jul 2023</td>
+                                <td>Cesium-133 atoms</td>
+                            </tr>
+                            <tr>
+                                <td>2Q fidelity</td>
+                                <td>99.71(5)%</td>
+                                <td><a href="https://journals.aps.org/prxquantum/pdf/10.1103/PRXQuantum.6.010331">Tsai et al</a></td>
+                                <td>Aug 2024</td>
+                                <td>Strontium-88 atoms</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <p></p><strong>Note on total good qubits:</strong> SOTA here is <a href="https://arxiv.org/pdf/2506.20661">Bluvstein et al</a> and similar work from the Lukin group over the past 2&#8211;3 years. They mention 99.9% fidelity for local single-qubit gates and 99.6% for CZ gates, as well as readout (0.3%) and movement (1%) errors. They can arrange up to 448 qubits, but I don’t think they benchmark the whole 448-qubit array. They do mention entangling 16 blocks of 16 qubits. They use Rubidium-87 atoms.</p>
+
+                    <p>Gate speed is the most commonly mentioned issue with neutral atom QCs, and I have not seen any published plans to improve the gate speed by 10x or more. I think there is a clear route to tens of thousands of qubits in a single vacuum chamber in the next few years. The Methods section in <a href="https://arxiv.org/pdf/2506.20661">Bluvstein et al</a> outlines some potential improvements in error rates and getting to 10x below-threshold performance. This includes 99.99% single-qubit gates, 99.85% two-qubit gates, and much reduced movement and readout loss.</p>
+
+                    <p>Edison Scientific: <a href="https://platform.edisonscientific.com/trajectories/641365b1-4d05-441c-8a7d-af07b8167f69">SOTA</a>, <a href="https://platform.edisonscientific.com/trajectories/044690cb-7ecb-44b6-b439-d3c5003341e9">SOTA again</a>, <a href="https://platform.edisonscientific.com/trajectories/a68bdd99-3d88-45fb-8499-a78cb461403b">1Q fidelity</a>, <a href="https://platform.edisonscientific.com/trajectories/8f0d3a82-f67a-4364-ad7c-92dedb8b8523">2Q fidelity</a>.</p>
+
+                    <h2>Superconducting</h2>
+
+                    <p>Google is one of the leaders in superconducting qubits. Recently, they have focused on error-correction demonstrations and improving fidelity in their chips rather than increasing qubit count, resulting in a 105-qubit chip, <a href="https://blog.google/technology/research/google-willow-quantum-chip/">Google Willow</a>. The <a href="https://arxiv.org/pdf/2412.11924">Zuchongzhi-3</a>, by a Chinese collaboration, has similar specs. Google's chip is particularly interesting because it was the first quantum computer used to verify that the surface code reduces errors exponentially well.</p>
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Metric</th>
+                                <th>Value</th>
+                                <th>Source</th>
+                                <th>Date</th>
+                                <th>Notes</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Total qubits</td>
+                                <td>156 qubits</td>
+                                <td><a href="https://metriq.info/Submission/857">IBM Heron r3</a></td>
+                                <td>Jul 2025</td>
+                                <td>99.75% median 2Q (CZ), 98.99% mean 2Q fidelity</td>
+                            </tr>
+                            <tr>
+                                <td>Total good qubits</td>
+                                <td>105 qubits @ 99.67% 2Q fidelity</td>
+                                <td><a href="https://blog.google/technology/research/google-willow-quantum-chip/">Google Willow</a></td>
+                                <td>Dec 2024</td>
+                                <td>First surface code exponential error demo</td>
+                            </tr>
+                            <tr>
+                                <td>1Q fidelity</td>
+                                <td>99.9926%</td>
+                                <td><a href="https://arxiv.org/pdf/2302.08690">Li et al</a></td>
+                                <td>Feb 2023</td>
+                                <td>Transmons</td>
+                            </tr>
+                            <tr>
+                                <td>2Q fidelity</td>
+                                <td>99.94%</td>
+                                <td><a href="https://arxiv.org/pdf/2407.15783">Lin et al</a></td>
+                                <td>Nov 2024</td>
+                                <td>CNOT gate on fluxonium qubits</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                    
+                    <p><strong>Note on total qubits: </strong><a href="https://metriq.info/Submission/857">IBM Heron r3</a> launched July 2025 with 99.75% two-qubit fidelity (CZ gates, median). However, you can see 6-7 qubits with >1% error rate on <a href="https://quantum.cloud.ibm.com/computers?processorType=Heron&system=ibm_marrakesh">Qiskit</a>. Calculating the mean two-qubit fidelity for the IBM chip gives a 98.99% two-qubit fidelity. I respect IBM's transparency in publicly displaying their chips and specs.</p>
+
+                    <p><strong>Note on total good qubits: </strong>The Zuchonghzi-3 is a 105-qubit chip and reports 99.62% two-qubit fidelity, but their reported experiment uses 83 qubits out of the 105 available qubits.</p>
+
+                    <p>IBM has announced larger machines (<a href="https://en.wikipedia.org/wiki/IBM_Condor">Condor</a>, <a href="https://en.wikipedia.org/wiki/IBM_Osprey">Osprey</a>) previously, but they do not appear to be pursuing them, and I can't find any publications detailing their specs. I think manufacturing precision and consistency is one of the big obstacles to better superconducting systems. Each superconducting circuit is sensitive to microwave signal timing and frequency. Ideally, they all require the exact same control signals, but small differences and imperfections will result in each qubit needing a slightly different local environment - or else accept that control signals will work for some qubits and disrupt others, and try to mitigate / correct that somehow.</p>
+
+                    <p>This is a biased source, but a professor mentioned to me that he decided that superconducting qubits were plateauing in 2015. This is actually when a lot of investment was taking place, so his view and the commercial / investor view were different. His rationale was that experimental work and publications in superconducting qubits had slowed down quite a bit by then. I find this gap - and others like it - between researcher and investor / founder viewpoints interesting.</p>
+
+                    <p>Edison Scientific: <a href="https://platform.edisonscientific.com/trajectories/a947a5f4-f472-4fc3-95d5-1dadfcf0ec3d">SOTA</a>, <a href="https://platform.edisonscientific.com/trajectories/25d73ec4-69a8-4917-ab87-d9fb8a93febb">1Q fidelity</a>, <a href="https://platform.edisonscientific.com/trajectories/bc8503ee-41b4-416d-ab66-0ae90d164c16">2Q fidelity</a>.</p>
+
+                    <h2>Trapped Ions</h2>
+
+                    <p>Quantinuum leads the field in trapped ions. They recently launched Helios, a 98-qubit machine with solid gate fidelities. Oxford Ionics has led the field in gate fidelities, but these have been for much smaller systems, and have not been extended to computation on 10s of qubits. Oxford Ionics was acquired by IONQ for $1B in June 2025.</p>
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Metric</th>
+                                <th>Value</th>
+                                <th>Source</th>
+                                <th>Date</th>
+                                <th>Notes</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Total qubits</td>
+                                <td>98 qubits</td>
+                                <td><a href="https://arxiv.org/pdf/2511.05465">Quantinuum Helios</a></td>
+                                <td>Nov 2025</td>
+                                <td>Barium ions</td>
+                            </tr>
+                            <tr>
+                                <td>Total good qubits</td>
+                                <td>98 qubits @ 99.92% 2Q fidelity</td>
+                                <td><a href="https://arxiv.org/pdf/2511.05465">Quantinuum Helios</a></td>
+                                <td>Nov 2025</td>
+                                <td>All-to-all connectivity</td>
+                            </tr>
+                            <tr>
+                                <td>1Q fidelity</td>
+                                <td>99.999985%</td>
+                                <td><a href="https://arxiv.org/pdf/2412.04421v1">Smith et al</a></td>
+                                <td>Dec 2024</td>
+                                <td>Oxford/Osaka; Calcium ions; &lt;10<sup>-7</sup> error</td>
+                            </tr>
+                            <tr>
+                                <td>2Q fidelity</td>
+                                <td>99.97%</td>
+                                <td><a href="https://arxiv.org/pdf/2407.07694">Löschnauer et al</a></td>
+                                <td>Jul 2024</td>
+                                <td>Oxford Ionics; Calcium ions</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <p>Edison Scientific: <a href="https://platform.edisonscientific.com/trajectories/929edded-5e09-47ad-bc21-94409a32f177">SOTA</a>, <a href="https://platform.edisonscientific.com/trajectories/f69b7a16-20ef-47f4-bba3-c0cb88ee0ce8">1Q fidelity</a>, <a href="https://platform.edisonscientific.com/trajectories/52e00c93-ae96-426f-9ad2-b53e08747f34">2Q fidelity</a>.</p>
+
+                    <h2>Photonics</h2>
+
+                    <p>Photonics-based quantum computing is mostly based around approaches that are quite different to the other modalities, and the usual metrics don't always apply. Photons get used up, or are transitory, so you can't treat them as static qubits, like Josephson junctions in superconducting machines. They are generated, acted on, and discarded. A photonics-specific metric of interest is overall transmission quality, or conversely, loss; what percentage of photons get transmitted fully from source to detector? A lot of the experiments and published results include fidelities that are conditional on successful detection of photons. Reporting this as a headline figure avoids the elephant in the room, i.e. how many of the photons got to the detector?</p>
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Metric</th>
+                                <th>Value</th>
+                                <th>Source</th>
+                                <th>Date</th>
+                                <th>Notes</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Largest machine</td>
+                                <td>20-qubit cluster</td>
+                                <td><a href="https://arxiv.org/pdf/2409.06623">O'Sullivan et al</a></td>
+                                <td>Sep 2024</td>
+                                <td>Device seems capable of universal computation</td>
+                            </tr>
+                            <tr>
+                                <td rowspan="2">Total good qubits</td>
+                                <td>12 qubits @ 56% and 95% losses</td>
+                                <td><a href="https://www.nature.com/articles/s41586-024-08406-9">Xanadu Aurora</a></td>
+                                <td>Jan 2025</td>
+                                <td>~1% loss required for fault-tolerance</td>
+                            </tr>
+                            <tr>
+                                <td>6 qubits @ 93.8% 2Q fidelity, 91.6% loss</td>
+                                <td><a href="https://arxiv.org/pdf/2306.00874v1">Quandela Ascella</a></td>
+                                <td>Jun 2023</td>
+                                <td>-</td>
+                            </tr>
+                            <tr>
+                                <td rowspan="2">1Q fidelity</td>
+                                <td>99.6%</td>
+                                <td><a href="https://arxiv.org/pdf/2306.00874v1">Quandela Ascella</a></td>
+                                <td>Jun 2023</td>
+                                <td>Conditional on detection, 91.6% loss</td>
+                            </tr>
+                            <tr>
+                                <td>99.98% SPAM</td>
+                                <td><a href="https://www.nature.com/articles/s41586-025-08820-7">PsiQuantum</a></td>
+                                <td>Feb 2025</td>
+                                <td>-</td>
+                            </tr>
+                            <tr>
+                                <td rowspan="2">2Q fidelity</td>
+                                <td>99.69% entangling</td>
+                                <td><a href="https://www.nature.com/articles/s41467-022-32083-9">Shi et al</a></td>
+                                <td>Aug 2022</td>
+                                <td>Cold atom system, different to photonic chips</td>
+                            </tr>
+                            <tr>
+                                <td>99.22% fusion</td>
+                                <td><a href="https://www.nature.com/articles/s41586-025-08820-7">PsiQuantum</a></td>
+                                <td>Feb 2025</td>
+                                <td>Conditional on detection</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <p>Overall, I am not very confident that my figures for photonics are well chosen, or all that comparable to each other. Transmission loss appears to be the biggest issue.</p>
+
+                    <p>Edison Scientific: <a href="https://platform.edisonscientific.com/trajectories/b323aacf-8548-4856-9462-ee26bcc27ce8">Loss</a>, <a href="https://platform.edisonscientific.com/trajectories/bed0a821-dc56-4075-8a73-9a493c72a2ee">SOTA</a>, <a href="https://platform.edisonscientific.com/trajectories/b233e1bf-b42c-4d57-8606-7fbd47be0bf1">SOTA again</a>, <a href="https://platform.edisonscientific.com/trajectories/51c82689-686b-4d6d-8be3-218ff15d079d">2Q fidelity</a>.</p>
+
+                    <h2>Semiconductors</h2>
+
+                    <p>Because we are so good at making transistors, some people argue that qubits based on silicon - or Germanium or Gallium - chips and photolithography are a better approach than the other modalities. As with photonics, there are a few different architectures within silicon-based quantum computing, and no clear winner yet.</p>
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Metric</th>
+                                <th>Value</th>
+                                <th>Source</th>
+                                <th>Date</th>
+                                <th>Notes</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Total qubits</td>
+                                <td>11 qubits</td>
+                                <td><a href="https://arxiv.org/html/2506.03567v1">UNSW/SQC</a></td>
+                                <td>Jun 2025</td>
+                                <td>Phosphorous in silicon; universal gates</td>
+                            </tr>
+                            <tr>
+                                <td>Total good qubits</td>
+                                <td>11 qubits @ 99.64% CROT</td>
+                                <td><a href="https://arxiv.org/html/2506.03567v1">UNSW/SQC</a></td>
+                                <td>Jun 2025</td>
+                                <td>—</td>
+                            </tr>
+                            <tr>
+                                <td>1Q fidelity</td>
+                                <td>99.99%</td>
+                                <td><a href="https://arxiv.org/pdf/2507.11918">Wu et al</a></td>
+                                <td>Jul 2025</td>
+                                <td>5-qubit system; 99.9% simultaneous</td>
+                            </tr>
+                            <tr>
+                                <td rowspan="3">2Q fidelity</td>
+                                <td>99.9% CZ</td>
+                                <td><a href="https://arxiv.org/html/2506.03567v1">UNSW/SQC</a></td>
+                                <td>Jun 2025</td>
+                                <td>Specific nuclear spin pair</td>
+                            </tr>
+                            <tr>
+                                <td>99.8% CPHASE</td>
+                                <td><a href="https://www.science.org/doi/10.1126/sciadv.abn5130">Mills et al</a></td>
+                                <td>Jun 2022</td>
+                                <td>—</td>
+                            </tr>
+                            <tr>
+                                <td>99.8% CZ</td>
+                                <td><a href="https://arxiv.org/pdf/2303.04090">Tanttu et al</a></td>
+                                <td>Mar 2024</td>
+                                <td>—</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <p><strong>Note on total qubits: </strong>Intel <a href="https://arxiv.org/pdf/2410.16583v1">reported</a> a 12-qubit device in October 2024 but they only report (de)coherence times, and don't demonstrate universal gates, whereas the 11-qubit device appears to be capable of universal computation.</p>
+
+                    <p>Edison searches: <a href="https://platform.edisonscientific.com/trajectories/b233e1bf-b42c-4d57-8606-7fbd47be0bf1">SOTA</a>, <a href="https://platform.edisonscientific.com/trajectories/3ecc4c32-2d70-4803-83cd-1029527b6a55">1Q fidelity</a>, <a href="https://platform.edisonscientific.com/trajectories/a9c2ad72-fc56-4fb1-87dd-0565fc672d8f">2Q fidelity</a>.</p>
+
+                    <p>Again, please email me with any corrections or clarifications. Thanks in advance and thanks for reading! tommccarthyprojects@gmail.com</p>
+                </div>
+
+                <!-- Divider before bottom subscription form -->
+                <div class="bottom-form-divider"></div>
+
+                <!-- Email subscription form at bottom -->
+                <form action="https://buttondown.com/api/emails/embed-subscribe/tommccarthyprojects" method="post" target="popupwindow" onsubmit="window.open('https://buttondown.com/tommccarthyprojects', 'popupwindow')" class="embeddable-buttondown-form">
+                    <label for="bd-email-bottom">Subscribe for hand-delivered notifications:</label>
+                    <input type="email" name="email" id="bd-email-bottom" />
+                    <input type="submit" value="Subscribe" />
+                </form>
+            </article>
+        </div>
+    </div>
+
+    <script>
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+            localStorage.setItem('darkMode', document.body.classList.contains('dark-mode'));
+        }
+
+        // Load saved preference
+        if (localStorage.getItem('darkMode') === 'true') {
+            document.body.classList.add('dark-mode');
+        }
+
+        // Dynamically populate footnote tooltips from footer content
+        function populateFootnoteTooltips() {
+            // Get all footnote references in the main text
+            const footnoteRefs = document.querySelectorAll('.footnote-ref');
+            
+            footnoteRefs.forEach(ref => {
+                // Get the footnote number from the href
+                const footnoteId = ref.getAttribute('href').substring(1); // Remove the # from #fn1
+                
+                // Find the corresponding footnote in the footer
+                const footnoteItem = document.getElementById(footnoteId);
+                
+                if (footnoteItem) {
+                    // Get the text content from the footnote (excluding the back arrow link)
+                    const footnoteText = footnoteItem.querySelector('p').cloneNode(true);
+                    // Remove the back arrow link
+                    const backLink = footnoteText.querySelector('a[href^="#fnref"]');
+                    if (backLink) {
+                        backLink.remove();
+                    }
+                    
+                    // Create or update the tooltip span
+                    let tooltip = ref.querySelector('.footnote-tooltip');
+                    if (!tooltip) {
+                        tooltip = document.createElement('span');
+                        tooltip.className = 'footnote-tooltip';
+                        ref.appendChild(tooltip);
+                    }
+                    
+                    // Set the tooltip content (innerHTML to preserve links)
+                    tooltip.innerHTML = footnoteText.innerHTML.trim();
+                }
+            });
+        }
+
+        // Call the function when the page loads
+        document.addEventListener('DOMContentLoaded', populateFootnoteTooltips);
+
+        // Smooth scroll to footnotes
+        document.querySelectorAll('a[href^="#fn"]').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
