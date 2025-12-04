@@ -673,6 +673,7 @@
                         <li>‘Total qubits’ is physical qubits in a single machine.</li>
                         <li>‘Total good qubits’ is the number of qubits available at the machine’s quoted fidelity. This is a bit stricter than total qubits. Suppose a machine has 10 qubits at 99% fidelity and 90 at 98% fidelity. This is either a 10-qubit 99% fidelity machine, or a 100 qubit 98% fidelity machine, but it is not a 100-qubit, 99% fidelity machine! </li>
                         <li>Single-qubit and two-qubit gate fidelities can be compared like-for-like, but the overall fidelity of some systems depends on modality-specific issues. For example, the atoms in neutral atom machines sometimes leave the computing zone and don’t return, so two-qubit fidelity might miss that. Similarly, most of the two-qubit fidelities quoted were only achieved by a single pair of qubits in a system, rather than most connected qubits in the device.</li>
+                        <li>Photonics systems have their own set of metrics. I have inluded a few below, in an effort to provide some overview.</li>
                     </ul>
 
                     <p>I generally don’t count machines that have been announced by companies without an accompanying paper describing the device in detail and showing how they benchmarked it. Too easy to get away with tricks!</p>
@@ -681,9 +682,9 @@
 
                     <p>Please email me with any comments or corrections - tommccarthyprojects@gmail.com.</p>
 
-                    <h2>Summary</h2>
+                    <h2>Summary of SOTA</h2>
 
-                    <p>The figures in each cell are, generally, from different machines. The single-qubit and two-qubit gate fidelities are typically for smaller systems - sometimes just one or two qubits. </p>
+                    <p>The figures in each cell are, generally, from different machines. These are the best figures I can find - the SOTA. Most contemporary machines will have worse performance. The single-qubit and two-qubit gate fidelities are typically for smaller systems - sometimes just one or two qubits. </p>
 
                     <table>
                         <thead>
@@ -693,6 +694,7 @@
                                 <th>Total Good Qubits</th>
                                 <th>1Q Gate Fidelity</th>
                                 <th>2Q Gate Fidelity</th>
+                                <th>Gate/Clock speed</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -702,6 +704,7 @@
                                 <td>256 @ 99.6% 2Q</td>
                                 <td>99.993%</td>
                                 <td>99.71%</td>
+                                <td>655 us CNOT</td>
                             </tr>
                             <tr>
                                 <td><strong>Superconducting</strong></td>
@@ -709,13 +712,15 @@
                                 <td>105 @ 99.67% 2Q</td>
                                 <td>99.9926%</td>
                                 <td>99.94%</td>
+                                <td>30 ns CZ</td>
                             </tr>
                             <tr>
                                 <td><strong>Trapped Ions</strong></td>
                                 <td>98</td>
                                 <td>98 @ 99.92% 2Q</td>
                                 <td>99.999985%</td>
-                                <td>99.97%</td>
+                                <td>99.9916%</td>
+                                <td>1.6 us</td>
                             </tr>
                             <tr>
                                 <td><strong>Photonics</strong></td>
@@ -723,6 +728,7 @@
                                 <td>6–12 (variable)</td>
                                 <td>99.6%*</td>
                                 <td>99.69%*</td>
+                                <td>3.3 Mcps</td>
                             </tr>
                             <tr>
                                 <td><strong>Semiconductors</strong></td>
@@ -730,10 +736,12 @@
                                 <td>11 @ 99.64% 2Q</td>
                                 <td>99.99%</td>
                                 <td>99.9%</td>
+                                <td>>40 ns CZ**</td>
                             </tr>
                         </tbody>
                     </table>
                     <p class="table-note">*Photonics fidelities are conditional on successful photon detection.</p>
+                    <p class="table-note">**Total duration of the 2Q gate is not reported, but appears to be 40 - 100 ns.</p>
 
                     <!-- Email subscription form -->
                     <form action="https://buttondown.com/api/emails/embed-subscribe/tommccarthyprojects" method="post" target="popupwindow" onsubmit="window.open('https://buttondown.com/tommccarthyprojects', 'popupwindow')" class="embeddable-buttondown-form">
@@ -785,14 +793,21 @@
                                 <td>Aug 2024</td>
                                 <td>Strontium-88 atoms</td>
                             </tr>
+                            <tr>
+                                <td>Gate time</td>
+                                <td>655 us CNOT</td>
+                                <td><a href="https://arxiv.org/pdf/2506.20661">Bluvstein et al</a></td>
+                                <td>Jun 2025</td>
+                                <td>Atom movement limits speed, not gate pulse</td>
+                            </tr>
                         </tbody>
                     </table>
 
-                    <p></p><strong>Note on total good qubits:</strong> SOTA here is <a href="https://arxiv.org/pdf/2506.20661">Bluvstein et al</a> and similar work from the Lukin group over the past 2&#8211;3 years. They mention 99.9% fidelity for local single-qubit gates and 99.6% for CZ gates, as well as readout (0.3%) and movement (1%) errors. They can arrange up to 448 qubits, but I don’t think they benchmark the whole 448-qubit array. They do mention entangling 16 blocks of 16 qubits. They use Rubidium-87 atoms.</p>
+                    <p></p><strong>Note on total good qubits:</strong> SOTA here is <a href="https://arxiv.org/pdf/2506.20661">Bluvstein et al</a> and similar work from the Lukin group over the past 2&#8211;3 years. They mention 99.9% fidelity for local single-qubit gates and 99.6% for CZ gates, as well as readout (0.3%) and movement (1%) errors - though the movement error is a full sequence of operations, rather than per operation. They can arrange up to 448 qubits, but I don’t think they benchmark the whole 448-qubit array. They do mention entangling 16 blocks of 16 qubits. They use Rubidium-87 atoms.</p>
 
                     <p>Gate speed is the most commonly mentioned issue with neutral atom QCs, and I have not seen any published plans to improve the gate speed by 10x or more. I think there is a clear route to tens of thousands of qubits in a single vacuum chamber in the next few years. The Methods section in <a href="https://arxiv.org/pdf/2506.20661">Bluvstein et al</a> outlines some potential improvements in error rates and getting to 10x below-threshold performance. This includes 99.99% single-qubit gates, 99.85% two-qubit gates, and much reduced movement and readout loss.</p>
 
-                    <p>Edison: <a href="https://platform.edisonscientific.com/trajectories/641365b1-4d05-441c-8a7d-af07b8167f69">SOTA</a>, <a href="https://platform.edisonscientific.com/trajectories/044690cb-7ecb-44b6-b439-d3c5003341e9">SOTA again</a>, <a href="https://platform.edisonscientific.com/trajectories/a68bdd99-3d88-45fb-8499-a78cb461403b">1Q fidelity</a>, <a href="https://platform.edisonscientific.com/trajectories/8f0d3a82-f67a-4364-ad7c-92dedb8b8523">2Q fidelity</a>.</p>
+                    <p>Edison: <a href="https://platform.edisonscientific.com/trajectories/641365b1-4d05-441c-8a7d-af07b8167f69">SOTA</a>, <a href="https://platform.edisonscientific.com/trajectories/044690cb-7ecb-44b6-b439-d3c5003341e9">SOTA again</a>, <a href="https://platform.edisonscientific.com/trajectories/a68bdd99-3d88-45fb-8499-a78cb461403b">1Q fidelity</a>, <a href="https://platform.edisonscientific.com/trajectories/8f0d3a82-f67a-4364-ad7c-92dedb8b8523">2Q fidelity</a>, <a href="https://platform.edisonscientific.com/trajectories/6cdd5f45-f41f-48a6-a464-ea89bb3952eb">gate speed</a>.</p>
 
                     <h2>Superconducting</h2>
 
@@ -837,6 +852,13 @@
                                 <td>Nov 2024</td>
                                 <td>CNOT gate on fluxonium qubits</td>
                             </tr>
+                            <tr>
+                                <td>Gate speed</td>
+                                <td>30 ns CZ</td>
+                                <td><a href="https://arxiv.org/pdf/2006.11860v1">Xu et al</a></td>
+                                <td>June 2020</td>
+                                <td>-</td>
+                            </tr>
                         </tbody>
                     </table>
                     
@@ -849,7 +871,7 @@
 
                     <p>This is a biased source, but a professor mentioned to me that he decided that superconducting qubits were plateauing in 2015. This is actually when a lot of investment was taking place, so his view and the commercial / investor view were different. His rationale was that experimental work and publications in superconducting qubits had slowed down quite a bit by then. I find this gap - and others like it - between researcher and investor / founder viewpoints interesting.</p>
 
-                    <p>Edison: <a href="https://platform.edisonscientific.com/trajectories/a947a5f4-f472-4fc3-95d5-1dadfcf0ec3d">SOTA</a>, <a href="https://platform.edisonscientific.com/trajectories/25d73ec4-69a8-4917-ab87-d9fb8a93febb">1Q fidelity</a>, <a href="https://platform.edisonscientific.com/trajectories/bc8503ee-41b4-416d-ab66-0ae90d164c16">2Q fidelity</a>.</p>
+                    <p>Edison: <a href="https://platform.edisonscientific.com/trajectories/a947a5f4-f472-4fc3-95d5-1dadfcf0ec3d">SOTA</a>, <a href="https://platform.edisonscientific.com/trajectories/25d73ec4-69a8-4917-ab87-d9fb8a93febb">1Q fidelity</a>, <a href="https://platform.edisonscientific.com/trajectories/bc8503ee-41b4-416d-ab66-0ae90d164c16">2Q fidelity</a>, <a href="https://platform.edisonscientific.com/trajectories/f19c4b77-f6d7-40b8-b8b3-ef4febbe64af">gate speed</a>.</p>
 
                     <h2>Trapped Ions</h2>
 
@@ -889,15 +911,22 @@
                             </tr>
                             <tr>
                                 <td>2Q fidelity</td>
-                                <td>99.97%</td>
-                                <td><a href="https://arxiv.org/pdf/2407.07694">Löschnauer et al</a></td>
-                                <td>Jul 2024</td>
-                                <td>Oxford Ionics; Calcium ions</td>
+                                <td>99.9916%</td>
+                                <td><a href="https://arxiv.org/pdf/2510.17286v1">Hughes et al</a></td>
+                                <td>Oct 2025</td>
+                                <td>Oxford Ionics, IonQ; Calcium ions</td>
+                            </tr>
+                            <tr>
+                                <td>Gate speed</td>
+                                <td>1.6 us</td>
+                                <td><a href="https://arxiv.org/pdf/1709.06952v1">Schäfer et al</a></td>
+                                <td>Sept 2017</td>
+                                <td>Max. entangling gate, 99.8% fidelity</td>
                             </tr>
                         </tbody>
                     </table>
 
-                    <p>Edison: <a href="https://platform.edisonscientific.com/trajectories/929edded-5e09-47ad-bc21-94409a32f177">SOTA</a>, <a href="https://platform.edisonscientific.com/trajectories/f69b7a16-20ef-47f4-bba3-c0cb88ee0ce8">1Q fidelity</a>, <a href="https://platform.edisonscientific.com/trajectories/52e00c93-ae96-426f-9ad2-b53e08747f34">2Q fidelity</a>.</p>
+                    <p>Edison: <a href="https://platform.edisonscientific.com/trajectories/929edded-5e09-47ad-bc21-94409a32f177">SOTA</a>, <a href="https://platform.edisonscientific.com/trajectories/f69b7a16-20ef-47f4-bba3-c0cb88ee0ce8">1Q fidelity</a>, <a href="https://platform.edisonscientific.com/trajectories/52e00c93-ae96-426f-9ad2-b53e08747f34">2Q fidelity</a>, <a href="https://platform.edisonscientific.com/trajectories/d3e273a6-a493-4da3-bfd5-4322bb80b215">gate speed</a>.</p>
 
                     <h2>Photonics</h2>
 
@@ -915,11 +944,11 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td>Largest machine</td>
-                                <td>20-qubit cluster</td>
-                                <td><a href="https://arxiv.org/pdf/2409.06623">O'Sullivan et al</a></td>
-                                <td>Sep 2024</td>
-                                <td>Device seems capable of universal computation</td>
+                                <td>Most modes</td>
+                                <td>216 modes</td>
+                                <td><a href="https://www.nature.com/articles/s41586-022-04725-x">Madsen et al</a></td>
+                                <td>June 2022</td>
+                                <td>Xanadu device</td>
                             </tr>
                             <tr>
                                 <td rowspan="2">Total good qubits</td>
@@ -935,17 +964,17 @@
                                 <td>-</td>
                             </tr>
                             <tr>
-                                <td rowspan="2">1Q fidelity</td>
-                                <td>99.6%</td>
-                                <td><a href="https://arxiv.org/pdf/2306.00874v1">Quandela Ascella</a></td>
-                                <td>Jun 2023</td>
-                                <td>Conditional on detection, 91.6% loss</td>
+                                <td rowspan="2">Insertion loss</td>
+                                <td>2.16 dB</td>
+                                <td><a href="https://www.nature.com/articles/s41586-024-08406-9">Xanadu Aurora</a></td>
+                                <td>Jan 2025</td>
+                                <td>Pump input to quantum output</td>
                             </tr>
                             <tr>
-                                <td>99.98% SPAM</td>
-                                <td><a href="https://www.nature.com/articles/s41586-025-08820-7">PsiQuantum</a></td>
-                                <td>Feb 2025</td>
-                                <td>-</td>
+                                <td>1.82 dB</td>
+                                <td><a href="https://www.nature.com/articles/s41586-024-08406-9">Xanadu Aurora</a></td>
+                                <td>Jan 2025</td>
+                                <td>Generation to fibre output</td>
                             </tr>
                             <tr>
                                 <td rowspan="2">2Q fidelity</td>
@@ -960,12 +989,19 @@
                                 <td>Feb 2025</td>
                                 <td>Conditional on detection</td>
                             </tr>
+                            <tr>
+                                <td>Coincidence rate</td>
+                                <td>3.3 Mcps</td>
+                                <td><a href="https://www.arxiv.org/pdf/2510.22894">Honjo et al</a></td>
+                                <td>Oct 2025</td>
+                                <td>-</td>
+                            </tr>
                         </tbody>
                     </table>
 
                     <p>Overall, I am not very confident that my figures for photonics are well chosen, or all that comparable to each other. Transmission loss appears to be the biggest issue.</p>
 
-                    <p>Edison: <a href="https://platform.edisonscientific.com/trajectories/b323aacf-8548-4856-9462-ee26bcc27ce8">Loss</a>, <a href="https://platform.edisonscientific.com/trajectories/bed0a821-dc56-4075-8a73-9a493c72a2ee">SOTA</a>, <a href="https://platform.edisonscientific.com/trajectories/b233e1bf-b42c-4d57-8606-7fbd47be0bf1">SOTA again</a>, <a href="https://platform.edisonscientific.com/trajectories/51c82689-686b-4d6d-8be3-218ff15d079d">2Q fidelity</a>.</p>
+                    <p>Edison: <a href="https://platform.edisonscientific.com/trajectories/7f36d15f-9020-468c-9912-988304944331">Modes, insertion loss, pair detection rate, </a><a href="https://platform.edisonscientific.com/trajectories/b323aacf-8548-4856-9462-ee26bcc27ce8">loss</a>, <a href="https://platform.edisonscientific.com/trajectories/bed0a821-dc56-4075-8a73-9a493c72a2ee">SOTA</a>, <a href="https://platform.edisonscientific.com/trajectories/b233e1bf-b42c-4d57-8606-7fbd47be0bf1">SOTA again</a>, <a href="https://platform.edisonscientific.com/trajectories/51c82689-686b-4d6d-8be3-218ff15d079d">2Q fidelity</a>.</p>
 
                     <h2>Semiconductors</h2>
 
@@ -1022,12 +1058,19 @@
                                 <td>Mar 2024</td>
                                 <td>—</td>
                             </tr>
+                            <tr>
+                                <td>Gate speed</td>
+                                <td>>40 ns CZ</td>
+                                <td><a href="https://arxiv.org/pdf/2111.11937">Mills et al</a></td>
+                                <td>Nov 2021</td>
+                                <td>Total gate duration is unclear, may be >40 ns</td>
+                            </tr>
                         </tbody>
                     </table>
 
                     <p><strong>Note on total qubits: </strong>Intel <a href="https://arxiv.org/pdf/2410.16583v1">reported</a> a 12-qubit device in October 2024 but they only report (de)coherence times, and don't demonstrate universal gates, whereas the 11-qubit device appears to be capable of universal computation.</p>
 
-                    <p>Edison: <a href="https://platform.edisonscientific.com/trajectories/b233e1bf-b42c-4d57-8606-7fbd47be0bf1">SOTA</a>, <a href="https://platform.edisonscientific.com/trajectories/3ecc4c32-2d70-4803-83cd-1029527b6a55">1Q fidelity</a>, <a href="https://platform.edisonscientific.com/trajectories/a9c2ad72-fc56-4fb1-87dd-0565fc672d8f">2Q fidelity</a>.</p>
+                    <p>Edison: <a href="https://platform.edisonscientific.com/trajectories/b233e1bf-b42c-4d57-8606-7fbd47be0bf1">SOTA</a>, <a href="https://platform.edisonscientific.com/trajectories/3ecc4c32-2d70-4803-83cd-1029527b6a55">1Q fidelity</a>, <a href="https://platform.edisonscientific.com/trajectories/a9c2ad72-fc56-4fb1-87dd-0565fc672d8f">2Q fidelity</a>, <a href="https://platform.edisonscientific.com/trajectories/5fc3e5f6-b938-4c9d-9d31-71e0617e678c">gate speed</a>.</p>
 
                     <p>Again, please email me with any corrections or clarifications. Thanks in advance and thanks for reading! tommccarthyprojects@gmail.com</p>
                 </div>
