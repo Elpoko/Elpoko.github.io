@@ -266,8 +266,8 @@
             color: #ffffff;
         }
 
-                /* Table styles */
-                table {
+        /* Table styles */
+        table {
             width: 100%;
             border-collapse: collapse;
             margin: 24px 0 32px 0;
@@ -324,6 +324,18 @@
         }
 
         /* end table styles */
+
+        /* Table wrapper for horizontal scroll on mobile */
+        .table-wrapper {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin: 24px 0 32px 0;
+        }
+
+        .table-wrapper table {
+            margin: 0;
+        }
+        /* end table wrapper style */
 
         a {
             color: #1a1a1a;
@@ -686,6 +698,7 @@
 
                     <p>The figures in each cell are, generally, from different machines. These are the best figures I can find - the SOTA. Most contemporary machines will have worse performance. The single-qubit and two-qubit gate fidelities are typically for smaller systems - sometimes just one or two qubits. </p>
 
+                    <div class="table-wrapper">
                     <table>
                         <thead>
                             <tr>
@@ -740,6 +753,7 @@
                             </tr>
                         </tbody>
                     </table>
+                    </div>
                     <p class="table-note">*Photonics fidelities are conditional on successful photon detection.</p>
                     <p class="table-note">**Total duration of the 2Q gate is not reported, but appears to be 40 - 100 ns.</p>
 
@@ -754,6 +768,7 @@
 
                     <p>SOTA here is the work from the Lukin and Endres groups, at Harvard and Caltech, respectively. They have created arrays of thousands of coherent atoms / qubits, though haven’t yet shown full control and programmability of the largest of these areas. In June, the Lukin group shared a <a href="https://arxiv.org/pdf/2506.20660">paper demonstrating</a> a 3,000-qubit coherent machine that could run continuously, and a <a href="https://arxiv.org/pdf/2506.20660">separate paper</a> running  error-correction schemes and some computations on arrays of 448-qubits. In March 2024, the Endres group at Caltech <a href="https://arxiv.org/pdf/2403.12021">showed</a> off a 6,100 array of coherent qubits with single-qubit gates, but did not perform two-qubit gates or any sophisticated computations. More computation requires better control of atoms. Perhaps that will come soon. The Lukin group uses Rubidium-87 atoms, and the Endres group uses Cesium-133 atoms. Atom Computing claims to have a machine - <a href="https://atom-computing.com/quantum-computing-technology/">the AC1000</a> - with over 1,200 qubits and competitive fidelities, but they have not shared much about it.</p>
 
+                    <div class="table-wrapper">
                     <table>
                         <thead>
                             <tr>
@@ -802,6 +817,7 @@
                             </tr>
                         </tbody>
                     </table>
+                    </div>
 
                     <p></p><strong>Note on total good qubits:</strong> SOTA here is <a href="https://arxiv.org/pdf/2506.20661">Bluvstein et al</a> and similar work from the Lukin group over the past 2&#8211;3 years. They mention 99.9% fidelity for local single-qubit gates and 99.6% for CZ gates, as well as readout (0.3%) and movement (1%) errors - though the movement error is a full sequence of operations, rather than per operation. They can arrange up to 448 qubits, but I don’t think they benchmark the whole 448-qubit array. They do mention entangling 16 blocks of 16 qubits. They use Rubidium-87 atoms.</p>
 
@@ -813,6 +829,7 @@
 
                     <p>Google is one of the leaders in superconducting qubits. Recently, they have focused on error-correction demonstrations and improving fidelity in their chips rather than increasing qubit count, resulting in a 105-qubit chip, <a href="https://blog.google/technology/research/google-willow-quantum-chip/">Google Willow</a>. The <a href="https://arxiv.org/pdf/2412.11924">Zuchongzhi-3</a>, by a Chinese collaboration, has similar specs. Google's chip is particularly interesting because it was the first quantum computer used to verify that the surface code reduces errors exponentially well.</p>
 
+                    <div class="table-wrapper">
                     <table>
                         <thead>
                             <tr>
@@ -861,7 +878,7 @@
                             </tr>
                         </tbody>
                     </table>
-                    
+                    </div>
                     
                     <p><strong>Note on total qubits: </strong><a href="https://metriq.info/Submission/857">IBM Heron r3</a> launched July 2025 with 99.75% two-qubit fidelity (CZ gates, median). However, you can see 6-7 qubits with >1% error rate on <a href="https://quantum.cloud.ibm.com/computers?processorType=Heron&system=ibm_marrakesh">Qiskit</a>. Calculating the mean two-qubit fidelity for the IBM chip gives a 98.99% two-qubit fidelity. I respect IBM's transparency in publicly displaying their chips and specs.</p>
 
@@ -877,6 +894,7 @@
 
                     <p>Quantinuum leads the field in trapped ions. They recently launched Helios, a 98-qubit machine with solid gate fidelities. Oxford Ionics has led the field in gate fidelities, but these have been for much smaller systems, and have not been extended to computation on 10s of qubits. Oxford Ionics was acquired by IONQ for $1B in June 2025.</p>
 
+                    <div class="table-wrapper">
                     <table>
                         <thead>
                             <tr>
@@ -925,6 +943,7 @@
                             </tr>
                         </tbody>
                     </table>
+                    </div>
 
                     <p>Edison: <a href="https://platform.edisonscientific.com/trajectories/929edded-5e09-47ad-bc21-94409a32f177">SOTA</a>, <a href="https://platform.edisonscientific.com/trajectories/f69b7a16-20ef-47f4-bba3-c0cb88ee0ce8">1Q fidelity</a>, <a href="https://platform.edisonscientific.com/trajectories/52e00c93-ae96-426f-9ad2-b53e08747f34">2Q fidelity</a>, <a href="https://platform.edisonscientific.com/trajectories/d3e273a6-a493-4da3-bfd5-4322bb80b215">gate speed</a>.</p>
 
@@ -932,6 +951,7 @@
 
                     <p>Photonics-based quantum computing is mostly based around approaches that are quite different to the other modalities, and the usual metrics don't always apply. Photons get used up, or are transitory, so you can't treat them as static qubits, like Josephson junctions in superconducting machines. They are generated, acted on, and discarded. A photonics-specific metric of interest is overall transmission quality, or conversely, loss; what percentage of photons get transmitted fully from source to detector? A lot of the experiments and published results include fidelities that are conditional on successful detection of photons. Reporting this as a headline figure avoids the elephant in the room, i.e. how many of the photons got to the detector?</p>
 
+                    <div class="table-wrapper">
                     <table>
                         <thead>
                             <tr>
@@ -998,6 +1018,7 @@
                             </tr>
                         </tbody>
                     </table>
+                    </div>
 
                     <p>Overall, I am not very confident that my figures for photonics are well chosen, or all that comparable to each other. Transmission loss appears to be the biggest issue.</p>
 
@@ -1007,6 +1028,7 @@
 
                     <p>Because we are so good at making transistors, some people argue that qubits based on silicon - or Germanium or Gallium - chips and photolithography are a better approach than the other modalities. As with photonics, there are a few different architectures within silicon-based quantum computing, and no clear winner yet.</p>
 
+                    <div class="table-wrapper">
                     <table>
                         <thead>
                             <tr>
@@ -1067,6 +1089,7 @@
                             </tr>
                         </tbody>
                     </table>
+                    </div>
 
                     <p><strong>Note on total qubits: </strong>Intel <a href="https://arxiv.org/pdf/2410.16583v1">reported</a> a 12-qubit device in October 2024 but they only report (de)coherence times, and don't demonstrate universal gates, whereas the 11-qubit device appears to be capable of universal computation.</p>
 

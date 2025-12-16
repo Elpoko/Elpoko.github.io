@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>An end of year note, 2025 - Tom McCarthy</title>
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="http://tommccarthy.net/2025-note">
+    <meta property="og:title" content="An end of year note, 2025">
+    <meta property="og:description" content="Physics, investing, and startups. Books, marriage, and San Francisco. Happy Christmas.">
+    <meta property="og:image" content="https://tommccarthy.net/springranch.jpeg">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="http://tommccarthy.net/2025-note">
+    <meta property="twitter:title" content="An end of year note, 2025">
+    <meta property="twitter:description" content="Physics, investing, and startups. Books, marriage, and San Francisco. Happy Christmas.">
+    <meta property="twitter:image" content="https://tommccarthy.net/springranch.jpeg">
+    
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <style>
+    @import url('https://fonts.googleapis.com/css2?family=Newsreader:wght@300;400;500&display=swap');
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: 'Newsreader', 'Georgia', 'Times New Roman', serif;
+        background-color: #f5f5f5;
+        color: #1a1a1a;
+        line-height: 1.7;
+        overflow-x: hidden;
+        font-weight: 500;
+        transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    body.dark-mode {
+        background-color: #1a1a1a;
+        color: #ffffff;
+    }
+
+    .mode-toggle {
+        padding: 0px;
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+    }
+
+    .mode-toggle svg {
+        width: 32px;
+        height: 32px;
+        stroke: #000000;
+        fill: none;
+        transition: stroke 0.3s ease;
+    }
+
+    .mode-toggle:hover svg {
+        stroke: #4a5568;
+    }
+
+    body.dark-mode .mode-toggle svg {
+        stroke: #ffffff;
+    }
+
+    body.dark-mode .mode-toggle:hover svg {
+        stroke: #e8e8e8;
+    }
+
+    .container {
+        display: flex;
+        justify-content: center;
+        min-height: 100vh;
+    }
+
+    .content {
+        width: 100%;
+        max-width: 860px;
+        min-width: 375px;
+        padding: 120px 80px 80px 80px;
+    }
+
+    header {
+        margin-bottom: 80px;
+        margin-left: auto;
+        margin-right: auto;
+        padding-bottom: 10px;
+        border-bottom: 1px solid #d0d0d0;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        max-width: 680px;
+    }
+
+    body.dark-mode header {
+        border-bottom-color: #404040;
+    }
+
+    .site-title {
+        flex: 0 0 auto;
+    }
+
+    .header-links {
+        margin-left: auto;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 1rem;
+    }
+
+    .header-link {
+        color: #000000;
+        text-decoration: none;
+        transition: color 0.3s ease;
+        font-weight: 400;
+    }
+
+    .header-link:hover {
+        color: #4a5568;
+    }
+
+    body.dark-mode .header-link {
+        color: #ffffff;
+    }
+
+    body.dark-mode .header-link:hover {
+        color: #e8e8e8;
+    }
+
+    .header-separator {
+        color: #4a5568;
+        font-weight: 300;
+        transition: color 0.3s ease;
+    }
+
+    body.dark-mode .header-separator {
+        color: #e8e8e8;
+    }
+
+    h1 {
+        font-size: 2.5rem;
+        font-weight: 500;
+        letter-spacing: -0.5px;
+        margin-bottom: 8px;
+        color: #000000;
+        transition: color 0.3s ease;
+    }
+
+    body.dark-mode h1 {
+        color: #ffffff;
+    }
+
+    .site-title {
+        font-size: 2.5rem;
+        font-weight: 500;
+        letter-spacing: -0.5px;
+        line-height: 1;
+        color: #000000;
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
+
+    .site-title:hover {
+        color: #4a5568;
+    }
+
+    body.dark-mode .site-title {
+        color: #ffffff;
+    }
+
+    body.dark-mode .site-title:hover {
+        color: #e8e8e8;
+    }
+
+    article {
+        max-width: 680px;
+        margin: 0 auto;
+    }
+
+    .post-title {
+        font-size: 2.5rem;
+        font-weight: 500;
+        letter-spacing: -0.5px;
+        margin-bottom: 24px;
+        color: #000000;
+        transition: color 0.3s ease;
+        line-height: 1.2;
+    }
+
+    body.dark-mode .post-title {
+        color: #ffffff;
+    }
+
+    .post-subheading {
+        font-size: 1.05rem;
+        font-style: italic;
+        color: #2a2a2a;
+        font-weight: 400;
+        margin-bottom: 40px;
+        transition: color 0.3s ease;
+    }
+
+    body.dark-mode .post-subheading {
+        color: #ffffff;
+    }
+
+    .post-body {
+        font-size: 1.05rem;
+        color: #2a2a2a;
+        font-weight: 400;
+        transition: color 0.3s ease;
+    }
+
+    body.dark-mode .post-body {
+        color: #ffffff;
+    }
+
+    .post-body p {
+        font-size: 1.05rem;
+        color: #2a2a2a;
+        font-weight: 400;
+        margin-bottom: 24px;
+        transition: color 0.3s ease;
+    }
+
+    body.dark-mode .post-body p {
+        color: #ffffff;
+    }
+
+    h2 {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+        font-size: 1.1rem;
+        font-weight: 500;
+        letter-spacing: 0;
+        margin-top: 48px;
+        margin-bottom: 20px;
+        color: #4a4a4a;
+        transition: color 0.3s ease;
+    }
+
+    body.dark-mode h2 {
+        color: #ffffff;
+    }
+
+    h3 {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+        font-size: 1.05rem;
+        font-weight: 500;
+        letter-spacing: 0;
+        margin-top: 36px;
+        margin-bottom: 16px;
+        color: #4a4a4a;
+        transition: color 0.3s ease;
+    }
+
+    body.dark-mode h3 {
+        color: #ffffff;
+    }
+
+    /* Table styles */
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 24px 0 32px 0;
+        font-size: 0.95rem;
+    }
+
+    thead tr {
+        border-bottom: 2px solid #d0d0d0;
+    }
+
+    body.dark-mode thead tr {
+        border-bottom-color: #505050;
+    }
+
+    th {
+        text-align: left;
+        padding: 12px 8px;
+        font-weight: 500;
+    }
+
+    td {
+        padding: 12px 8px;
+        border-bottom: 1px solid #e0e0e0;
+    }
+
+    body.dark-mode td {
+        border-bottom-color: #404040;
+    }
+
+    tbody tr:last-child td {
+        border-bottom: none;
+    }
+
+    a {
+        color: inherit;
+        text-decoration: underline;
+        text-decoration-thickness: 1px;
+        text-underline-offset: 2px;
+        transition: opacity 0.2s ease;
+    }
+
+    a:hover {
+        opacity: 0.7;
+    }
+
+    .acknowledgements {
+        margin-top: 48px;
+        font-size: 1.05rem;
+        color: #2a2a2a;
+        font-weight: 400;
+        font-style: italic;
+        transition: color 0.3s ease;
+    }
+
+    body.dark-mode .acknowledgements {
+        color: #ffffff;
+    }
+
+    .footnotes-divider {
+        width: 100%;
+        height: 1px;
+        background-color: #d0d0d0;
+        margin: 48px 0 24px 0;
+        transition: background-color 0.3s ease;
+    }
+
+    body.dark-mode .footnotes-divider {
+        background-color: #404040;
+    }
+
+    .footnotes {
+        font-size: 0.95rem;
+        color: #4a4a4a;
+        transition: color 0.3s ease;
+    }
+
+    body.dark-mode .footnotes {
+        color: #c0c0c0;
+    }
+
+    .footnotes ol {
+        padding-left: 20px;
+    }
+
+    .footnotes li {
+        margin-bottom: 12px;
+    }
+
+    .footnotes p {
+        margin: 0;
+        display: inline;
+    }
+
+    .footnote-ref {
+        font-size: 0.8em;
+        vertical-align: super;
+        text-decoration: none;
+        color: inherit;
+        position: relative;
+        cursor: pointer;
+    }
+
+    .footnote-tooltip {
+        visibility: hidden;
+        opacity: 0;
+        position: absolute;
+        bottom: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: #1a1a1a;
+        color: #ffffff;
+        padding: 8px 12px;
+        border-radius: 4px;
+        font-size: 0.85rem;
+        font-weight: 400;
+        white-space: normal;
+        max-width: 280px;
+        min-width: 150px;
+        z-index: 1000;
+        transition: opacity 0.2s ease, visibility 0.2s ease;
+        margin-bottom: 8px;
+        line-height: 1.4;
+        text-align: left;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    }
+
+    body.dark-mode .footnote-tooltip {
+        background-color: #f5f5f5;
+        color: #1a1a1a;
+    }
+
+    .footnote-ref:hover .footnote-tooltip {
+        visibility: visible;
+        opacity: 1;
+    }
+
+    .footnote-tooltip::after {
+        content: '';
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        border-width: 6px;
+        border-style: solid;
+        border-color: #1a1a1a transparent transparent transparent;
+    }
+
+    body.dark-mode .footnote-tooltip::after {
+        border-color: #f5f5f5 transparent transparent transparent;
+    }
+
+    .footnote-tooltip a {
+        color: #7dd3c0;
+    }
+
+    body.dark-mode .footnote-tooltip a {
+        color: #2563eb;
+    }
+
+    blockquote {
+        margin: 24px 0;
+        padding-left: 24px;
+        border-left: 3px solid #d0d0d0;
+        font-style: italic;
+        color: #4a4a4a;
+        transition: border-color 0.3s ease, color 0.3s ease;
+    }
+
+    body.dark-mode blockquote {
+        border-left-color: #505050;
+        color: #c0c0c0;
+    }
+
+    ul, ol {
+        margin: 24px 0;
+        padding-left: 24px;
+    }
+
+    li {
+        margin-bottom: 8px;
+    }
+
+    code {
+        font-family: 'SF Mono', 'Monaco', 'Menlo', monospace;
+        font-size: 0.9em;
+        background-color: #e8e8e8;
+        padding: 2px 6px;
+        border-radius: 3px;
+        transition: background-color 0.3s ease;
+    }
+
+    body.dark-mode code {
+        background-color: #2a2a2a;
+    }
+
+    pre {
+        margin: 24px 0;
+        padding: 16px;
+        background-color: #e8e8e8;
+        border-radius: 4px;
+        overflow-x: auto;
+        transition: background-color 0.3s ease;
+    }
+
+    body.dark-mode pre {
+        background-color: #2a2a2a;
+    }
+
+    pre code {
+        padding: 0;
+        background-color: transparent;
+    }
+
+    img {
+        max-width: 100%;
+        height: auto;
+        margin: 24px 0;
+        border-radius: 4px;
+    }
+
+    hr {
+        border: none;
+        height: 1px;
+        background-color: #d0d0d0;
+        margin: 48px 0;
+        transition: background-color 0.3s ease;
+    }
+
+    body.dark-mode hr {
+        background-color: #404040;
+    }
+
+    .caption {
+        font-size: 0.9rem;
+        color: #6a6a6a;
+        text-align: center;
+        margin-top: -16px;
+        margin-bottom: 24px;
+        font-style: italic;
+        transition: color 0.3s ease;
+    }
+
+    body.dark-mode .caption {
+        color: #a0a0a0;
+    }
+
+    .highlight {
+        background-color: #fff3cd;
+        padding: 2px 4px;
+        border-radius: 2px;
+        transition: background-color 0.3s ease;
+    }
+
+    body.dark-mode .highlight {
+        background-color: #4a4520;
+    }
+
+    .date {
+        font-size: 0.95rem;
+        color: #6a6a6a;
+        margin-bottom: 8px;
+        transition: color 0.3s ease;
+    }
+
+    body.dark-mode .date {
+        color: #a0a0a0;
+    }
+
+    .tags {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+        margin-top: 24px;
+    }
+
+    .tag {
+        font-size: 0.85rem;
+        color: #6a6a6a;
+        background-color: #e8e8e8;
+        padding: 4px 12px;
+        border-radius: 16px;
+        text-decoration: none;
+        transition: all 0.3s ease;
+    }
+
+    .tag:hover {
+        background-color: #d0d0d0;
+        opacity: 1;
+    }
+
+    body.dark-mode .tag {
+        color: #c0c0c0;
+        background-color: #2a2a2a;
+    }
+
+    body.dark-mode .tag:hover {
+        background-color: #404040;
+    }
+
+    .back-link {
+        display: inline-block;
+        margin-bottom: 24px;
+        font-size: 0.95rem;
+        color: #6a6a6a;
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
+
+    .back-link:hover {
+        color: #1a1a1a;
+        opacity: 1;
+    }
+
+    body.dark-mode .back-link {
+        color: #a0a0a0;
+    }
+
+    body.dark-mode .back-link:hover {
+        color: #e8e8e8;
+    }
+
+    /* Email subscription form */
+    .embeddable-buttondown-form {
+        max-width: 680px;
+        margin: 32px 0;
+        padding-left: 24px;
+        border-left: 3px solid #a5b4c4;
+        transition: border-color 0.3s ease;
+    }
+
+    body.dark-mode .embeddable-buttondown-form {
+        border-left-color: #7dd3c0;
+    }
+
+    .embeddable-buttondown-form label {
+        display: block;
+        font-size: 1.05rem;
+        color: #2a2a2a;
+        font-weight: 400;
+        margin-bottom: 12px;
+        transition: color 0.3s ease;
+    }
+
+    body.dark-mode .embeddable-buttondown-form label {
+        color: #ffffff;
+    }
+
+    .embeddable-buttondown-form input[type="email"] {
+        width: 280px;
+        padding: 10px 12px;
+        font-family: 'Newsreader', 'Georgia', 'Times New Roman', serif;
+        font-size: 1rem;
+        border: 1px solid #d0d0d0;
+        border-radius: 4px;
+        background-color: #ffffff;
+        color: #1a1a1a;
+        margin-right: 8px;
+        transition: all 0.3s ease;
+        display: inline-block;
+        vertical-align: middle;
+    }
+
+    .embeddable-buttondown-form input[type="email"]:focus {
+        outline: none;
+        border-color: #4a5568;
+    }
+
+    body.dark-mode .embeddable-buttondown-form input[type="email"] {
+        background-color: #2a2a2a;
+        color: #ffffff;
+        border-color: #404040;
+    }
+
+    body.dark-mode .embeddable-buttondown-form input[type="email"]:focus {
+        border-color: #7dd3c0;
+    }
+
+    .embeddable-buttondown-form input[type="submit"] {
+        padding: 10px 24px;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+        font-size: 0.95rem;
+        font-weight: 500;
+        background-color: #1a1a1a;
+        color: #ffffff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        display: inline-block;
+        vertical-align: middle;
+    }
+
+    .embeddable-buttondown-form input[type="submit"]:hover {
+        background-color: #4a5568;
+    }
+
+    body.dark-mode .embeddable-buttondown-form input[type="submit"] {
+        background-color: #f5f5f5;
+        color: #1a1a1a;
+    }
+
+    body.dark-mode .embeddable-buttondown-form input[type="submit"]:hover {
+        background-color: #e8e8e8;
+    }
+
+    .bottom-form-divider {
+        width: 100%;
+        height: 1px;
+        background-color: #d0d0d0;
+        margin: 32px 0 24px 0;
+        transition: background-color 0.3s ease;
+    }
+
+    body.dark-mode .bottom-form-divider {
+        background-color: #404040;
+    }
+
+    /* Phase 3: Approaching text width - switch to mobile layout with smaller text */
+    @media (max-width: 850px) {
+        .content {
+            padding: 60px 20px 60px 20px;
+        }
+
+        .post-title {
+            font-size: 2rem;
+        }
+
+        .site-title {
+            font-size: 2rem;
+        }
+
+        h1 {
+            font-size: 2rem;
+        }
+
+        .header-links {
+            font-size: 0.9rem;
+        }
+
+        .footnote-tooltip {
+            max-width: 240px;
+            font-size: 0.9rem;
+        }
+
+        .embeddable-buttondown-form input[type="email"] {
+            width: 100%;
+            margin-right: 0;
+            margin-bottom: 12px;
+        }
+
+        .embeddable-buttondown-form input[type="submit"] {
+            width: 100%;
+        }
+    }
+
+    /* Phase 4: Very narrow - minimal padding, minimum width enforced */
+    @media (max-width: 500px) {
+        .content {
+            padding: 60px 12px 60px 12px;
+        }
+
+        .header-links {
+            font-size: 0.85rem;
+        }
+    }
+</style>
+</head>
+<body>
+    <div class="container">
+        <div class="content">
+            <header>
+                <a href="https://tommccarthy.net" class="site-title">Tom McCarthy</a>
+                <div class="header-links">
+                    <a href="https://x.com/carthymctom" class="header-link" target="_blank">X</a>
+                    <span class="header-separator">·</span>
+                </div>
+                <button class="mode-toggle" onclick="toggleDarkMode()" aria-label="Toggle dark mode">
+                    <svg viewBox="0 0 100 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M 0 20 Q 12.5 5, 25 20 T 50 20 T 75 20 T 100 20" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+            </header>
+
+            <article>
+                <h1 class="post-title">An end of year note, 2025</h1>
+                
+                <p class="post-subheading">December 2025. Physics, investing, and startups. Books, marriage, and San Francisco. Happy Christmas.</p>
+
+                <div class="post-body">
+                    <p>I have never enjoyed physics as much as when I was not a university student. For some reason, college smothered my interest in the subject instead of nourishing it. Sad, and some of that was my fault, but hardly all of it. I started college in 2018, in the Physical Sciences track at Trinity College Dublin. After two years, I was too fed up to continue with college, so I took a year out. When I returned, I switched to the Theoretical Physics degree, and eventually graduated in 2024. I recall being deeply excited by my studies on exactly 3 occasions: studying the Thermodynamics textbook, my complex analysis module, and doing my final year project, trying to simulate electron structures for a material similar to graphene. Why didn’t I have more of these experiences?</p>
+
+                    <p>I never got the hang of attending lectures. In principle, I wanted to, but I could never quite get to them. Right before my final set of exams, I had to prepare for a test on the Standard Model, cramming from a PDF of Peskin’s ‘Concepts of Elementary Particle Physics’. For the first time in years, physics felt like magic again. The book walked through how particle accelerators are used to discover and verify new types of particles. I can’t recall a whole lot of it now, but that book reawakened my fascination with physics and understanding of it as the field that had built incredible machines to answer fundamental questions about the universe; The LHC finding the Higgs boson, telescopes measuring the expansion of the universe, massive underwater pools detecting neutrinos, LIGO detecting gravitational waves - these were what first got me into physics.</p>
+
+                    <p>Much of my time this year was spent on physics and startups. Not research, mind you, just learning enough about a subject to have a sensible conversation with researchers and figure out if some startup-like idea made sense or not. I mainly learned about quantum computing and algorithms, and most recently, a little about antimatter production. Through this, I’ve met researchers I deeply respect who are as hard working and ambitious as any founder - some research groups are hardcore in a way I did not expect. This served as a good reminder that good work can be done anywhere. I’m grateful to have been able to do this work at Project Eleven and Nebular.</p>
+
+                    <!-- Email subscription form -->
+                    <form action="https://buttondown.com/api/emails/embed-subscribe/tommccarthyprojects" method="post" target="popupwindow" onsubmit="window.open('https://buttondown.com/tommccarthyprojects', 'popupwindow')" class="embeddable-buttondown-form">
+                        <label for="bd-email-top">Subscribe for hand-delivered notifications:</label>
+                        <input type="email" name="email" id="bd-email-top" />
+                        <input type="submit" value="Subscribe" />
+                    </form>
+
+                    <p>I’ve enjoyed the past few months working at Nebular. My role is a mix of research and investing. It’s fairly autonomous and my main challenge is trying to do something really useful every week. Some aspects of the default approach to VC have been offputting to me and it was not initially clear if I could avoid them or not, e.g.  meeting so many founders for pitches that I might not be able to go deep on ideas or areas. I have figured out some ways to play to my strengths, though time will tell if I am doing well or in denial! Fortunately, Finn and Nebular afford me a role that lets me learn about a few things in detail, as opposed to a little about a lot. Working as an investor, the default dynamics of conversations makes it tempting to give founders unsolicited advice, which I am wary of.</p>
+
+                    <p>Some woo learnings: I’ve learned that it’s vital for my work to have purpose. Otherwise I turn off, like a robot. I’m most motivated when I believe that the problem is real, the solution is meaningful, that I can actually make a dent in it, and few other people are well-placed to do so. If I am procrastinating badly - beyond one or two visits to Youtube - it generally means something is wrong, and I’m better off fixing that than berating myself for not being more productive. I take some of my feelings much more seriously now, whereas at the start of the year I would have assumed they were more evidence of my being a gluttonous distractible slouch whose best days were behind him.</p>
+
+                    <p>How did I learn the above? By finding a wife. 12 months ago I was living in a fairly-stark bachelor pad (I did my best). I got married to Molly in July and traded in the bachelor pad for a cozy, well-decorated home. Being married is great, and a blessing. A friend of ours describes it as having an ‘ultimate teammate’. Molly knows me better than anybody, and we share a deep, mutual hope and commitment for, and to each other. Marriage is making me grow up a bit faster than I would’ve otherwise - I’ve gotten better at doing chores on time, taking the initiative on tasks, and scheduling things that I would’ve previously procrastinated on. Nobody is forcing me to grow up faster, it’s just necessary for me in trying to be a good husband. I also have less solo time - less independence and more responsibility - but I don’t miss anything, except maybe being a bit more carefree with chores and my schedule (it’s harder to disappear for a late-night cycle or leave the dishes dirty). Being busier is not something I looked forward to, but as a whole it is good. I know marriage is not easy for many people, but my experience of it so far is wonderful. I am lucky to have Molly.</p>
+
+                    <p>1 year into living in San Francisco, here are some things I like: burritos, Dandelion Chocolate, cycling downhill, looking across the city from the top of a hill, RT Rotisserie, Manny’s, sitting at Il Parco looking at the Golden Gate Bridge, the ferry, any part of the Presidio, Valencia St, Arizmendi, eBikes, the dramatic fog, Nepa. SF is not a bad place to be into Irish music. Lankum, John Francis Flynn and Lúnasa played here this year, and I went to every gig. The John Francis Flynn one was my favorite.</p>
+
+                    <p>At Patch, we’ve achieved a steady rhythm now, where Patch alumni work on Patch in a variety of positions and take on near-total responsibility for all of Patch’s work. Working on it this year - I’m a board member - has been a delight. The team (<a href="https://timfarrelly.com/">Tim</a> and <a href="https://www.linkedin.com/in/lucy-daly-ireland/">Lucy</a>) have done a great job and it’s been very easy to support them. They shipped the summer accelerator, the Fellowship trip to SF, a bunch of alumni events, TECS, and got Patch Grants going. They also published our first impact report, and welcomed OpenAI as a headline sponsor, alongside Stripe. A sincere thank you to all of our funders and supporters for your help this year. I’ve tried to delegate more fully this year, and found it’s better for everyone involved - it allows me to focus on other stuff, and gives my teammate(s) full ownership of the task. I hope we can continue to attract such good people to work on Patch - if you want to get involved, please email me (tommccarthyprojects@gmail.com).</p>
+                    
+                    <p>Lastly, a few books and videos that I enjoyed this year:</p>
+
+                    <ul>
+                        <li><a href="https://www.amazon.com/Money-Games-Inside-American-Dealmakers/dp/1119736986/">Money Games</a> and <a href="https://www.amazon.com/Money-Machine-Trailblazing-American-Venture/dp/1394161204/">Money Machine</a>, Weijan Shan: Two books from a private equity man about the acquisition of large banks in Korea and China, respectively. These were my favorite books of the year. They're pretty well written, and give a fairly frank description of how a big PE deal gets done.</li>
+                        <li><a href="https://www.amazon.com/s?k=breakneck+by+dan+wang">Breakneck</a>, Dan Wang: This book feels like a warm bath in a worldview of China. Despite a lot of it being familiar - from online discussions and podcasts before reading it - I really enjoyed it. The one-child policy was barbaric, but the material progress made by the Chinese makes me increasingly frustrated at the lack of dynamism in Irish government and policy-making.</li>
+                        <li><a href="https://www.amazon.com/Blood-Money-Billionaires-Biotech-Blockbuster/dp/1324074752/">For Blood And Money</a>, Nathan Vardi: Bob Duggan has founded multiple businesses, across advertising, cookie recipes and biotech. They all succeed. There is not much written about him aside from this book, which is about his takeover of Pharmacylics, ending with its acquisition for $21B.</li>
+                        <li><a href="https://www.amazon.com/Never-Lost-Again-Revolution-Industries/dp/0062673041">Never Lost Again</a>, Bill Kilday: The story of one of the startup that became Google Maps. Gives some sense of Google in the early 2000s. Marissa Mayer and Bret Taylor appear. I took for granted how ambitious and novel it was to make a really good internet map.</li>
+                        <li><a href="https://www.amazon.com/Ra-qntm/dp/B096TRWRWX">Ra</a>, QNTM: Pretty good sci-fi. I have recently struggled with sci-fi that's conceptually flashy but weak on description and style. This is not that.</li>
+                        <li><a href="https://www.amazon.com/Rise-Kill-First-Targeted-Assassinations/dp/1400069718">Rise and Kill First</a>, Ronen Bergman: Israeli assassination programs. I have retold the story of Mossad poisoning somebody by swapping their toothpaste for a poisoned version a few times now.</li>
+                        <li><a href="https://www.amazon.com/Invisible-Frontiers-Race-Synthesize-Human/dp/0195151593">Invisible Frontiers</a>, Stephen Hall: Covers the race between Harvard and UCSF/Genentech to clone the first human gene. Good science history, and much of it set in Parnassus Heights in SF.</li>
+                        <li><a href="https://www.amazon.com/Remainder-Tom-McCarthy/dp/0307278352">Remainder</a>, Tom McCarthy (no relation!): weird fiction with a very odd trick at the end. Some sort of metaphor about metaphor.</li>
+                        <li><a href="https://www.youtube.com/watch?v=rs1jGsn61p8&list=PLVV0r6CmEsFzDA6mtmKQEgWfcIu49J4nN">Freeman Dyson</a>, Web of Stories: 7 hours of interviews with Freeman Dyson about his life and work.</li>
+                        <li>Movies: I thoroughly enjoyed One Battle After Another, 28 Years Later, Warfare, Mississippi Burning, The Creator, The Order.</li>
+                    </ul>
+                </div>
+
+                <!-- Acknowledgements section -->
+                <div class="acknowledgements">
+                    Thank you to Molly Mielke McCarthy for edits. Her year in review can be found here.
+                </div>
+
+                <!-- Divider before bottom subscription form -->
+                <div class="bottom-form-divider"></div>
+
+                <!-- Email subscription form at bottom -->
+                <form action="https://buttondown.com/api/emails/embed-subscribe/tommccarthyprojects" method="post" target="popupwindow" onsubmit="window.open('https://buttondown.com/tommccarthyprojects', 'popupwindow')" class="embeddable-buttondown-form">
+                    <label for="bd-email-bottom">Subscribe for hand-delivered notifications:</label>
+                    <input type="email" name="email" id="bd-email-bottom" />
+                    <input type="submit" value="Subscribe" />
+                </form>
+            </article>
+        </div>
+    </div>
+
+    <script>
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+            localStorage.setItem('darkMode', document.body.classList.contains('dark-mode'));
+        }
+
+        // Load saved preference
+        if (localStorage.getItem('darkMode') === 'true') {
+            document.body.classList.add('dark-mode');
+        }
+
+        // Dynamically populate footnote tooltips from footer content
+        function populateFootnoteTooltips() {
+            // Get all footnote references in the main text
+            const footnoteRefs = document.querySelectorAll('.footnote-ref');
+            
+            footnoteRefs.forEach(ref => {
+                // Get the footnote number from the href
+                const footnoteId = ref.getAttribute('href').substring(1); // Remove the # from #fn1
+                
+                // Find the corresponding footnote in the footer
+                const footnoteItem = document.getElementById(footnoteId);
+                
+                if (footnoteItem) {
+                    // Get the text content from the footnote (excluding the back arrow link)
+                    const footnoteText = footnoteItem.querySelector('p').cloneNode(true);
+                    // Remove the back arrow link
+                    const backLink = footnoteText.querySelector('a[href^="#fnref"]');
+                    if (backLink) {
+                        backLink.remove();
+                    }
+                    
+                    // Create or update the tooltip span
+                    let tooltip = ref.querySelector('.footnote-tooltip');
+                    if (!tooltip) {
+                        tooltip = document.createElement('span');
+                        tooltip.className = 'footnote-tooltip';
+                        ref.appendChild(tooltip);
+                    }
+                    
+                    // Set the tooltip content (innerHTML to preserve links)
+                    tooltip.innerHTML = footnoteText.innerHTML.trim();
+                }
+            });
+        }
+
+        // Call the function when the page loads
+        document.addEventListener('DOMContentLoaded', populateFootnoteTooltips);
+
+        // Smooth scroll to footnotes
+        document.querySelectorAll('a[href^="#fn"]').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
