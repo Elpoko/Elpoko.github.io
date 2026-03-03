@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lies I Tell Myself on Useless Days - Tom McCarthy</title>
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://tommccarthy.net/self-deception.html">
+    <meta property="og:title" content="Lies I Tell Myself on Useless Days">
+    <meta property="og:description" content="A useless day sometimes feels like a car crash unfolding in slow motion.">
+    <meta property="og:image" content="https://tommccarthy.net/cormac-lies.jpg">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://tommccarthy.net/self-deception.html">
+    <meta property="twitter:title" content="Lies I Tell Myself on Useless Days">
+    <meta property="twitter:description" content="A useless day sometimes feels like a car crash unfolding in slow motion.">
+    <meta property="twitter:image" content="https://tommccarthy.net/cormac-lies.jpg">
+    
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <style>
+    @import url('https://fonts.googleapis.com/css2?family=Newsreader:wght@300;400;500&display=swap');
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: 'Newsreader', 'Georgia', 'Times New Roman', serif;
+        background-color: #f5f5f5;
+        color: #1a1a1a;
+        line-height: 1.7;
+        overflow-x: hidden;
+        font-weight: 500;
+        transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    body.dark-mode {
+        background-color: #1a1a1a;
+        color: #ffffff;
+    }
+
+    .mode-toggle {
+        padding: 0px;
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+    }
+
+    .mode-toggle svg {
+        width: 32px;
+        height: 32px;
+        stroke: #000000;
+        fill: none;
+        transition: stroke 0.3s ease;
+    }
+
+    .mode-toggle:hover svg {
+        stroke: #4a5568;
+    }
+
+    body.dark-mode .mode-toggle svg {
+        stroke: #ffffff;
+    }
+
+    body.dark-mode .mode-toggle:hover svg {
+        stroke: #e8e8e8;
+    }
+
+    .container {
+        display: flex;
+        justify-content: center;
+        min-height: 100vh;
+    }
+
+    .content {
+        width: 100%;
+        max-width: 860px;
+        min-width: 375px;
+        padding: 120px 80px 80px 80px;
+    }
+
+    header {
+        margin-bottom: 80px;
+        margin-left: auto;
+        margin-right: auto;
+        padding-bottom: 10px;
+        border-bottom: 1px solid #d0d0d0;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        max-width: 680px;
+    }
+
+    body.dark-mode header {
+        border-bottom-color: #404040;
+    }
+
+    /* Image styles - match text column width and responsive */
+    article img {
+        display: block;
+        max-width: 100%;
+        height: auto;
+        margin: 24px 0;
+    }
+
+    .site-title {
+        flex: 0 0 auto;
+    }
+
+    .header-links {
+        margin-left: auto;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 1rem;
+    }
+
+    .header-link {
+        color: #000000;
+        text-decoration: none;
+        transition: color 0.3s ease;
+        font-weight: 400;
+    }
+
+    .header-link:hover {
+        color: #4a5568;
+    }
+
+    body.dark-mode .header-link {
+        color: #ffffff;
+    }
+
+    body.dark-mode .header-link:hover {
+        color: #e8e8e8;
+    }
+
+    .header-separator {
+        color: #4a5568;
+        font-weight: 300;
+        transition: color 0.3s ease;
+    }
+
+    body.dark-mode .header-separator {
+        color: #e8e8e8;
+    }
+
+    h1 {
+        font-size: 2.5rem;
+        font-weight: 500;
+        letter-spacing: -0.5px;
+        margin-bottom: 8px;
+        color: #000000;
+        transition: color 0.3s ease;
+    }
+
+    body.dark-mode h1 {
+        color: #ffffff;
+    }
+
+    .site-title {
+        font-size: 2.5rem;
+        font-weight: 500;
+        letter-spacing: -0.5px;
+        line-height: 1;
+        color: #000000;
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
+
+    .site-title:hover {
+        color: #4a5568;
+    }
+
+    body.dark-mode .site-title {
+        color: #ffffff;
+    }
+
+    body.dark-mode .site-title:hover {
+        color: #e8e8e8;
+    }
+
+    article {
+        max-width: 680px;
+        margin: 0 auto;
+    }
+
+    .post-title {
+        font-size: 2.5rem;
+        font-weight: 500;
+        letter-spacing: -0.5px;
+        margin-bottom: 24px;
+        color: #000000;
+        transition: color 0.3s ease;
+        line-height: 1.2;
+    }
+
+    body.dark-mode .post-title {
+        color: #ffffff;
+    }
+
+    .post-subheading {
+        font-size: 1.05rem;
+        font-style: italic;
+        color: #2a2a2a;
+        font-weight: 400;
+        margin-bottom: 40px;
+        transition: color 0.3s ease;
+    }
+
+    body.dark-mode .post-subheading {
+        color: #ffffff;
+    }
+
+    .post-body {
+        font-size: 1.05rem;
+        color: #2a2a2a;
+        font-weight: 400;
+        transition: color 0.3s ease;
+    }
+
+    body.dark-mode .post-body {
+        color: #ffffff;
+    }
+
+    .post-body p {
+        font-size: 1.05rem;
+        color: #2a2a2a;
+        font-weight: 400;
+        margin-bottom: 24px;
+        transition: color 0.3s ease;
+    }
+
+    body.dark-mode .post-body p {
+        color: #ffffff;
+    }
+
+    h2 {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+        font-size: 1.1rem;
+        font-weight: 500;
+        letter-spacing: 0;
+        margin-top: 48px;
+        margin-bottom: 20px;
+        color: #4a4a4a;
+        transition: color 0.3s ease;
+    }
+
+    body.dark-mode h2 {
+        color: #ffffff;
+    }
+
+    h3 {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+        font-size: 1.05rem;
+        font-weight: 500;
+        letter-spacing: 0;
+        margin-top: 36px;
+        margin-bottom: 16px;
+        color: #4a4a4a;
+        transition: color 0.3s ease;
+    }
+
+    body.dark-mode h3 {
+        color: #ffffff;
+    }
+
+    /* Table styles */
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 24px 0 32px 0;
+        font-size: 0.95rem;
+    }
+
+    thead tr {
+        border-bottom: 2px solid #d0d0d0;
+    }
+
+    body.dark-mode thead tr {
+        border-bottom-color: #505050;
+    }
+
+    th {
+        text-align: left;
+        padding: 12px 8px;
+        font-weight: 500;
+        color: #1a1a1a;
+    }
+
+    body.dark-mode th {
+        color: #ffffff;
+    }
+
+    td {
+        padding: 10px 8px;
+        color: #2a2a2a;
+        vertical-align: top;
+    }
+
+    body.dark-mode td {
+        color: #ffffff;
+    }
+
+    tbody tr {
+        border-bottom: 1px solid #e8e8e8;
+    }
+
+    body.dark-mode tbody tr {
+        border-bottom-color: #404040;
+    }
+
+    .table-note {
+        font-size: 0.9rem;
+        color: #666;
+        margin-top: -16px;
+        margin-bottom: 24px;
+        font-style: italic;
+    }
+
+    body.dark-mode .table-note {
+        color: #a0a0a0;
+    }
+
+    /* end table styles */
+
+    /* Table wrapper for horizontal scroll on mobile */
+    .table-wrapper {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        margin: 24px 0 32px 0;
+    }
+
+    .table-wrapper table {
+        margin: 0;
+    }
+    /* end table wrapper style */
+
+    a {
+        color: #1a1a1a;
+        text-decoration: underline;
+        transition: color 0.3s ease;
+    }
+
+    a:hover {
+        color: #4a5568;
+    }
+
+    body.dark-mode a {
+        color: #7dd3c0;
+    }
+
+    body.dark-mode a:hover {
+        color: #9ee4d4;
+    }
+    /* bullet / hyphenated list in article section */
+    article ul {
+        list-style-type: none;
+        padding-left: 0;
+        margin-bottom: 1.5em;
+    }
+
+    article ul li {
+        margin-bottom: 0.8em;
+        line-height: 1.7;
+        padding-left: 2em;
+        text-indent: -2em;
+    }
+
+    article ul li::before {
+        content: "— ";
+        font-size: 1.1em;
+    }
+
+    /* Footnote styles */
+    .footnote-ref {
+        position: relative;
+        cursor: help;
+        text-decoration: none;
+        color: #4a5568;
+        font-size: 0.85em;
+        vertical-align: super;
+        line-height: 0;
+        transition: color 0.3s ease;
+    }
+
+    .footnote-ref:hover {
+        color: #1a1a1a;
+    }
+
+    body.dark-mode .footnote-ref {
+        color: #7dd3c0;
+    }
+
+    body.dark-mode .footnote-ref:hover {
+        color: #9ee4d4;
+    }
+
+    /* Tooltip styles */
+    .footnote-tooltip {
+        position: absolute;
+        bottom: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: #ffffff;
+        color: #1a1a1a;
+        padding: 12px 16px;
+        border-radius: 6px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        font-size: 0.95rem;
+        line-height: 1.5;
+        max-width: 320px;
+        width: max-content;
+        z-index: 1000;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.2s ease;
+        margin-bottom: 8px;
+        font-weight: 400;
+    }
+
+    body.dark-mode .footnote-tooltip {
+        background-color: #2a2a2a;
+        color: #ffffff;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    }
+
+    .footnote-ref:hover .footnote-tooltip {
+        opacity: 1;
+    }
+
+    .footnote-tooltip::after {
+        content: '';
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        border: 6px solid transparent;
+        border-top-color: #ffffff;
+    }
+
+    body.dark-mode .footnote-tooltip::after {
+        border-top-color: #2a2a2a;
+    }
+
+    /* Acknowledgements section */
+    .acknowledgements {
+        margin-top: 24px;
+        margin-bottom: 16px;
+        font-style: italic;
+        font-size: 1.05rem;
+        font-weight: 400;
+        color: #4a4a4a;
+        transition: color 0.3s ease;
+        width: 100%;
+    }
+
+    body.dark-mode .acknowledgements {
+        color: #e8e8e8;
+    }
+
+    /* Footnotes section */
+    .footnotes-divider {
+        width: 100%;
+        height: 1px;
+        background-color: #d0d0d0;
+        margin: 48px 0 24px 0;
+        transition: background-color 0.3s ease;
+    }
+
+    body.dark-mode .footnotes-divider {
+        background-color: #404040;
+    }
+
+    .footnotes {
+        font-size: 0.95rem;
+        color: #4a4a4a;
+        transition: color 0.3s ease;
+        margin-bottom: 0;
+    }
+
+    body.dark-mode .footnotes {
+        color: #e8e8e8;
+    }
+
+    .footnotes ol {
+        padding-left: 24px;
+        list-style-position: outside;
+    }
+
+    .footnotes li {
+        margin-bottom: 12px;
+        font-weight: 400;
+        padding-left: 8px;
+    }
+
+    .footnotes li p {
+        font-size: 0.95rem;
+        color: #4a4a4a;
+        margin-bottom: 0;
+    }
+
+    body.dark-mode .footnotes li p {
+        color: #e8e8e8;
+    }
+
+    /* Email subscription form */
+    .embeddable-buttondown-form {
+        max-width: 680px;
+        margin: 32px 0;
+        padding-left: 24px;
+        border-left: 3px solid #a5b4c4;
+        transition: border-color 0.3s ease;
+    }
+
+    body.dark-mode .embeddable-buttondown-form {
+        border-left-color: #7dd3c0;
+    }
+
+    .embeddable-buttondown-form label {
+        display: block;
+        font-size: 1.05rem;
+        color: #2a2a2a;
+        font-weight: 400;
+        margin-bottom: 12px;
+        transition: color 0.3s ease;
+    }
+
+    body.dark-mode .embeddable-buttondown-form label {
+        color: #ffffff;
+    }
+
+    .embeddable-buttondown-form input[type="email"] {
+        width: 280px;
+        padding: 10px 12px;
+        font-family: 'Newsreader', 'Georgia', 'Times New Roman', serif;
+        font-size: 1rem;
+        border: 1px solid #d0d0d0;
+        border-radius: 4px;
+        background-color: #ffffff;
+        color: #1a1a1a;
+        margin-right: 8px;
+        transition: all 0.3s ease;
+        display: inline-block;
+        vertical-align: middle;
+    }
+
+    .embeddable-buttondown-form input[type="email"]:focus {
+        outline: none;
+        border-color: #4a5568;
+    }
+
+    body.dark-mode .embeddable-buttondown-form input[type="email"] {
+        background-color: #2a2a2a;
+        color: #ffffff;
+        border-color: #404040;
+    }
+
+    body.dark-mode .embeddable-buttondown-form input[type="email"]:focus {
+        border-color: #7dd3c0;
+    }
+
+    .embeddable-buttondown-form input[type="submit"] {
+        padding: 10px 24px;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+        font-size: 0.95rem;
+        font-weight: 500;
+        background-color: #1a1a1a;
+        color: #ffffff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        display: inline-block;
+        vertical-align: middle;
+    }
+
+    .embeddable-buttondown-form input[type="submit"]:hover {
+        background-color: #4a5568;
+    }
+
+    body.dark-mode .embeddable-buttondown-form input[type="submit"] {
+        background-color: #f5f5f5;
+        color: #1a1a1a;
+    }
+
+    body.dark-mode .embeddable-buttondown-form input[type="submit"]:hover {
+        background-color: #e8e8e8;
+    }
+
+    .bottom-form-divider {
+        width: 100%;
+        height: 1px;
+        background-color: #d0d0d0;
+        margin: 32px 0 24px 0;
+        transition: background-color 0.3s ease;
+    }
+
+    body.dark-mode .bottom-form-divider {
+        background-color: #404040;
+    }
+
+    /* Phase 3: Approaching text width - switch to mobile layout with smaller text */
+    @media (max-width: 850px) {
+        .content {
+            padding: 60px 20px 60px 20px;
+        }
+
+        .post-title {
+            font-size: 2rem;
+        }
+
+        .site-title {
+            font-size: 2rem;
+        }
+
+        h1 {
+            font-size: 2rem;
+        }
+
+        .header-links {
+            font-size: 0.9rem;
+        }
+
+        .footnote-tooltip {
+            max-width: 240px;
+            font-size: 0.9rem;
+        }
+
+        .embeddable-buttondown-form input[type="email"] {
+            width: 100%;
+            margin-right: 0;
+            margin-bottom: 12px;
+        }
+
+        .embeddable-buttondown-form input[type="submit"] {
+            width: 100%;
+        }
+    }
+
+    /* Phase 4: Very narrow - minimal padding, minimum width enforced */
+    @media (max-width: 500px) {
+        .content {
+            padding: 60px 12px 60px 12px;
+        }
+
+        .header-links {
+            font-size: 0.85rem;
+        }
+    }
+</style>
+</head>
+<body>
+    <div class="container">
+        <div class="content">
+            <header>
+                <a href="https://tommccarthy.net" class="site-title">Tom McCarthy</a>
+                <div class="header-links">
+                    <a href="https://x.com/carthymctom" class="header-link" target="_blank">X</a>
+                    <span class="header-separator">·</span>
+                </div>
+                <button class="mode-toggle" onclick="toggleDarkMode()" aria-label="Toggle dark mode">
+                    <svg viewBox="0 0 100 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M 0 20 Q 12.5 5, 25 20 T 50 20 T 75 20 T 100 20" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+            </header>
+
+            <article>
+                <h1 class="post-title">Lies I Tell Myself on Useless Days</h1>
+                
+                <p class="post-subheading">March 2026.</p>
+
+                <div class="post-body">
+                    <p>A useless day sometimes feels like a car crash unfolding in slow motion.</p>
+
+                    <p>My morning stumble to the bathroom feels particularly heavy and I am sighing like old Clint Eastwood. Alarm bells should ring, telling me *danger!* *danger!*. At some level I recognize this is not a good start to the day, that my body and mind know something I don’t, but it’s a day of avoidance.</p>
+
+                    <p>Avoid jobs. Avoid hard things. Avoid leaving on time. Avoid discipline. Avoid admitting I’m tired and demotivated. Avoid acknowledging that I’m avoiding and assume instead that I just need more willpower today. This begins as soon as I wake up: “<em>I’ll just sleep a few more minutes</em>.” “<em>I’ll get off my phone and get out of bed in a minute.”</em> Either way I avoid getting out of bed and getting started with the day, and this often ends up with me scrambling out the door, already late. Even then, I have convinced myself I can do a 25 minute journey in 15 minutes.</p>
+
+                    <p>I have little power over doomscrolling and other distractions. I’ll usually block them somehow and avoid having to do battle with them while trying to work. They are particularly potent on days when I am struggling to work: attractive because I don’t want to work, and all the more frustrating then for keeping me from doing work. On a day like this, I’ll easily spend an hour between meetings opening and closing different messaging apps. Picture me slouched back in an office chair, absent-mindedly picking at my phone. <em>“I’ll get started on that job in a few minutes.”</em> When I am avoiding something, a minute of distraction can turn into a 3 hour diversion. It is fundamentally not possible for me to ‘just check Twitter’ in this mode. The spirit of the Useless Day is like a rare earth magnet that locks on to distraction and wriggles away from anything requiring a hint of volition.</p>
+
+                    <p>By lunchtime, the workday is spiraling. Should I admit it? On a seriously avoidant day, I might not acknowledge it; there’s no problem here, I’ve just been letting my mind wander and gathering my energy before starting some serious work! This is award-winning self-deceit. I’ve done nothing this far into the day. Sure I’ve showed up to a meeting and responded to a handful of emails… I’ve also taken a walk, went for a snack, watched 40 minutes of Jason Bourne clips on Youtube, 4 movie trailers and a physics explainer video, and done some NYT Sudoku. I’m meant to be working!</p>
+
+                    <p>In truth, I may be trapped between tasks I don’t want to do. A sensitive message needs to be written, I need to ship something that is underdefined, or I just need to do something new and don’t really know where to start. Further, I’ve put it off for a few days already. ‘I’ll do it tomorrow’ is fine for a while, but eventually it runs into “I’ve put this off for too long and it’s becoming an issue”. The task isn’t uniquely challenging, it’s just that each day of procrastination has made it less defined and more intimidating. And as I’ve procrastinated on it, I’ve grown increasingly guilty, until I refuse to consider anything other than this task as ‘real work’. This is often the root cause of a Useless Feeling day, though it can take me a while to identify it.</p>
+
+                    <!-- Email subscription form -->
+                    <form action="https://buttondown.com/api/emails/embed-subscribe/tommccarthyprojects" method="post" target="popupwindow" onsubmit="window.open('https://buttondown.com/tommccarthyprojects', 'popupwindow')" class="embeddable-buttondown-form">
+                        <label for="bd-email-top">Subscribe for hand-delivered notifications:</label>
+                        <input type="email" name="email" id="bd-email-top" />
+                        <input type="submit" value="Subscribe" />
+                    </form>
+
+                    <p>Time for a snack. Call a friend. Sigh and go meet up with somebody or slip into Twitter / Youtube / LinkedIn. I might progress from scrolling to doing some unrelated work. That can feel better than scrolling, but it all feels a little shameful once I know that I’m shying away from the real challenge. We are complex enough creatures that we can evade something and then feel bad about that avoidance, but continue to do it anyways. Time for a snack.</p>
+
+                    <p>Around 7pm, my thinking is as follows: <em>1) Wow, I have wasted so much time. 2) I better get to work if I want to avoid this day being a real car crash. 3) There’s plenty of time to get some good work done. 4) I think I know where to start on that job I’ve been avoiding. 5) I have to get it done today.</em></p>
+
+                    <p>And on the delusional side: <em>I’m a night owl anyways, I work better at night. This is when I do my best work. The wasted day was necessary preparation. Does it matter if I work late? With an hour or two of focused work, I can reclaim the day and make up for all that relaxing earlier. I’m going to get so much done. This is great.</em></p>
+
+                    <p>I lock in, with Aphex Twin on repeat. Make a list of the tasks I’ll do, break them down into clear steps and get some momentum going by responding to a few emails. You know what? Feels good. Maybe this is how I should work. It’s too hard to work during the day. There’s nobody around now. No emails, texts. Just me and the laptop. The office is empty except for the other hardcore people. Now I’m really grinding. A friend tries to call me but I don’t pick up. I am locked in.</p>
+
+                    <p>At 2am, my redemption arc is complete. The tricky job feels defeated. Importantly, I felt immersed and motivated rather than distracted and that’s as important as the quality and quantity of my outputs. </p>
+
+                    <p>I should go to bed now, but I’m pretty wired. I read a bit, watch a video, go scrolling again. Oops. It’s 3am now and I have a 9am. Tomorrow’s workday has been sacrificed.</p>
+
+                    <p>Tomorrow is a recovery day. I don’t get much done on half a night’s sleep and operate at half capacity. Am I more productive for having stayed up, proving to myself that I didn’t waste the day? It felt good to get a chunk of work done before finishing the day, but it might not have been necessary. Instead of the whole 7 hour nocturnal work session, could I have just gotten started on the intimidating task and left it for the next day? Alas that was what I wanted to avoid, having promised myself I wouldn’t let it slip another day.</p>
+
+                    <p>I think all of this is complicated. In reality, my self-evaluated productivity is often deeply suspect, more to do with my feelings about a particular task or interaction than a reliable analysis, and heavily - negatively - weighted towards whatever I’ve fallen short on. Even if this Useless Day felt… useless, an objective analysis might reveal it to have been merely below average in terms of output. I had a handful of meetings, responded to a couple of emails, and might have done some useful reading or writing, or just unblocked someone else. At 8pm however, I felt I had done nothing at all, taken no step in the right direction, and spent the day shying away from the real work, i.e. the hardest task I could think of.</p>
+
+                    <p>I recently discovered <a href="https://en.wikipedia.org/wiki/Expeditus">Saint Expeditus</a>, the patron saint of procrastinators.</p>
+                </div>
+
+                <!-- Acknowledgements section -->
+                <div class="acknowledgements">
+                    <p>Thank you Molly, Gytis & Michael for your help.</p>
+                </div>
+
+                <!-- Divider before bottom subscription form -->
+                <div class="bottom-form-divider"></div>
+
+                <!-- Email subscription form at bottom -->
+                <form action="https://buttondown.com/api/emails/embed-subscribe/tommccarthyprojects" method="post" target="popupwindow" onsubmit="window.open('https://buttondown.com/tommccarthyprojects', 'popupwindow')" class="embeddable-buttondown-form">
+                    <label for="bd-email-bottom">Subscribe for hand-delivered notifications:</label>
+                    <input type="email" name="email" id="bd-email-bottom" />
+                    <input type="submit" value="Subscribe" />
+                </form>
+            </article>
+        </div>
+    </div>
+
+    <script>
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+            localStorage.setItem('darkMode', document.body.classList.contains('dark-mode'));
+        }
+
+        // Load saved preference
+        if (localStorage.getItem('darkMode') === 'true') {
+            document.body.classList.add('dark-mode');
+        }
+
+        // Dynamically populate footnote tooltips from footer content
+        function populateFootnoteTooltips() {
+            // Get all footnote references in the main text
+            const footnoteRefs = document.querySelectorAll('.footnote-ref');
+            
+            footnoteRefs.forEach(ref => {
+                // Get the footnote number from the href
+                const footnoteId = ref.getAttribute('href').substring(1); // Remove the # from #fn1
+                
+                // Find the corresponding footnote in the footer
+                const footnoteItem = document.getElementById(footnoteId);
+                
+                if (footnoteItem) {
+                    // Get the text content from the footnote (excluding the back arrow link)
+                    const footnoteText = footnoteItem.querySelector('p').cloneNode(true);
+                    // Remove the back arrow link
+                    const backLink = footnoteText.querySelector('a[href^="#fnref"]');
+                    if (backLink) {
+                        backLink.remove();
+                    }
+                    
+                    // Create or update the tooltip span
+                    let tooltip = ref.querySelector('.footnote-tooltip');
+                    if (!tooltip) {
+                        tooltip = document.createElement('span');
+                        tooltip.className = 'footnote-tooltip';
+                        ref.appendChild(tooltip);
+                    }
+                    
+                    // Set the tooltip content (innerHTML to preserve links)
+                    tooltip.innerHTML = footnoteText.innerHTML.trim();
+                }
+            });
+        }
+
+        // Call the function when the page loads
+        document.addEventListener('DOMContentLoaded', populateFootnoteTooltips);
+
+        // Smooth scroll to footnotes
+        document.querySelectorAll('a[href^="#fn"]').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
