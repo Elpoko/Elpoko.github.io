@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Review: Apple In China - Tom McCarthy</title>
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://tommccarthy.net/posts/apple-in-china.html">
+    <meta property="og:title" content="Review: Apple In China">
+    <meta property="og:description" content="Is it harder to rebuild a supply chain outside China, or to build that supply chain in the first place? My notes on Apple In China, by Patrick McGee.">
+    <meta property="og:image" content="https://tommccarthy.net/john.png">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://tommccarthy.net/posts/apple-in-china.html">
+    <meta property="twitter:title" content="Review: Apple In China">
+    <meta property="twitter:description" content="Is it harder to rebuild a supply chain outside China, or to build that supply chain in the first place? My notes on Apple In China, by Patrick McGee.">
+    <meta property="twitter:image" content="https://tommccarthy.net/john.png">
+
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <style>
+    @import url('https://fonts.googleapis.com/css2?family=Newsreader:wght@300;400;500&display=swap');
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: 'Newsreader', 'Georgia', 'Times New Roman', serif;
+        background-color: #f5f5f5;
+        color: #1a1a1a;
+        line-height: 1.7;
+        overflow-x: hidden;
+        font-weight: 500;
+        transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    body.dark-mode {
+        background-color: #1a1a1a;
+        color: #ffffff;
+    }
+
+    .mode-toggle {
+        padding: 0px;
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+    }
+
+    .mode-toggle svg {
+        width: 32px;
+        height: 32px;
+        stroke: #000000;
+        fill: none;
+        transition: stroke 0.3s ease;
+    }
+
+    .mode-toggle:hover svg {
+        stroke: #4a5568;
+    }
+
+    body.dark-mode .mode-toggle svg {
+        stroke: #ffffff;
+    }
+
+    body.dark-mode .mode-toggle:hover svg {
+        stroke: #e8e8e8;
+    }
+
+    .container {
+        display: flex;
+        justify-content: center;
+        min-height: 100vh;
+    }
+
+    .content {
+        width: 100%;
+        max-width: 860px;
+        min-width: 375px;
+        padding: 120px 80px 80px 80px;
+    }
+
+    header {
+        margin-bottom: 40px;
+        margin-left: auto;
+        margin-right: auto;
+        padding-bottom: 10px;
+        border-bottom: 1px solid #d0d0d0;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        max-width: 680px;
+    }
+
+    body.dark-mode header {
+        border-bottom-color: #404040;
+    }
+
+    /* Image styles - match text column width and responsive */
+    article img {
+        display: block;
+        max-width: 100%;
+        height: auto;
+        margin: 24px 0;
+    }
+
+    .site-title {
+        flex: 0 0 auto;
+    }
+
+    .header-links {
+        margin-left: auto;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 1rem;
+    }
+
+    .header-link {
+        color: #000000;
+        text-decoration: none;
+        transition: color 0.3s ease;
+        font-weight: 400;
+    }
+
+    .header-link:hover {
+        color: #4a5568;
+    }
+
+    body.dark-mode .header-link {
+        color: #ffffff;
+    }
+
+    body.dark-mode .header-link:hover {
+        color: #e8e8e8;
+    }
+
+    .header-separator {
+        color: #4a5568;
+        font-weight: 300;
+        transition: color 0.3s ease;
+    }
+
+    body.dark-mode .header-separator {
+        color: #e8e8e8;
+    }
+
+    h1 {
+        font-size: 2.5rem;
+        font-weight: 500;
+        letter-spacing: -0.5px;
+        margin-bottom: 8px;
+        color: #000000;
+        transition: color 0.3s ease;
+    }
+
+    body.dark-mode h1 {
+        color: #ffffff;
+    }
+
+    .site-title {
+        font-size: 2.5rem;
+        font-weight: 500;
+        letter-spacing: -0.5px;
+        line-height: 1;
+        color: #000000;
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
+
+    .site-title:hover {
+        color: #4a5568;
+    }
+
+    body.dark-mode .site-title {
+        color: #ffffff;
+    }
+
+    body.dark-mode .site-title:hover {
+        color: #e8e8e8;
+    }
+
+    article {
+        max-width: 680px;
+        margin: 0 auto;
+    }
+
+    .post-title {
+        font-size: 2.5rem;
+        font-weight: 500;
+        letter-spacing: -0.5px;
+        margin-bottom: 24px;
+        color: #000000;
+        transition: color 0.3s ease;
+        line-height: 1.2;
+    }
+
+    body.dark-mode .post-title {
+        color: #ffffff;
+    }
+
+    .post-subheading {
+        font-size: 1.05rem;
+        font-style: italic;
+        color: #2a2a2a;
+        font-weight: 400;
+        margin-bottom: 40px;
+        transition: color 0.3s ease;
+    }
+
+    body.dark-mode .post-subheading {
+        color: #ffffff;
+    }
+
+    .post-body {
+        font-size: 1.05rem;
+        color: #2a2a2a;
+        font-weight: 400;
+        transition: color 0.3s ease;
+    }
+
+    body.dark-mode .post-body {
+        color: #ffffff;
+    }
+
+    .post-body p {
+        font-size: 1.05rem;
+        color: #2a2a2a;
+        font-weight: 400;
+        margin-bottom: 24px;
+        transition: color 0.3s ease;
+    }
+
+    body.dark-mode .post-body p {
+        color: #ffffff;
+    }
+
+    h2 {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+        font-size: 1.1rem;
+        font-weight: 500;
+        letter-spacing: 0;
+        margin-top: 48px;
+        margin-bottom: 20px;
+        color: #4a4a4a;
+        transition: color 0.3s ease;
+    }
+
+    body.dark-mode h2 {
+        color: #ffffff;
+    }
+
+    h3 {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+        font-size: 1.05rem;
+        font-weight: 500;
+        letter-spacing: 0;
+        margin-top: 36px;
+        margin-bottom: 16px;
+        color: #4a4a4a;
+        transition: color 0.3s ease;
+    }
+
+    body.dark-mode h3 {
+        color: #ffffff;
+    }
+
+    /* Table styles */
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 24px 0 32px 0;
+        font-size: 0.95rem;
+    }
+
+    thead tr {
+        border-bottom: 2px solid #d0d0d0;
+    }
+
+    body.dark-mode thead tr {
+        border-bottom-color: #505050;
+    }
+
+    th {
+        text-align: left;
+        padding: 12px 8px;
+        font-weight: 500;
+        color: #1a1a1a;
+    }
+
+    body.dark-mode th {
+        color: #ffffff;
+    }
+
+    td {
+        padding: 10px 8px;
+        color: #2a2a2a;
+        vertical-align: top;
+    }
+
+    body.dark-mode td {
+        color: #ffffff;
+    }
+
+    tbody tr {
+        border-bottom: 1px solid #e8e8e8;
+    }
+
+    body.dark-mode tbody tr {
+        border-bottom-color: #404040;
+    }
+
+    .table-note {
+        font-size: 0.9rem;
+        color: #666;
+        margin-top: -16px;
+        margin-bottom: 24px;
+        font-style: italic;
+    }
+
+    body.dark-mode .table-note {
+        color: #a0a0a0;
+    }
+
+    /* end table styles */
+
+    /* Table wrapper for horizontal scroll on mobile */
+    .table-wrapper {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        margin: 24px 0 32px 0;
+    }
+
+    .table-wrapper table {
+        margin: 0;
+    }
+    /* end table wrapper style */
+
+    a {
+        color: #1a1a1a;
+        text-decoration: underline;
+        transition: color 0.3s ease;
+    }
+
+    a:hover {
+        color: #4a5568;
+    }
+
+    body.dark-mode a {
+        color: #7dd3c0;
+    }
+
+    body.dark-mode a:hover {
+        color: #9ee4d4;
+    }
+    /* bullet / hyphenated list in article section */
+    article ul {
+        list-style-type: none;
+        padding-left: 0;
+        margin-bottom: 1.5em;
+    }
+
+    article ul li {
+        margin-bottom: 0.8em;
+        line-height: 1.7;
+        padding-left: 2em;
+        text-indent: -2em;
+    }
+
+    article ul li::before {
+        content: "— ";
+        font-size: 1.1em;
+    }
+
+    /* Footnote styles */
+    .footnote-ref {
+        position: relative;
+        cursor: help;
+        text-decoration: none;
+        color: #4a5568;
+        font-size: 0.85em;
+        vertical-align: super;
+        line-height: 0;
+        transition: color 0.3s ease;
+    }
+
+    .footnote-ref:hover {
+        color: #1a1a1a;
+    }
+
+    body.dark-mode .footnote-ref {
+        color: #7dd3c0;
+    }
+
+    body.dark-mode .footnote-ref:hover {
+        color: #9ee4d4;
+    }
+
+    /* Tooltip styles */
+    .footnote-tooltip {
+        position: absolute;
+        bottom: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: #ffffff;
+        color: #1a1a1a;
+        padding: 12px 16px;
+        border-radius: 6px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        font-size: 0.95rem;
+        line-height: 1.5;
+        max-width: 320px;
+        width: max-content;
+        z-index: 1000;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.2s ease;
+        margin-bottom: 8px;
+        font-weight: 400;
+    }
+
+    body.dark-mode .footnote-tooltip {
+        background-color: #2a2a2a;
+        color: #ffffff;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    }
+
+    .footnote-ref:hover .footnote-tooltip {
+        opacity: 1;
+    }
+
+    .footnote-tooltip::after {
+        content: '';
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        border: 6px solid transparent;
+        border-top-color: #ffffff;
+    }
+
+    body.dark-mode .footnote-tooltip::after {
+        border-top-color: #2a2a2a;
+    }
+
+    /* Acknowledgements section */
+    .acknowledgements {
+        margin-top: 24px;
+        margin-bottom: 16px;
+        font-style: italic;
+        font-size: 1.05rem;
+        font-weight: 400;
+        color: #4a4a4a;
+        transition: color 0.3s ease;
+        width: 100%;
+    }
+
+    body.dark-mode .acknowledgements {
+        color: #e8e8e8;
+    }
+
+    /* Footnotes section */
+    .footnotes-divider {
+        width: 100%;
+        height: 1px;
+        background-color: #d0d0d0;
+        margin: 48px 0 24px 0;
+        transition: background-color 0.3s ease;
+    }
+
+    body.dark-mode .footnotes-divider {
+        background-color: #404040;
+    }
+
+    .footnotes {
+        font-size: 0.95rem;
+        color: #4a4a4a;
+        transition: color 0.3s ease;
+        margin-bottom: 0;
+    }
+
+    body.dark-mode .footnotes {
+        color: #e8e8e8;
+    }
+
+    .footnotes ol {
+        padding-left: 24px;
+        list-style-position: outside;
+    }
+
+    .footnotes li {
+        margin-bottom: 12px;
+        font-weight: 400;
+        padding-left: 8px;
+    }
+
+    .footnotes li p {
+        font-size: 0.95rem;
+        color: #4a4a4a;
+        margin-bottom: 0;
+    }
+
+    body.dark-mode .footnotes li p {
+        color: #e8e8e8;
+    }
+
+    /* Email subscription form */
+    .embeddable-buttondown-form {
+        max-width: 680px;
+        margin: 32px 0;
+        padding-left: 24px;
+        border-left: 3px solid #a5b4c4;
+        transition: border-color 0.3s ease;
+    }
+
+    body.dark-mode .embeddable-buttondown-form {
+        border-left-color: #7dd3c0;
+    }
+
+    .embeddable-buttondown-form label {
+        display: block;
+        font-size: 1.05rem;
+        color: #2a2a2a;
+        font-weight: 400;
+        margin-bottom: 12px;
+        transition: color 0.3s ease;
+    }
+
+    body.dark-mode .embeddable-buttondown-form label {
+        color: #ffffff;
+    }
+
+    .embeddable-buttondown-form input[type="email"] {
+        width: 280px;
+        padding: 10px 12px;
+        font-family: 'Newsreader', 'Georgia', 'Times New Roman', serif;
+        font-size: 1rem;
+        border: 1px solid #d0d0d0;
+        border-radius: 4px;
+        background-color: #ffffff;
+        color: #1a1a1a;
+        margin-right: 8px;
+        transition: all 0.3s ease;
+        display: inline-block;
+        vertical-align: middle;
+    }
+
+    .embeddable-buttondown-form input[type="email"]:focus {
+        outline: none;
+        border-color: #4a5568;
+    }
+
+    body.dark-mode .embeddable-buttondown-form input[type="email"] {
+        background-color: #2a2a2a;
+        color: #ffffff;
+        border-color: #404040;
+    }
+
+    body.dark-mode .embeddable-buttondown-form input[type="email"]:focus {
+        border-color: #7dd3c0;
+    }
+
+    .embeddable-buttondown-form input[type="submit"] {
+        padding: 10px 24px;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+        font-size: 0.95rem;
+        font-weight: 500;
+        background-color: #1a1a1a;
+        color: #ffffff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        display: inline-block;
+        vertical-align: middle;
+    }
+
+    .embeddable-buttondown-form input[type="submit"]:hover {
+        background-color: #4a5568;
+    }
+
+    body.dark-mode .embeddable-buttondown-form input[type="submit"] {
+        background-color: #f5f5f5;
+        color: #1a1a1a;
+    }
+
+    body.dark-mode .embeddable-buttondown-form input[type="submit"]:hover {
+        background-color: #e8e8e8;
+    }
+
+    .bottom-form-divider {
+        width: 100%;
+        height: 1px;
+        background-color: #d0d0d0;
+        margin: 32px 0 24px 0;
+        transition: background-color 0.3s ease;
+    }
+
+    body.dark-mode .bottom-form-divider {
+        background-color: #404040;
+    }
+
+    /* Phase 3: Approaching text width - switch to mobile layout with smaller text */
+    @media (max-width: 850px) {
+        .content {
+            padding: 60px 20px 60px 20px;
+        }
+
+        .post-title {
+            font-size: 2rem;
+        }
+
+        .site-title {
+            font-size: 2rem;
+        }
+
+        h1 {
+            font-size: 2rem;
+        }
+
+        .header-links {
+            font-size: 0.9rem;
+        }
+
+        .footnote-tooltip {
+            max-width: 240px;
+            font-size: 0.9rem;
+        }
+
+        .embeddable-buttondown-form input[type="email"] {
+            width: 100%;
+            margin-right: 0;
+            margin-bottom: 12px;
+        }
+
+        .embeddable-buttondown-form input[type="submit"] {
+            width: 100%;
+        }
+    }
+
+    /* Phase 4: Very narrow - minimal padding, minimum width enforced */
+    @media (max-width: 500px) {
+        .content {
+            padding: 60px 12px 60px 12px;
+        }
+
+        .header-links {
+            font-size: 0.85rem;
+        }
+    }
+</style>
+</head>
+<body>
+    <div class="container">
+        <div class="content">
+            <header>
+                <a href="https://tommccarthy.net" class="site-title">Tom McCarthy</a>
+                <div class="header-links">
+                    <a href="https://x.com/carthymctom" class="header-link" target="_blank">X</a>
+                    <span class="header-separator">·</span>
+                </div>
+                <button class="mode-toggle" onclick="toggleDarkMode()" aria-label="Toggle dark mode">
+                    <svg viewBox="0 0 100 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M 0 20 Q 12.5 5, 25 20 T 50 20 T 75 20 T 100 20" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+            </header>
+
+            <article>
+                <h1 class="post-title">Review: Apple In China</h1>
+
+                <p class="post-subheading">June, 2026: Is it harder to rebuild a supply chain outside China, or to build that supply chain in the first place? My notes on <a href="https://www.amazon.com/Apple-China-Capture-Greatest-Company/dp/1668053373">Apple In China</a>, by Patrick McGee, published in May, 2025.</p>
+
+                <div class="post-body">
+                    <p>I always enjoy snapshots of personalities and misunderstandings. In “<a href="https://www.amazon.ca/Apple-China-Capture-Greatest-Company/dp/1668053373">Apple In China</a>”, we meet <a href="https://www.linkedin.com/in/jeford55/">John Ford</a>, formerly a college football player and Mormon missionary in Taiwan. He’s in charge of Apple’s first Chinese store, which quickly devolves into finely-controlled chaos. Ford appears as a sort of local China-whisperer, negotiating tacit understandings with gangsters, the police chief, and the masses of poor people sent by resellers to buy iPhones on their behalf. Lacking understanding of Chinese culture, the American executives in Cupertino do not appreciate Ford’s approach, or how effective he is. They eventually send over a few ex-military guys to get things under control. These security guards get arrested after shoving some rowdy Chinese customers and Ford has to get them out of jail and send them back to California.</p>
+
+                    <p>Tim Cook’s personality is well-guarded and sanitized. Before 2011 at Apple, he was the original supply chain master, and we see some of what this entails in the book. Like many of his peers, he takes in information fast, and gets to the point faster. He has a well-tuned bullshit meter, exceptional attention-to-detail, and holds his reports to account. When you report your results to him on a Friday evening, he remembers exactly what you promised to deliver last week. All this is characteristic of a certain type of high-performing, operationally-focused business. Three anecdotes about Tim that have stuck with me:</p>
+                    
+                    <ol>
+                        <li>When subordinates are not negotiating well, he slowly drawls “don’t… be afraid … to be … unreasonable.” You can ask for things that you don’t think are in the cards. Your counterparty might be open to rushing an order, opening a new factory, or cutting prices. You’re Apple.</li>
+
+                        <li>He picks up on incomplete but vaguely-worded reports: Teammate says “We can just charter a plane and we’ll get the units delivered on time.” Tim asks “Is the plane available, is it booked?” Teammate starts to squirm a little: “We’re looking into availability right now.” Tim: “So you knew you had to deliver X units but didn’t have the plane ready to do it?” I’ve been on the receiving and delivering end of similar conversations, more vividly recalling the ones where I was found out. They’ve made me better at my job.</li>
+
+                        <li>Cook has to treat both Xi and Trump as modern feudal overlords. He apologizes to the Chinese people for supposed transgressions, agrees to fund more factories in both China and America, and donates $1M personally to Trump’s inauguration fund.</li>
+                    </ol>
+
+                    <p>The numbers in the book impress Apple’s scale. Hundreds of billions of revenue. $50B a year spent on Chinese suppliers. A store in Beijing with 30 registers, each processing a transaction every 2 minutes, or about $900k (assuming each transaction is a $1k iPhone) an hour - from just one store! Clearly, not all businesses are created equal, and some just blow the others out of the water. You should consider getting into consumer electronics.</p>
+
+                    <p>Or not. The Chinese learned quickly from Apple and are now fast followers, if not leaders in many related areas. Huawei quickly imitates most Apple releases, and sometimes they manage things like the tri-panel <a href="https://en.wikipedia.org/wiki/Huawei_Mate_XT">Mate XT</a>, which has similar specs to the iPad Pro, but with a thinner screen. The XT’s panels are 3.6mm thick, whereas the thinnest iPad is 5.1mm thick. If Apple could still beat everyone else at making the thinnest devices, I bet they would be trumpeting it a little louder. The Huawei devices, however, don’t appeal to me as much - or <a href="https://www.vivo.com/en/products">Vivo</a>, <a href="https://www.mi.com/global/">Xiaomi</a> and <a href="https://www.oppo.com/en/smartphones/">Oppo</a>. I guess I’m roughly your average consumer, and Apple’s brand and marketing really is a moat.</p>
+
+                    <!-- Email subscription form -->
+                    <form action="https://buttondown.com/api/emails/embed-subscribe/tommccarthyprojects" method="post" target="popupwindow" onsubmit="window.open('https://buttondown.com/tommccarthyprojects', 'popupwindow')" class="embeddable-buttondown-form">
+                        <label for="bd-email-top">Subscribe for hand-delivered notifications:</label>
+                        <input type="email" name="email" id="bd-email-top" />
+                        <input type="submit" value="Subscribe" />
+                    </form>
+
+                    <p>I was surprised to learn how much the 2019-2022 sanctions on Huawei benefitted Apple. Huawei’s premium phones had begun to dramatically outsell iPhones in China in late 2018, beating the iPhone XR in particular. As a result, iPhone revenues in Q1 2019 <a href="https://www.apple.com/ca/newsroom/2019/01/apple-reports-first-quarter-results/">declined 15%</a> compared to Q1 2018, and Apple missed its revenue target by about $5B. However, the 2019 & 2020 sanctions cut Huawei off from selling their phones in the West, from buying chips from US-affiliated vendors, and from equipping their phones with the Playstore and services from Google, Meta etc. In the long run, the sanctions encouraged further Chinese self-sufficiency, as Huawei decoupled from Android and developed its own OS, HarmonyOS. The sanctions also caused Huawei to spin out its budget smartphone division, <a href="https://www.honor.com/global/phones/">Honor</a>, enabling that business to continue buying chips at an affordable price. Since then, the iPhone’s market share in China has grown from ~10% to ~20%. Keep in mind that Apple makes a lot more profit on sales than other brands.</p>
+
+                    <p>Apple likes to let its manufacturing prowess speak for itself. The company’s story is one of messianic and maniacal visionaries, crafting the Insanely Great in Cupertino. The company <em>designs.</em></p>
+
+                    <p>But Apple also <em>makes</em>. It does so better than almost any other organization. It produces faster, smaller, slicker, cooler devices. And it ramps production faster than any other organization, up to 10s, 100s of millions of units every year. iPhones, iPads and Macs are luxury devices, but a far wider range of people buy them than Rolexes, Arc’teryx and Porsches.<a href="#fn1" id="fnref1" class="footnote-ref">1</a> Apple’s stuff feels nice because the company is a master of manufacturing. Engineers are tasked with achieving incredibly challenging form factors - space grey steel, scratch-resistant glass, a super-compact antenna - and travel the world seeking out the equipment and expertise necessary to do that, whether it be found amongst watchmakers, car designers, or aerospace firms. Once they find it, they scale up the technique beyond all previous examples: Apple will buy 10 or 100 times as many units as any other customer, set up 30 assembly lines with these tools in a Foxconn facility, train Chinese farmers how to use them, and run them 24/7. This is a powerful set of competencies.</p>
+
+                    <p>To make laptops out of a single piece of aluminum, Apple and Foxconn <a href="https://open.substack.com/pub/chinatalk/p/apple-in-china?r=nfpw&selection=0999b59b-8636-40e7-b0bf-313561a1a0c6&utm_campaign=post-share-selection&utm_medium=web&aspectRatio=instagram&textColor=%23ffffff&bgImage=true">bought 10,000 CNC machines</a>, and they bought out the next few years’ supply from FANUC. To create thin edges on slim iMacs, Apple licensed and scaled up a welding technique <a href="https://archive.is/xJBK3">previously used</a> for fuel tanks on rockets. They expect the same approach from <a href="https://archive.is/krYdi">their architects</a>. I think Apple is able to buy these machines because it trusts it will make its money back on them - it has the demand and margins to buy 10,000 CNCs for $50-100k each. SpaceX applies a similar mentality to new materials and fabrication techniques, trusting that future demand will justify - or even require - investing in these capabilities today.</p>
+
+                    <p>One of McGee’s main points in the book is that Apple could not have done this without China. Obviously China benefitted from Apple’s investment - enabling at least a million jobs - but McGee doesn’t really explain just how well China did from the arrangement. For 20 years or so, Chinese electronics were limited to basic components, shoddy plastic gizmos and second-rate brands. In 2026, most people don’t sniff at “Made in China” anymore and we enjoy oodles of nice Chinese electronics, ranging from DJI drones to Anker chargers, solar panels and EVs - if you’re allowed to buy them. What role did Apple play in enabling this? How culpable might the company appear in years to come?</p>
+
+                    <p>Tesla is mentioned, in passing, in relation to the Shanghai GigaFactory. The common tale here is that Musk managed to get a factory opened in China without doing a JV because he’s just that good. McGee says that Chinese officials pushed Musk to open the factory even faster than planned, presumably in order to accelerate the advent of the Chinese EV industry. The fact that there was no JV is often used to imply that no Tesla IP leaked to Chinese companies, but I find that hard to believe - or it might not matter if Chinese companies could hire lots of ex-Tesla workers in Shanghai. This leaves Musk in a less impressive light. Would you prefer to compete against Musk or the CCP?</p>
+
+                    <p>Apple’s efforts to diversify its supply chain do not appear to be going very well. This has mainly meant starting to make iPhones in India. The newest iPhone models are now made in India as well as China, though the ramp up in India has been a bit slower. From 2006-2015, Chinese production went from 0 to 208 M units per year. From 2016 - 2025, India grew from 0 to 55 M units per year. Foxconn handles most of the Indian iPhone production, which seems like a good move for a Taiwanese company diversifying from Xi’s China. On one hand, Apple has an existing Chinese supply chain, doesn’t need to move wholesale to India yet, and may want to avoid that for fear of CCP pressure. On the other hand, the Indian supply chain may prove more difficult to develop.</p>
+
+                    <p>McGee’s argument is that the Indians are less desperate than the Chinese for Apple’s business. The Indian government will not muster up 50,000 migrant workers to staff factories. Chinese national and provincial governments will express bus men, women and children to polish screens in <a href="https://www.google.com/maps/place/FOXCONN+Zhengzhou+Science+Park/@34.552974,113.8456301,930m/data=!3m2!1e3!4b1!4m6!3m5!1s0x35d740c841ad8d0d:0xb159c74c54f9d860!8m2!3d34.552974!4d113.848205!16s%2Fg%2F11cm1m5vdk?entry=tts&g_ep=EgoyMDI2MDYwMS4wIPu8ASoASAFQAw%3D%3D&skid=276edc86-1640-46e4-94dd-e1d5faf3ee5d">Zhengzhou</a>. If Apple engineers call for a slightly different screw, they’ll have 10,000 of them the next day in China. That doesn’t seem to happen in India - or America, or Europe, or basically anywhere outside China.</p>
+
+                    <p>Most of the iPhone assembly in India seems to be final assembly, test and packaging (FATP). This is relatively clean work, and many of the components come from China, which is hardly a decoupled or derisked supply chain. FATP seems easier to do than manufacturing. Most Chinese suppliers graduated from making basic components, to more advanced components, and eventually to manufacturing and assembling whole devices. It seems difficult to go in the opposite direction, moving from high tech assembly and testing to more basic, dirty and lower-margin manufacturing.</p>
+
+                    <p>“<a href="https://www.amazon.com/How-Asia-Works-Joe-Studwell/dp/0802121322">How Asia Works</a>” describes how South-East Asian countries approached similar problems in the late 1900s. Things went well for countries that forced themselves to learn the basics and later moved up the chain, e.g. car making and ship building in South Korea. Countries that started with assembly-style work didn’t do nearly as well. The book details how Thailand got many foreign companies to assemble products with Thai labor, but kinda got stuck there. Without a hefty push from Apple, I fear Apple manufacturing in India might fail similarly. PS, check out <a href="https://joestudwell.wordpress.com/">Joe Studwell’s blog</a> for an archive of posts on Asian and African development.</p>
+
+                    <p>Tesla makes cars in Fremont, Anduril will <a href="https://www.anduril.com/arsenal-1">make drones</a> in Ohio. Many other new American companies are trying to develop world-class manufacturing capacity in the US. The same is true for some European war/defense companies. If these companies can do it, can Apple? McGee is pessimistic about it, arguing that the Chinese supply chain is just too difficult to replicate elsewhere, relying on plentiful labor, government cooperation in ignoring labor laws, and vendors who will just do whatever it takes to win Apple’s business. Apple is clearly trying to diversify out of China, but it could also simply choose not to and wait out Trump and Xi, respectively.</p>
+
+                    <p>All of this, however, is no longer Tim Cook’s problem. As incoming CEO, it’s John Ternus’s job to deal with it now. Ternus was a hardware engineer on the Product Design team for 10 years and has overseen the iPhone, Mac, Airpod and Watch hardware to date. No doubt the most glaring problems he will have to deal with are around navigating AI and developing insanely great products, but the less spoken-about part of his job will require becoming a savvy politician and supply chain architect.</p>
+                </div>
+
+                <!-- Acknowledgements section -->
+                <div class="acknowledgements">
+                    Thanks to <a href="https://www.molly.info/">Molly Mielke McCarthy</a> and <a href="https://x.com/ctbeiser">Chris Beiser</a> for feedback and ideas.
+                </div>
+
+                <!-- Footnotes section -->
+                <div class="footnotes-divider"></div>
+
+                <div class="footnotes">
+                    <ol>
+                        <li id="fn1">
+                            <p>A friend makes the point that Apple is not a luxury brand, per se. Luxury brands add features and devices cost more as a result. Apple figures out how to make things nicer without increasing costs by much, and does so by taking advantage of their enormous scale.<a href="#fnref1">↩</a></p>
+                        </li>
+                    </ol>
+                </div>
+
+                <!-- Divider before bottom subscription form -->
+                <div class="bottom-form-divider"></div>
+
+                <!-- Email subscription form at bottom -->
+                <form action="https://buttondown.com/api/emails/embed-subscribe/tommccarthyprojects" method="post" target="popupwindow" onsubmit="window.open('https://buttondown.com/tommccarthyprojects', 'popupwindow')" class="embeddable-buttondown-form">
+                    <label for="bd-email-bottom">Subscribe for hand-delivered notifications:</label>
+                    <input type="email" name="email" id="bd-email-bottom" />
+                    <input type="submit" value="Subscribe" />
+                </form>
+            </article>
+        </div>
+    </div>
+
+    <script>
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+            localStorage.setItem('darkMode', document.body.classList.contains('dark-mode'));
+        }
+
+        // Load saved preference
+        if (localStorage.getItem('darkMode') === 'true') {
+            document.body.classList.add('dark-mode');
+        }
+
+        // Dynamically populate footnote tooltips from footer content
+        function populateFootnoteTooltips() {
+            // Get all footnote references in the main text
+            const footnoteRefs = document.querySelectorAll('.footnote-ref');
+
+            footnoteRefs.forEach(ref => {
+                // Get the footnote number from the href
+                const footnoteId = ref.getAttribute('href').substring(1); // Remove the # from #fn1
+
+                // Find the corresponding footnote in the footer
+                const footnoteItem = document.getElementById(footnoteId);
+
+                if (footnoteItem) {
+                    // Get the text content from the footnote (excluding the back arrow link)
+                    const footnoteText = footnoteItem.querySelector('p').cloneNode(true);
+                    // Remove the back arrow link
+                    const backLink = footnoteText.querySelector('a[href^="#fnref"]');
+                    if (backLink) {
+                        backLink.remove();
+                    }
+
+                    // Create or update the tooltip span
+                    let tooltip = ref.querySelector('.footnote-tooltip');
+                    if (!tooltip) {
+                        tooltip = document.createElement('span');
+                        tooltip.className = 'footnote-tooltip';
+                        ref.appendChild(tooltip);
+                    }
+
+                    // Set the tooltip content (innerHTML to preserve links)
+                    tooltip.innerHTML = footnoteText.innerHTML.trim();
+                }
+            });
+        }
+
+        // Call the function when the page loads
+        document.addEventListener('DOMContentLoaded', populateFootnoteTooltips);
+
+        // Smooth scroll to footnotes
+        document.querySelectorAll('a[href^="#fn"]').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
