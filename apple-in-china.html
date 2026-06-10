@@ -242,6 +242,11 @@
 
     .post-body ol li {
         margin-bottom: 0.8em; /* space between items in numbered lists */
+        padding-left: 0.4em; /* gap between "1." and the text */
+    }
+
+    .post-body ol {
+        padding-left: 1.5em;   /* room for the marker inside the column */
     }
 
     body.dark-mode .post-body p {
@@ -368,21 +373,19 @@
     }
     /* bullet / hyphenated list in article section */
     article ul {
-        list-style-type: none;
-        padding-left: 0;
+        list-style: disc outside;
+        padding-left: 1.5em;
         margin-bottom: 1.5em;
     }
 
     article ul li {
         margin-bottom: 0.8em;
         line-height: 1.7;
-        padding-left: 2em;
-        text-indent: -2em;
+        padding-left: 0.4em;
     }
 
-    article ul li::before {
-        content: "— ";
-        font-size: 1.1em;
+    article ul li::marker {
+        font-size: 1.4em;
     }
 
     /* Footnote styles */
