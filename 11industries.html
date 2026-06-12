@@ -29,12 +29,15 @@
         box-sizing: border-box;
     }
 
+    html {
+        overflow-x: hidden;
+    }
+
     body {
         font-family: 'Newsreader', 'Georgia', 'Times New Roman', serif;
         background-color: #f5f5f5;
         color: #1a1a1a;
         line-height: 1.7;
-        overflow-x: hidden;
         font-weight: 500;
         transition: background-color 0.3s ease, color 0.3s ease;
     }
@@ -86,23 +89,39 @@
         width: 100%;
         max-width: 860px;
         min-width: 375px;
-        padding: 120px 80px 80px 80px;
+        padding: 106px 80px 80px 80px;
     }
 
     header {
         margin-bottom: 40px;
         margin-left: auto;
         margin-right: auto;
+        padding-top: 14px;
         padding-bottom: 10px;
         border-bottom: 1px solid #d0d0d0;
         display: flex;
         align-items: center;
         gap: 6px;
         max-width: 680px;
+        position: relative;
+        top: 0;
+        z-index: 100;
+        background-color: #f5f5f5;
+        transition: transform 0.35s ease, background-color 0.3s ease, border-bottom-color 0.3s ease;
+        will-change: transform;
+    }
+
+    header.is-pinned {
+        position: sticky;
+    }
+
+    header.is-hidden {
+        transform: translateY(-100%);
     }
 
     body.dark-mode header {
         border-bottom-color: #404040;
+        background-color: #1a1a1a;
     }
 
     /* Image styles - match text column width and responsive */
@@ -619,7 +638,7 @@
     /* Phase 3: Approaching text width - switch to mobile layout with smaller text */
     @media (max-width: 850px) {
         .content {
-            padding: 60px 20px 60px 20px;
+            padding: 46px 20px 60px 20px;
         }
 
         .post-title {
@@ -657,7 +676,7 @@
     /* Phase 4: Very narrow - minimal padding, minimum width enforced */
     @media (max-width: 500px) {
         .content {
-            padding: 60px 18px 60px 18px;
+            padding: 46px 18px 60px 18px;
         }
 
         .header-links {
@@ -773,6 +792,95 @@
         if (localStorage.getItem('darkMode') === 'true') {
             document.body.classList.add('dark-mode');
         }
+
+        // Header behaviour: on the way down it stays in normal flow and scrolls
+        // off with the page (no special motion). Once it's fully gone, scrolling
+        // up slides it back into view; scrolling down slides it away again.
+        (function() {
+            const header = document.querySelector('header');
+            if (!header) return;
+
+            let restTop = 0;    // resting position — where it sticks to the top
+            let offPoint = 0;   // scroll position at which it has fully cleared the top
+
+            function measure() {
+                header.classList.remove('is-pinned', 'is-hidden');
+                // Resting top depends only on layout (not font height), so it's
+                // safe to capture once even before web fonts have loaded.
+                restTop = header.getBoundingClientRect().top + window.scrollY;
+            }
+            measure();
+
+            // 'flow'  -> normal flow, scrolls with the page
+            // 'shown' -> pinned at the top, visible
+            // 'hidden'-> pinned at the top, slid up out of view
+            let state = 'flow';
+            let lastY = window.scrollY;
+            let ticking = false;
+
+            function setState(next) {
+                if (next === state) return;
+                // Only the reveal/hide between the two pinned states slides; every
+                // transition that touches 'flow' snaps, because it happens either
+                // off-screen or exactly where the two positions already coincide.
+                const animate = (state === 'shown' && next === 'hidden') ||
+                                (state === 'hidden' && next === 'shown');
+                if (!animate) header.style.transition = 'none';
+                header.classList.toggle('is-pinned', next !== 'flow');
+                header.classList.toggle('is-hidden', next === 'hidden');
+                if (!animate) {
+                    void header.offsetHeight;
+                    header.style.transition = '';
+                }
+                state = next;
+            }
+
+            function update() {
+                const y = window.scrollY;
+                const down = y > lastY + 4;
+                const up = y < lastY - 4;
+
+                if (state === 'flow') {
+                    // Scrolls away with the page; hand off to the pinned state only
+                    // once it has fully cleared the top, so the switch is invisible.
+                    const rect = header.getBoundingClientRect();
+                    if (down && rect.bottom <= 0) {
+                        offPoint = restTop + rect.height;
+                        setState('hidden');
+                    }
+                } else if (state === 'hidden') {
+                    if (y <= offPoint) {
+                        // Its natural position is back on screen — rejoin the flow so
+                        // it scrolls in with the page (the two line up at offPoint).
+                        setState('flow');
+                    } else if (up && y > window.innerHeight) {
+                        // Reveal, but only when more than one screen down the page.
+                        setState('shown');
+                    }
+                } else { // 'shown'
+                    if (y <= restTop) {
+                        // Merge into flow exactly where the positions meet, so
+                        // reaching the top looks completely static.
+                        setState('flow');
+                    } else if (down) {
+                        setState('hidden');
+                    }
+                }
+                lastY = y;
+                ticking = false;
+            }
+
+            window.addEventListener('scroll', function() {
+                if (!ticking) {
+                    window.requestAnimationFrame(update);
+                    ticking = true;
+                }
+            }, { passive: true });
+
+            window.addEventListener('resize', function() {
+                if (window.scrollY === 0) measure();
+            }, { passive: true });
+        })();
 
         // Dynamically populate footnote tooltips from footer content
         function populateFootnoteTooltips() {
